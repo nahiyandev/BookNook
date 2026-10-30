@@ -1,0 +1,101 @@
+{
+  "dependencies": [
+    {
+      "name": "next",
+      "version": "16.4.3",
+      "usedFor": "Next.js app, routing, development server, and production build"
+    },
+    {
+      "name": "react",
+      "version": "19.3.0",
+      "usedFor": "Building UI components"
+    },
+    {
+      "name": "react-dom",
+      "version": "19.3.0",
+      "usedFor": "Rendering React components in the browser"
+    },
+    {
+      "name": "react-toastify",
+      "version": "^11.2.0",
+      "usedFor": "Displaying toast notifications from the application layout"
+    },
+    {
+      "name": "@base-ui/react",
+      "version": "^1.9.0",
+      "usedFor": "Base UI primitive for the Button component"
+    },
+    {
+      "name": "class-variance-authority",
+      "version": "^0.7.1",
+      "usedFor": "Defining Button variants"
+    },
+    {
+      "name": "cn",
+      "version": "^0.5.1",
+      "usedFor": "Combining CSS class names in UI components"
+    },
+    {
+      "name": "lucide-react",
+      "version": "^1.65.0",
+      "usedFor": "Icon library configured for shadcn; no direct imports found in current source"
+    },
+    {
+      "name": "shadcn",
+      "version": "^4.23.0",
+      "usedFor": "shadcn component and Tailwind CSS tooling"
+    },
+    {
+      "name": "tw-animate-css",
+      "version": "^1.4.0",
+      "usedFor": "Tailwind CSS animation utilities"
+    }
+  ],
+  "devDependencies": [
+    {
+      "name": "@tailwindcss/turbopack",
+      "version": "^4",
+      "usedFor": "Loading Tailwind CSS through Turbopack"
+    },
+    {
+      "name": "@types/node",
+      "version": "^20",
+      "usedFor": "Node.js type definitions for TypeScript"
+    },
+    {
+      "name": "@types/react",
+      "version": "^19",
+      "usedFor": "React type definitions for TypeScript"
+    },
+    {
+      "name": "@types/react-dom",
+      "version": "^19",
+      "usedFor": "React DOM type definitions for TypeScript"
+    },
+    {
+      "name": "babel-plugin-react-compiler",
+      "version": "1.0.0",
+      "usedFor": "React Compiler enabled in Next.js configuration"
+    },
+    {
+      "name": "eslint",
+      "version": "^9",
+      "usedFor": "Linting the project"
+    },
+    {
+      "name": "eslint-config-next",
+      "version": "16.4.3",
+      "usedFor": "Next.js ESLint rules"
+    },
+    {
+      "name": "tailwindcss",
+      "version": "^4",
+      "usedFor": "Utility-first CSS styling"
+    },
+    {
+      "name": "typescript",
+      "version": "^5",
+      "usedFor": "TypeScript language and type checking"
+    }
+  ]
+}

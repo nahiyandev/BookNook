@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512">
+  <!-- BookNook Sharing Loop logo — icon only. Gold arrow: book goes out. Green arrow: book returns. -->
+  <path d="M22 32 Q60 10 98 32" fill="none" stroke="#D97706" stroke-width="4" stroke-linecap="round"/>
+  <polygon points="98,32 88,28 90,40" fill="#D97706"/>
+  <path d="M98 88 Q60 110 22 88" fill="none" stroke="#047857" stroke-width="4" stroke-linecap="round"/>
+  <polygon points="22,88 32,84 30,96" fill="#047857"/>
+  <path d="M30 44 Q45 38 60 44 Q75 38 90 44 L90 76 Q75 70 60 76 Q45 70 30 76 Z" fill="#047857"/>
+  <path d="M60 44 L60 76" stroke="#FDFBF7" stroke-width="2.5"/>
+  <path d="M36 50 Q45 47 54 50 M66 50 Q75 47 84 50 M36 58 Q45 55 54 58 M66 58 Q75 55 84 58" stroke="#FDFBF7" stroke-width="1.6" fill="none"/>
+</svg>
