@@ -8,12 +8,12 @@ import { MongoClient, type Db } from "mongodb";
  * Atlas refuses more connections. The global cache keeps ONE client.
  *
  * Env vars (see env.example — values are NEVER written in code):
- *   MONGODB_URI — Atlas connection string
+ *   MONGO_URI or MONGODB_URI — Atlas connection string
  *   MONGODB_DB  — database name, e.g. "booknook" (default if not set)
  */
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI || process.env.MONGO_URI;
 if (!uri) {
-  throw new Error("MONGODB_URI is not set. See env.example.");
+  throw new Error("MONGO_URI or MONGODB_URI is not set. See env.example.");
 }
 
 declare global {
