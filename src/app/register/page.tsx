@@ -27,6 +27,8 @@ export default function RegisterPage() {
   const [formError, setFormError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [googleLoading, setGoogleLoading] = useState(false);
+
   function passwordError(value: string): string {
     if (value.length < 6) return "Password must be at least 6 characters long.";
     if (!/[A-Z]/.test(value))
@@ -67,10 +69,27 @@ export default function RegisterPage() {
 
   async function handleGoogle() {
     // Google sign-up goes straight home (spec: social login → Home page).
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    setFormError("");
+    setGoogleLoading(true);
+    try {
+      const res = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+      if (res?.error) {
+        const msg =
+          res.error.message ||
+          "Google Sign-In is not configured yet. Please configure GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in Vercel.";
+        setFormError(msg);
+        toast.error(msg);
+      }
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Google Sign-In failed.";
+      setFormError(msg);
+      toast.error(msg);
+    } finally {
+      setGoogleLoading(false);
+    }
   }
 
   const inputClass =
@@ -156,9 +175,10 @@ export default function RegisterPage() {
           type="button"
           variant="outline"
           onClick={handleGoogle}
+          disabled={loading || googleLoading}
           className="w-full"
         >
-          Continue with Google
+          {googleLoading ? "Connecting to Google..." : "Continue with Google"}
         </Button>
 
         <p className="mt-6 text-center text-sm text-[#6B7280]">

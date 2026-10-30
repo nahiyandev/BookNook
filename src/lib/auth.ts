@@ -30,10 +30,17 @@ const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 
 export const auth = betterAuth({
   database: mongodbAdapter(db),
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? (process.env.BETTER_AUTH_URL && !process.env.BETTER_AUTH_URL.includes("localhost")
+          ? process.env.BETTER_AUTH_URL
+          : "https://booknook-lovat.vercel.app")
+      : (process.env.BETTER_AUTH_URL || "http://localhost:3000"),
   trustedOrigins: [
     "http://localhost:3000",
     "https://booknook-lovat.vercel.app",
-  ],
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "",
+  ].filter(Boolean),
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,

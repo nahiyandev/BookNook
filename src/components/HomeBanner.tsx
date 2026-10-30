@@ -69,7 +69,7 @@ export default function HomeBanner() {
                 priority
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#052E22]/85 via-[#052E22]/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-r from-[#052E22]/85 via-[#052E22]/50 to-transparent" />
               <div className="absolute inset-0 flex items-center">
                 <div className="mx-auto w-full max-w-7xl px-4">
                   <div className="max-w-xl">

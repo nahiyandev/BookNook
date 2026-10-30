@@ -51,11 +51,30 @@ function LoginForm() {
     router.refresh();
   }
 
+  const [googleLoading, setGoogleLoading] = useState(false);
+
   async function handleGoogle() {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: callbackUrl,
-    });
+    setFormError("");
+    setGoogleLoading(true);
+    try {
+      const res = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: callbackUrl,
+      });
+      if (res?.error) {
+        const msg =
+          res.error.message ||
+          "Google Sign-In is not configured yet. Please configure GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in Vercel.";
+        setFormError(msg);
+        toast.error(msg);
+      }
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Google Sign-In failed.";
+      setFormError(msg);
+      toast.error(msg);
+    } finally {
+      setGoogleLoading(false);
+    }
   }
 
   const inputClass =
@@ -130,9 +149,10 @@ function LoginForm() {
           type="button"
           variant="outline"
           onClick={handleGoogle}
+          disabled={loading || googleLoading}
           className="w-full"
         >
-          Continue with Google
+          {googleLoading ? "Connecting to Google..." : "Continue with Google"}
         </Button>
 
         <p className="mt-6 text-center text-sm text-[#6B7280]">
