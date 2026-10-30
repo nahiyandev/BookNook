@@ -44,14 +44,20 @@ const slides = [
 
 export default function HomeBanner() {
   return (
-    <section aria-label="BookNook highlights">
+    <section
+      aria-label="BookNook highlights"
+      /* Fixed height lives on a plain HTML element so Tailwind v4
+         IntelliSense recognises it and Swiper's inner wrappers can
+         use h-full to fill it reliably. */
+      style={{ height: "clamp(420px, 52vw, 520px)" }}
+    >
       <Swiper
         modules={[Autoplay, Pagination]}
         slidesPerView={1}
         loop
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        className="h-[420px] w-full md:h-[520px]"
+        className="h-full w-full"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.title}>
