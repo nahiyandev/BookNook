@@ -25,6 +25,9 @@ import { db } from "./db";
  * Secrets come from env only: BETTER_AUTH_SECRET, BETTER_AUTH_URL,
  * GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET. Never paste them in code or chat.
  */
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+
 export const auth = betterAuth({
   database: mongodbAdapter(db),
   trustedOrigins: [
@@ -35,11 +38,15 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: false,
   },
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    },
-  },
+  ...(googleClientId && googleClientSecret
+    ? {
+        socialProviders: {
+          google: {
+            clientId: googleClientId,
+            clientSecret: googleClientSecret,
+          },
+        },
+      }
+    : {}),
   plugins: [jwt()],
 });
