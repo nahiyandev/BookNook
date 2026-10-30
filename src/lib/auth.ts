@@ -27,6 +27,10 @@ import { db } from "./db";
  */
 export const auth = betterAuth({
   database: mongodbAdapter(db),
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://booknook-lovat.vercel.app",
+  ],
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
