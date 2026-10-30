@@ -1,30 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
+import { authClient } from "../../lib/auth-client";
 
 /**
- * BookNook Navbar — Section 1 (Client Base).
- *
- * Why 'use client'? The theme toggle, mobile menu and profile dropdown all
- * need browser state (useState / useEffect / localStorage). Server Components
- * cannot hold that state, so the Navbar is a Client Component. The root
- * layout (a Server Component) simply renders it.
- *
- * Auth placeholder: `isLoggedIn` is FALSE for now, on purpose. Step 3
- * (BetterAuth) replaces this one value with the real session. Until then
- * private links stay hidden and Login/Register stay visible — no fake login.
+ * BookNook Navbar — Section 2 (Authentication) version.
+ * REPLACES the Section 1 Navbar completely: the isLoggedIn placeholder is
+ * gone. This version reads the REAL BetterAuth session with useSession(),
+ * so private links, the photo dropdown and Logout all follow the actual
+ * login state. Everything else (theme toggle, mobile menu, Emerald styling)
+ * is unchanged from Section 1.
  */
-
-// TODO (Step 3 — BetterAuth): replace this with the real session, e.g.
-// const { data: session } = useSession(); const isLoggedIn = !!session;
-// const user = session?.user;
-const isLoggedIn = false;
-const userName = "Reader";
-const userPhoto = ""; // TODO (Step 3): session user image URL
 
 const publicLinks = [
   { href: "/", label: "Home" },
@@ -36,6 +26,25 @@ const privateLinks = [
   { href: "/my-books", label: "My Books" },
   { href: "/my-borrows", label: "My Borrows" },
 ];
+
+function getThemeSnapshot() {
+  return typeof window !== "undefined" && localStorage.getItem("booknook-theme") === "dark";
+}
+
+function getServerThemeSnapshot() {
+  return false;
+}
+
+function subscribeToTheme(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+
+  window.addEventListener("storage", callback);
+  window.addEventListener("booknook-theme-change", callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener("booknook-theme-change", callback);
+  };
+}
 
 /** Sharing-loop logo mark, inline SVG (same paths as assets/logo.svg).
  *  Inline, not an image import, so it works in any Next.js setup without
@@ -76,21 +85,29 @@ function LogoMark({ className }: { className?: string }) {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session } = authClient.useSession();
+  const isLoggedIn = !!session;
+  const userName = session?.user?.name ?? "Reader";
+  const userPhoto = session?.user?.image ?? "";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dark = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot
+  );
 
-  // Theme: read the saved choice once, then keep <html class="dark"> in sync.
-  // localStorage (not system preference alone) so the choice survives reloads.
+  // Keep <html class="dark"> in sync with the saved theme preference.
   useEffect(() => {
-    const saved = localStorage.getItem("booknook-theme");
-    const isDark = saved === "dark";
-    document.documentElement.classList.toggle("dark", isDark);
-  }, []);
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   function toggleTheme() {
-    const next = !document.documentElement.classList.contains("dark");
+    const next = !dark;
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("booknook-theme", next ? "dark" : "light");
+    window.dispatchEvent(new Event("booknook-theme-change"));
   }
 
   const links = isLoggedIn ? [...publicLinks, ...privateLinks] : publicLinks;
@@ -131,8 +148,7 @@ export default function Navbar() {
             aria-label="Toggle dark / light theme"
             className="rounded-full border border-[#E7E5E4] bg-white px-3 py-2 text-sm dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5]"
           >
-            <span className="dark:hidden">🌙 Dark</span>
-            <span className="hidden dark:inline">☀️ Light</span>
+            {dark ? "☀️ Light" : "🌙 Dark"}
           </button>
 
           {isLoggedIn ? (
@@ -143,7 +159,6 @@ export default function Navbar() {
                 aria-label="Open profile menu"
                 className="flex items-center gap-2 rounded-full border border-[#E7E5E4] p-1 pr-3 dark:border-[#134E4A]"
               >
-                {/* TODO (Step 3): replace with the real user photo */}
                 {userPhoto ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -173,10 +188,14 @@ export default function Navbar() {
                   >
                     My Profile
                   </Link>
-                  {/* TODO (Step 3): wire this to the real BetterAuth sign-out */}
                   <button
                     type="button"
-                    onClick={() => setDropdownOpen(false)}
+                    onClick={async () => {
+                      setDropdownOpen(false);
+                      await authClient.signOut();
+                      router.push("/");
+                      router.refresh();
+                    }}
                     className="block w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
                   >
                     Logout
@@ -186,12 +205,8 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="hidden items-center gap-2 sm:flex">
-              <Button render={<Link href="/login" />} variant="outline" nativeButton={false}>
-                Login
-              </Button>
-              <Button render={<Link href="/register" />} nativeButton={false}>
-                Register
-              </Button>
+              <Button render={<Link href="/login" />} variant="outline" nativeButton={false}>Login</Button>
+              <Button render={<Link href="/register" />} nativeButton={false}>Register</Button>
             </div>
           )}
 
@@ -222,16 +237,8 @@ export default function Navbar() {
           ))}
           {!isLoggedIn && (
             <div className="mt-2 flex gap-2">
-              <Button
-                render={<Link href="/login" />}
-                variant="outline"
-                className="flex-1"
-              >
-                Login
-              </Button>
-              <Button render={<Link href="/register" />} className="flex-1">
-                Register
-              </Button>
+              <Button render={<Link href="/login" />} variant="outline" nativeButton={false} className="flex-1">Login</Button>
+              <Button render={<Link href="/register" />} nativeButton={false} className="flex-1">Register</Button>
             </div>
           )}
         </div>
