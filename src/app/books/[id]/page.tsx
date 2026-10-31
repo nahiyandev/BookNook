@@ -52,12 +52,12 @@ export default async function BookDetailsPage({
           {/* Left Column — Full Height Complete Book Cover (No Cropping) */}
           <div className="flex h-full flex-col lg:col-span-5">
             <div className="relative flex flex-1 items-center justify-center overflow-hidden rounded-2xl border border-[#E7E5E4] bg-linear-to-b from-[#FDFBF7] to-[#F5F2EB] p-4 shadow-lg dark:border-[#134E4A] dark:bg-linear-to-b dark:from-[#052E22] dark:to-[#04241B]">
-              <div className="relative flex h-full min-h-[460px] w-full items-center justify-center lg:min-h-[600px]">
+              <div className="relative flex h-full min-h-115 w-full items-center justify-center lg:min-h-150">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={book.image}
                   alt={book.title}
-                  className="max-h-[560px] w-auto max-w-full rounded-xl object-contain shadow-xl transition-transform duration-500 hover:scale-[1.02]"
+                  className="max-h-140 w-auto max-w-full rounded-xl object-contain shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                 />
                 {/* Category Pill — Amber accent */}
                 <span className="absolute top-2 left-2 rounded-full bg-[#D97706] px-3.5 py-1 text-xs font-bold tracking-wide uppercase text-white shadow-md">
