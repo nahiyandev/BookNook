@@ -51,3 +51,22 @@ h2,
 h3 {
   font-family: Georgia, "Times New Roman", serif;
 }
+
+/* Swiper Pagination Theme custom styling */
+.swiper-pagination-bullet {
+  background-color: #047857 !important;
+  opacity: 0.35 !important;
+  transition: all 0.3s ease;
+}
+.swiper-pagination-bullet-active {
+  background-color: #047857 !important;
+  opacity: 1 !important;
+  width: 22px !important;
+  border-radius: 9999px !important;
+}
+.dark .swiper-pagination-bullet {
+  background-color: #6ee7b7 !important;
+}
+.dark .swiper-pagination-bullet-active {
+  background-color: #6ee7b7 !important;
+}

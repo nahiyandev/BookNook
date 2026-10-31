@@ -111,10 +111,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. Curated Shelves & Reading Genres */}
-      <HomeGenres />
-
-      {/* 4. New Arrivals — Interactive Book Explorer with Search Lens & Category Filter */}
+      {/* 3. New Arrivals — Interactive Book Explorer with Search Lens & Category Filter */}
       <section className="bg-[#FDFBF7] py-14 dark:bg-[#052E22] md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <HomeBookExplorer
@@ -127,6 +124,9 @@ export default async function HomePage() {
           />
         </div>
       </section>
+
+      {/* 4. Curated Shelves & Reading Genres */}
+      <HomeGenres />
 
       {/* 5. Curated Spotlight: Featured Reader Addition */}
       {featuredBook && (
