@@ -24,15 +24,29 @@ function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   );
 }
 
-/** Official new X logo (rebranded from old Twitter bird) */
-function XLogo({ className = "h-4 w-4" }: { className?: string }) {
+/** Vector Icon: LinkedIn */
+function LinkedInIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v8.37h-2.8V10.9M7.86 6.78a1.64 1.64 0 0 0-1.66 1.63 1.63 1.63 0 0 0 1.66 1.63 1.63 1.63 0 0 0 1.65-1.63c0-.9-.74-1.63-1.65-1.63z" />
     </svg>
   );
 }
 
+/** Vector Icon: GitHub */
+function GitHubIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+      />
+    </svg>
+  );
+}
+
+/** Vector Icon: Facebook */
 function FacebookIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -41,16 +55,9 @@ function FacebookIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function InstagramIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-    </svg>
-  );
-}
-
 /**
- * BookNook Footer — Consistent branding, social links with official new X logo.
+ * BookNook Footer — Minimal, elegant, reader-focused footer with LinkedIn, GitHub, Facebook links,
+ * and developer watermark signature.
  */
 export default function Footer() {
   return (
@@ -60,7 +67,7 @@ export default function Footer() {
         <div className="lg:col-span-5">
           <Link href="/" className="inline-flex items-center gap-2.5">
             <LogoMark className="h-9 w-9" />
-            <span className="font-serif text-2xl font-bold text-white">
+            <span className="font-serif text-2xl font-bold tracking-tight text-white">
               BookNook
             </span>
           </Link>
@@ -100,70 +107,85 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/my-books" className="transition hover:text-white hover:underline">
-                My Shared Shelf
+              <Link href="/profile" className="transition hover:text-white hover:underline">
+                Reader Profile
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Connect & Socials column */}
+        {/* Connect & Socials column (LinkedIn, GitHub, Facebook) */}
         <div className="lg:col-span-4">
           <h3 className="font-serif text-sm font-bold uppercase tracking-wider text-[#FCD34D]">
             Connect With Readers
           </h3>
           <p className="mt-4 text-xs leading-relaxed text-[#A7F3D0] sm:text-sm">
-            Follow BookNook for community announcements, fresh shelf arrivals, and book discussions.
+            Connect across social platforms for community announcements, code updates, and reading discussions.
           </p>
 
-          {/* Social Icons including the new X logo */}
+          {/* Social Icons: LinkedIn, GitHub, Facebook */}
           <div className="mt-5 flex items-center gap-3">
-            {/* Official new X logo */}
+            {/* LinkedIn */}
             <a
-              href="https://x.com"
+              href="https://www.linkedin.com/in/nahiyandev"
               target="_blank"
               rel="noreferrer"
-              aria-label="Follow BookNook on X"
-              title="X (formerly Twitter)"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#134E4A] bg-[#073B2E] text-white shadow-xs transition hover:border-[#6EE7B7] hover:bg-[#047857]"
+              aria-label="BookNook on LinkedIn"
+              title="LinkedIn"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#134E4A] bg-[#073B2E] text-white shadow-xs transition hover:scale-105 hover:border-[#6EE7B7] hover:bg-[#047857]"
             >
-              <XLogo className="h-4 w-4" />
+              <LinkedInIcon className="h-4 w-4" />
+            </a>
+
+            {/* GitHub */}
+            <a
+              href="https://github.com/nahiyandev"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="BookNook on GitHub"
+              title="GitHub"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#134E4A] bg-[#073B2E] text-white shadow-xs transition hover:scale-105 hover:border-[#6EE7B7] hover:bg-[#047857]"
+            >
+              <GitHubIcon className="h-4 w-4" />
             </a>
 
             {/* Facebook */}
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/nahiyandev"
               target="_blank"
               rel="noreferrer"
               aria-label="BookNook on Facebook"
               title="Facebook"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#134E4A] bg-[#073B2E] text-white shadow-xs transition hover:border-[#6EE7B7] hover:bg-[#047857]"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#134E4A] bg-[#073B2E] text-white shadow-xs transition hover:scale-105 hover:border-[#6EE7B7] hover:bg-[#047857]"
             >
               <FacebookIcon className="h-4 w-4" />
-            </a>
-
-            {/* Instagram */}
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="BookNook on Instagram"
-              title="Instagram"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#134E4A] bg-[#073B2E] text-white shadow-xs transition hover:border-[#6EE7B7] hover:bg-[#047857]"
-            >
-              <InstagramIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* Copyright Bar */}
-      <div className="border-t border-[#134E4A] py-5 text-center text-xs text-[#6EE7B7]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 sm:flex-row sm:px-6 lg:px-8">
-          <p>© 2026 BookNook Library. Built with love for readers.</p>
-          <p className="text-[11px] text-[#A7F3D0]">
-            100% Community Powered • Zero Fines • Free Forever
+      {/* Copyright Bar & Developer Signature Watermark */}
+      <div className="border-t border-[#134E4A] py-5 text-xs text-[#6EE7B7]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 sm:flex-row sm:px-6 lg:px-8">
+          <p className="text-center sm:text-left">
+            © 2026 BookNook Library. All rights reserved.
           </p>
+
+          {/* Right Corner Watermark */}
+          <div className="flex items-center gap-1.5 text-[11px] text-[#A7F3D0]">
+            <span>Designed & Developed by</span>
+            <a
+              href="https://github.com/nahiyandev"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-1 font-bold text-white transition hover:text-[#FCD34D]"
+            >
+              <span className="underline decoration-[#D97706] decoration-1 underline-offset-3 group-hover:decoration-[#FCD34D]">
+                Nahiyan
+              </span>
+              <span className="text-xs">↗</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
