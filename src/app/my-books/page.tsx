@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { apiFetch, type Book } from "../../lib/api";
-import { authClient } from "../../lib/auth-client";
-import { Button } from "../../components/ui/button";
-import EditBookModal from "../../components/EditBookModal";
-import ConfirmModal from "../../components/ConfirmModal";
+import { apiFetch, type Book } from "@/lib/api";
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@/components/ui/button";
+import EditBookModal from "@/components/EditBookModal";
+import ConfirmModal from "@/components/ConfirmModal";
 
 async function fetchMyBooks(email: string): Promise<Book[]> {
   const all = await apiFetch<Book[]>("/books");
-  return all.filter((book) => book.addedBy?.email === email);
+  return all.filter((book: Book) => book.addedBy?.email === email);
 }
 
 /**
@@ -142,7 +142,7 @@ export default function MyBooksPage() {
       ) : (
         <div className="overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[680px] text-left text-sm">
+            <table className="w-full min-w-170 text-left text-sm">
               <thead>
                 <tr className="border-b border-[#E7E5E4] bg-[#FDFBF7] text-[11px] font-bold uppercase tracking-wider text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7]">
                   <th className="px-6 py-4">Book Title & Author</th>

@@ -2,8 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import { toast } from "react-toastify";
-import { apiFetch, type Book } from "../lib/api";
-import { Button } from "./ui/button";
+import { apiFetch, type Book } from "@/lib/api";
+import { Button } from "@/components/ui/button";
 
 /**
  * BookNook edit modal — Books section.

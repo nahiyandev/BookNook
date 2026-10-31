@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { apiFetch, type Borrow } from "../../lib/api";
-import { Button } from "../../components/ui/button";
+import { apiFetch, type Borrow } from "@/lib/api";
+import { Button } from "@/components/ui/button";
 
 /**
  * BookNook My Borrows — Borrow section, PRIVATE route (middleware guards it).
@@ -77,7 +77,7 @@ export default function MyBorrowsPage() {
         </p>
       ) : (
         <div className="mt-8 overflow-x-auto rounded-2xl border border-[#E7E5E4] bg-white dark:border-[#134E4A] dark:bg-[#064E3B]">
-          <table className="w-full min-w-[640px] text-left text-sm">
+          <table className="w-full min-w-160 text-left text-sm">
             <thead>
               <tr className="border-b border-[#E7E5E4] dark:border-[#134E4A]">
                 <th className="px-4 py-3">Image</th>
