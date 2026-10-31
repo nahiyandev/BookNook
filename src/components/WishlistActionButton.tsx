@@ -74,3 +74,4 @@ export default function WishlistActionButton({ book }: { book: Book }) {
     </div>
   );
 }
+
