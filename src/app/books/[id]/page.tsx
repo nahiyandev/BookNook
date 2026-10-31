@@ -53,7 +53,7 @@ export default async function BookDetailsPage({
           <div className="flex flex-col gap-5 lg:col-span-5">
             {/* Book Cover Frame (auto-fit full image, no awkward padding or side gaps) */}
             <div className="relative overflow-hidden rounded-2xl border border-[#E7E5E4] bg-white shadow-xl dark:border-[#134E4A] dark:bg-[#052E22]">
-              <div className="relative aspect-[2/3] w-full overflow-hidden bg-[#F3F4F6] dark:bg-[#052E22]">
+              <div className="relative aspect-2/3 w-full overflow-hidden bg-[#F3F4F6] dark:bg-[#052E22]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={book.image}
