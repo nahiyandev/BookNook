@@ -49,27 +49,27 @@ export default async function BookDetailsPage({
       {/* Main presentation card */}
       <div className="overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-xl shadow-stone-200/50 sm:p-8 lg:p-10 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column — Full Tall Portrait Cover */}
-          <div className="flex flex-col lg:col-span-5">
-            <div className="relative overflow-hidden rounded-2xl border border-[#E7E5E4] bg-linear-to-b from-[#FDFBF7] to-[#F5F2EB] p-3 shadow-lg dark:border-[#134E4A] dark:bg-linear-to-b dark:from-[#052E22] dark:to-[#04241B]">
-              <div className="relative aspect-3/4 w-full overflow-hidden rounded-xl shadow-inner">
+          {/* Left Column — Full Height Complete Book Cover (No Cropping) */}
+          <div className="flex h-full flex-col lg:col-span-5">
+            <div className="relative flex flex-1 items-center justify-center overflow-hidden rounded-2xl border border-[#E7E5E4] bg-linear-to-b from-[#FDFBF7] to-[#F5F2EB] p-4 shadow-lg dark:border-[#134E4A] dark:bg-linear-to-b dark:from-[#052E22] dark:to-[#04241B]">
+              <div className="relative flex h-full min-h-[460px] w-full items-center justify-center lg:min-h-[600px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={book.image}
                   alt={book.title}
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="max-h-[560px] w-auto max-w-full rounded-xl object-contain shadow-xl transition-transform duration-500 hover:scale-[1.02]"
                 />
                 {/* Category Pill — Amber accent */}
-                <span className="absolute top-3 left-3 rounded-full bg-[#D97706] px-3 py-1 text-xs font-bold tracking-wide uppercase text-white shadow-md">
+                <span className="absolute top-2 left-2 rounded-full bg-[#D97706] px-3.5 py-1 text-xs font-bold tracking-wide uppercase text-white shadow-md">
                   {book.category}
                 </span>
 
                 {/* Copies Left Pill */}
                 <span
-                  className={`absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-bold shadow-md backdrop-blur-xs ${
+                  className={`absolute top-2 right-2 rounded-full px-3.5 py-1 text-xs font-bold shadow-md ${
                     book.availableCopies > 0
-                      ? "bg-[#047857]/95 text-white ring-1 ring-white/20"
-                      : "bg-red-600/95 text-white ring-1 ring-white/20"
+                      ? "bg-[#047857] text-white ring-1 ring-white/20"
+                      : "bg-red-600 text-white ring-1 ring-white/20"
                   }`}
                 >
                   {book.availableCopies > 0
@@ -78,34 +78,14 @@ export default async function BookDetailsPage({
                 </span>
               </div>
             </div>
-
-            {/* BookNook Library Loop Card — Gorgeous Amber & Emerald combination */}
-            <div className="mt-5 rounded-2xl border border-[#FDE68A] bg-linear-to-r from-[#FFFBEB] via-[#FEF3C7]/40 to-[#ECFDF5]/50 p-4 shadow-xs dark:border-[#D97706]/40 dark:bg-linear-to-r dark:from-[#052E22] dark:to-[#064E3B]">
-              <div className="flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D97706] text-sm text-white shadow-xs">
-                  📖
-                </span>
-                <div>
-                  <h4 className="text-xs font-bold tracking-wide text-[#92400E] uppercase dark:text-[#FCD34D]">
-                    BookNook Library Loop
-                  </h4>
-                  <p className="text-[11px] font-medium text-[#B45309] dark:text-[#FDE68A]">
-                    Community Shared Library
-                  </p>
-                </div>
-              </div>
-              <p className="mt-2.5 text-xs leading-relaxed text-[#78350F] dark:text-[#E2E8F0]">
-                Borrow for 7 days, enjoy reading, and return from My Borrows to keep the shelf alive for the next reader.
-              </p>
-            </div>
           </div>
 
           {/* Right Column — Information, Metadata Cards & Actions */}
           <div className="flex flex-col justify-between lg:col-span-7">
             <div>
-              {/* Category pill */}
+              {/* Category & Status trail */}
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-bold tracking-wider uppercase text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#064E3B] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
+                <span className="inline-flex items-center rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-bold tracking-wider uppercase text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
                   {book.category}
                 </span>
                 <span className="text-xs text-[#9CA3AF]">•</span>
@@ -125,39 +105,39 @@ export default async function BookDetailsPage({
                 </span>
               </p>
 
-              {/* 3 Gorgeous Metadata Cards with rich visual contrast */}
+              {/* 3 High-Contrast Metadata Cards (Crystal clear in both Light & Dark modes) */}
               <div className="mt-6 grid grid-cols-1 gap-3.5 sm:grid-cols-3">
-                {/* 1. Available Copies Card (Emerald gradient) */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#A7F3D0] bg-linear-to-br from-[#ECFDF5] via-white to-[#F0FDF4] p-4 shadow-sm transition hover:shadow-md dark:border-[#10B981]/40 dark:bg-linear-to-br dark:from-[#064E3B] dark:to-[#052E22]">
+                {/* 1. Available Copies Card */}
+                <div className="rounded-2xl border border-[#A7F3D0] bg-[#ECFDF5] p-4 shadow-xs transition hover:shadow-md dark:border-[#047857] dark:bg-[#052E22]">
                   <div className="flex items-center justify-between">
-                    <p className="text-[11px] font-bold tracking-wider uppercase text-[#047857] dark:text-[#34D399]">
+                    <p className="text-[11px] font-bold tracking-wider uppercase text-[#047857] dark:text-[#6EE7B7]">
                       Available Copies
                     </p>
                     <span className="text-xs">📚</span>
                   </div>
                   <div className="mt-2 flex items-baseline gap-1.5">
-                    <span className="text-3xl font-black text-[#047857] dark:text-[#6EE7B7]">
+                    <span className="text-3xl font-black text-[#047857] dark:text-[#34D399]">
                       {book.availableCopies}
                     </span>
-                    <span className="text-sm font-semibold text-[#6B7280] dark:text-[#A7F3D0]">
+                    <span className="text-sm font-semibold text-[#4B5563] dark:text-[#A7F3D0]">
                       / {book.totalCopies} total
                     </span>
                   </div>
-                  <p className="mt-1 text-[11px] font-medium text-[#059669] dark:text-[#34D399]">
+                  <p className="mt-1 text-[11px] font-medium text-[#059669] dark:text-[#6EE7B7]">
                     {book.availableCopies > 0 ? "Copies in library" : "None left on shelf"}
                   </p>
                 </div>
 
-                {/* 2. Status Card (Interactive pulse badge) */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#BAE6FD] bg-linear-to-br from-[#F0F9FF] via-white to-[#FDFBF7] p-4 shadow-sm transition hover:shadow-md dark:border-[#38BDF8]/40 dark:bg-linear-to-br dark:from-[#064E3B] dark:to-[#052E22]">
+                {/* 2. Status Card */}
+                <div className="rounded-2xl border border-[#BBF7D0] bg-[#F0FDF4] p-4 shadow-xs transition hover:shadow-md dark:border-[#047857] dark:bg-[#052E22]">
                   <div className="flex items-center justify-between">
-                    <p className="text-[11px] font-bold tracking-wider uppercase text-[#0284C7] dark:text-[#38BDF8]">
+                    <p className="text-[11px] font-bold tracking-wider uppercase text-[#047857] dark:text-[#6EE7B7]">
                       Status
                     </p>
                     <span
                       className={`inline-block h-2.5 w-2.5 rounded-full ${
                         book.availableCopies > 0
-                          ? "bg-[#10B981] animate-pulse shadow-xs"
+                          ? "bg-[#10B981] animate-pulse"
                           : "bg-red-500"
                       }`}
                     />
@@ -165,13 +145,13 @@ export default async function BookDetailsPage({
                   <p className="mt-2 text-base font-bold text-[#1F2937] dark:text-[#ECFDF5]">
                     {book.availableCopies > 0 ? "Ready to borrow" : "Unavailable"}
                   </p>
-                  <p className="mt-1 text-[11px] font-medium text-[#0284C7] dark:text-[#38BDF8]">
+                  <p className="mt-1 text-[11px] font-medium text-[#047857] dark:text-[#6EE7B7]">
                     {book.availableCopies > 0 ? "Instant 7-day loan" : "Reserved by readers"}
                   </p>
                 </div>
 
-                {/* 3. Added By Card (Warm Golden Amber accent) */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#FDE68A] bg-linear-to-br from-[#FFFBEB] via-white to-[#FEF3C7]/40 p-4 shadow-sm transition hover:shadow-md dark:border-[#D97706]/40 dark:bg-linear-to-br dark:from-[#064E3B] dark:to-[#052E22]">
+                {/* 3. Added By Card */}
+                <div className="rounded-2xl border border-[#FDE68A] bg-[#FFFBEB] p-4 shadow-xs transition hover:shadow-md dark:border-[#D97706]/50 dark:bg-[#052E22]">
                   <div className="flex items-center justify-between">
                     <p className="text-[11px] font-bold tracking-wider uppercase text-[#D97706] dark:text-[#FBBF24]">
                       Added By
@@ -194,21 +174,36 @@ export default async function BookDetailsPage({
                 </div>
               </div>
 
-              {/* Description Section with comfortable elevated container */}
+              {/* Description Section with elevated container */}
               <div className="mt-6">
                 <div className="flex items-center justify-between border-b border-[#E7E5E4] pb-2 dark:border-[#134E4A]">
                   <h2 className="font-serif text-xl font-bold text-[#1F2937] dark:text-[#ECFDF5]">
                     About this book
                   </h2>
-                  <span className="text-xs text-[#047857] dark:text-[#6EE7B7] font-semibold">
+                  <span className="text-xs font-semibold text-[#047857] dark:text-[#6EE7B7]">
                     Reader Review & Overview
                   </span>
                 </div>
-                <div className="mt-3 rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] p-5 dark:border-[#134E4A] dark:bg-[#052E22]/80">
+                <div className="mt-3 rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] p-5 dark:border-[#134E4A] dark:bg-[#052E22]">
                   <p className="text-sm sm:text-base leading-relaxed text-[#374151] whitespace-pre-line dark:text-[#D1FAE5]">
                     {book.description}
                   </p>
                 </div>
+              </div>
+
+              {/* BookNook Library Loop Card — Amber & Emerald combination */}
+              <div className="mt-4 rounded-2xl border border-[#FDE68A] bg-[#FFFBEB] p-3.5 dark:border-[#D97706]/40 dark:bg-[#052E22]">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#D97706] text-xs text-white">
+                    📖
+                  </span>
+                  <h4 className="text-xs font-bold tracking-wide uppercase text-[#92400E] dark:text-[#FCD34D]">
+                    BookNook Library Loop
+                  </h4>
+                </div>
+                <p className="mt-1 text-xs leading-relaxed text-[#78350F] dark:text-[#D1FAE5]">
+                  Borrow free for 7 days, enjoy reading, and return from My Borrows to keep the shelf alive for the next reader.
+                </p>
               </div>
             </div>
 
