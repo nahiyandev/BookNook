@@ -73,10 +73,21 @@ export default function BorrowModal({
         </label>
 
         <div className="mt-6 flex gap-3">
-          <Button variant="outline" onClick={onClose} className="flex-1" disabled={loading}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onClose}
+            className="flex-1 rounded-xl border-[#E7E5E4] py-2.5 text-sm font-medium text-[#374151] hover:bg-[#F3F4F6] dark:border-[#134E4A] dark:text-[#ECFDF5] dark:hover:bg-[#052E22]"
+            disabled={loading}
+          >
             Cancel
           </Button>
-          <Button onClick={handleConfirm} className="flex-1" disabled={loading}>
+          <Button
+            type="button"
+            onClick={handleConfirm}
+            className="flex-1 rounded-xl bg-[#047857] py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#065F46]"
+            disabled={loading}
+          >
             {loading ? "Borrowing..." : "Confirm Borrow"}
           </Button>
         </div>

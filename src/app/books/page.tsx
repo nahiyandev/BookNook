@@ -2,13 +2,6 @@ import { API_URL } from "../../lib/config";
 import BookCard from "../../components/BookCard";
 import type { Book as BookType } from "../../lib/api";
 
-/**
- * BookNook All Books — Books section, PUBLIC route.
- * Server Component: it fetches directly from the backend (no JWT needed
- * for the public GET /books route) with no-store, so a newly added book
- * appears immediately without waiting for a cache to expire.
- * Grid: 3 cards per row on desktop (assignment rule), 2 on tablet, 1 mobile.
- */
 export const metadata = { title: "All Books" };
 
 export default async function AllBooksPage() {
