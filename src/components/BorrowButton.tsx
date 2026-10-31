@@ -34,9 +34,12 @@ export default function BorrowButton({
     <>
       <Button
         onClick={() => setOpen(true)}
-        className="w-full rounded-xl bg-[#047857] py-3 text-base font-semibold text-white shadow-md transition-all hover:bg-[#065F46] hover:shadow-lg active:scale-[0.99]"
+        className="w-full rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] py-3.5 text-base font-bold text-white shadow-lg shadow-emerald-900/25 transition-all duration-200 hover:brightness-110 hover:shadow-xl hover:shadow-emerald-900/30 active:scale-[0.99]"
       >
-        Borrow This Book
+        <span className="flex items-center justify-center gap-2">
+          <span>Borrow This Book</span>
+          <span className="text-sm">📖</span>
+        </span>
       </Button>
       <BorrowModal
         open={open}

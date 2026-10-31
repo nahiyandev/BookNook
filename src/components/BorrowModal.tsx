@@ -7,14 +7,7 @@ import { apiFetch } from "../lib/api";
 import { authClient } from "../lib/auth-client";
 import { Button } from "./ui/button";
 
-/**
- * BookNook borrow modal — Borrow section.
- * Spec: "Borrow This Book" opens a modal with read-only User Name and
- * Email and a "Confirm Borrow" button. On submit, the backend saves a
- * borrow record and decreases copies by 1 (or rejects: 0 copies, or
- * already borrowed — both errors come from the backend and are shown
- * with a toast, never alert()).
- */
+
 export default function BorrowModal({
   open,
   bookId,
@@ -56,19 +49,31 @@ export default function BorrowModal({
     "w-full rounded-lg border border-[#E7E5E4] bg-[#F9FAFB] px-3 py-2 text-sm text-[#1F2937] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#ECFDF5]";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl dark:bg-[#064E3B]">
-        <h3 className="font-serif text-xl font-bold text-[#1F2937] dark:text-[#ECFDF5]">
-          Borrow this book
-        </h3>
-        <p className="mt-1 text-sm text-[#6B7280] dark:text-[#A7F3D0]">{bookTitle}</p>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs px-4">
+      <div className="w-full max-w-md rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-2xl dark:border-[#134E4A] dark:bg-[#073B2E]">
+        <div className="flex items-center gap-2">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ECFDF5] text-[#047857] text-base dark:bg-[#052E22] dark:text-[#6EE7B7]">
+            📖
+          </span>
+          <div>
+            <h3 className="font-serif text-xl font-bold text-[#1F2937] dark:text-[#ECFDF5]">
+              Borrow this book
+            </h3>
+            <p className="text-xs text-[#047857] dark:text-[#6EE7B7] font-semibold">
+              7-Day Reader Loan
+            </p>
+          </div>
+        </div>
+        <p className="mt-3 truncate rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] p-2.5 text-xs font-semibold text-[#1F2937] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#ECFDF5]">
+          {bookTitle}
+        </p>
 
-        <label className="mt-4 block text-sm font-medium">
-          User Name
+        <label className="mt-4 block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
+          Borrower Name
           <input readOnly value={session?.user?.name || ""} className={`${inputClass} mt-1`} />
         </label>
-        <label className="mt-3 block text-sm font-medium">
-          Email
+        <label className="mt-3 block text-xs font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
+          Borrower Email
           <input readOnly value={session?.user?.email || ""} className={`${inputClass} mt-1`} />
         </label>
 
@@ -77,7 +82,7 @@ export default function BorrowModal({
             type="button"
             variant="outline"
             onClick={onClose}
-            className="flex-1 rounded-xl border-[#E7E5E4] py-2.5 text-sm font-medium text-[#374151] hover:bg-[#F3F4F6] dark:border-[#134E4A] dark:text-[#ECFDF5] dark:hover:bg-[#052E22]"
+            className="flex-1 rounded-xl border-2 border-[#E7E5E4] py-2.5 text-sm font-semibold text-[#374151] hover:bg-[#F3F4F6] dark:border-[#134E4A] dark:text-[#ECFDF5] dark:hover:bg-[#052E22]"
             disabled={loading}
           >
             Cancel
@@ -85,7 +90,7 @@ export default function BorrowModal({
           <Button
             type="button"
             onClick={handleConfirm}
-            className="flex-1 rounded-xl bg-[#047857] py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#065F46]"
+            className="flex-1 rounded-xl bg-linear-to-r from-[#047857] to-[#059669] py-2.5 text-sm font-bold text-white shadow-md transition-all hover:brightness-110"
             disabled={loading}
           >
             {loading ? "Borrowing..." : "Confirm Borrow"}
