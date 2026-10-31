@@ -37,6 +37,7 @@ export default async function AllBooksPage() {
           books={books}
           title="All Library Books"
           subtitle="Search by title or author, and filter by shelf category to find your next great read."
+          badge="📚 Complete Catalog"
           showViewAll={false}
         />
       )}

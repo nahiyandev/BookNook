@@ -16,14 +16,16 @@ const CATEGORIES = [
 
 export default function HomeBookExplorer({
   books,
-  title = "Explore the Community Shelf",
-  subtitle = "Discover, borrow, and read books shared by fellow readers.",
+  title = "New Arrivals",
+  subtitle = "The latest books readers have added to BookNook.",
+  badge = "✨ Fresh Additions",
   showViewAll = true,
   maxDisplay,
 }: {
   books: Book[];
   title?: string;
   subtitle?: string;
+  badge?: string;
   showViewAll?: boolean;
   maxDisplay?: number;
 }) {
@@ -92,7 +94,7 @@ export default function HomeBookExplorer({
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
-            <span>✨ Live Catalog</span>
+            <span>{badge}</span>
             <span>•</span>
             <span>{books.length} Community Books</span>
           </div>
