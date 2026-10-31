@@ -1,6 +1,9 @@
 import Link from "next/link";
 import HomeBanner from "@/components/HomeBanner";
 import HomeBookExplorer from "@/components/HomeBookExplorer";
+import HomeGenres from "@/components/HomeGenres";
+import HomeImpactCounter from "@/components/HomeImpactCounter";
+import HomeTestimonials from "@/components/HomeTestimonials";
 import HomeFAQ from "@/components/HomeFAQ";
 import { API_URL } from "@/lib/config";
 import type { Book } from "@/lib/api";
@@ -108,7 +111,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. New Arrivals — Interactive Book Explorer with Search Lens & Category Filter */}
+      {/* 3. Curated Shelves & Reading Genres */}
+      <HomeGenres />
+
+      {/* 4. New Arrivals — Interactive Book Explorer with Search Lens & Category Filter */}
       <section className="bg-[#FDFBF7] py-14 dark:bg-[#052E22] md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <HomeBookExplorer
@@ -122,7 +128,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. Curated Spotlight: Featured Reader Addition */}
+      {/* 5. Curated Spotlight: Featured Reader Addition */}
       {featuredBook && (
         <section className="border-y border-[#E7E5E4] bg-white py-14 dark:border-[#134E4A] dark:bg-[#073B2E] md:py-18">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -189,7 +195,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* 5. How Borrowing Works */}
+      {/* 6. How Borrowing Works */}
       <section className="bg-[#FDFBF7] py-16 dark:bg-[#052E22] md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -231,10 +237,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. Frequently Asked Questions (FAQ Accordion) */}
+      {/* 7. Community Milestones & Impact Stats */}
+      <HomeImpactCounter />
+
+      {/* 8. Reader Testimonials & Reviews */}
+      <HomeTestimonials />
+
+      {/* 9. Frequently Asked Questions (FAQ Accordion) */}
       <HomeFAQ />
 
-      {/* 7. Community Share Callout (CTA) */}
+      {/* 10. Community Share Callout (CTA) */}
       <section className="bg-white py-16 dark:bg-[#073B2E] md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-[#047857] via-[#065F46] to-[#047857] p-8 text-center text-white shadow-2xl shadow-emerald-900/30 sm:p-12 md:p-16">
