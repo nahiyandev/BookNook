@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Book } from "../lib/api";
 import { Button } from "./ui/button";
 
+
 /**
  * BookNook book card — Books section.
  * Equal height/width by design (assignment rule): fixed image height,
@@ -11,8 +12,8 @@ import { Button } from "./ui/button";
 export default function BookCard({ book }: { book: Book }) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-[#E7E5E4] bg-white shadow-xs transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:border-[#134E4A] dark:bg-[#064E3B]">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <div className="relative aspect-4/5 w-full overflow-hidden bg-[#F3F4F6] dark:bg-[#052E22]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={book.image}
           alt={book.title}
@@ -24,7 +25,7 @@ export default function BookCard({ book }: { book: Book }) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="line-clamp-2 min-h-[2.75rem] font-serif text-base font-bold leading-snug text-[#1F2937] dark:text-[#ECFDF5]">
+        <h3 className="line-clamp-2 min-h-11 font-serif text-base font-bold leading-snug text-[#1F2937] dark:text-[#ECFDF5]">
           {book.title}
         </h3>
         <p className="mt-1 line-clamp-1 text-xs text-[#6B7280] dark:text-[#A7F3D0]">
