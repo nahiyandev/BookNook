@@ -115,6 +115,7 @@ export default async function HomePage() {
             title="Explore Books on the Shelf"
             subtitle="Search by title, filter by category shelf, or find books ready to borrow right now."
             showViewAll={true}
+            maxDisplay={8}
           />
         </div>
       </section>

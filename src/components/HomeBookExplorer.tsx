@@ -19,11 +19,13 @@ export default function HomeBookExplorer({
   title = "Explore the Community Shelf",
   subtitle = "Discover, borrow, and read books shared by fellow readers.",
   showViewAll = true,
+  maxDisplay,
 }: {
   books: Book[];
   title?: string;
   subtitle?: string;
   showViewAll?: boolean;
+  maxDisplay?: number;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -70,6 +72,11 @@ export default function HomeBookExplorer({
     });
     return counts;
   }, [books]);
+
+  // If maxDisplay is provided, slice to exactly maxDisplay items (e.g. 8 items: 2 rows of 4)
+  const visibleBooks = useMemo(() => {
+    return maxDisplay ? filteredBooks.slice(0, maxDisplay) : filteredBooks;
+  }, [filteredBooks, maxDisplay]);
 
   const hasActiveFilters = searchQuery.trim() !== "" || selectedCategory !== "all" || onlyAvailable;
 
@@ -205,7 +212,7 @@ export default function HomeBookExplorer({
 
       {/* Book Grid or Empty State */}
       <div className="mt-8">
-        {filteredBooks.length === 0 ? (
+        {visibleBooks.length === 0 ? (
           <div className="flex flex-col items-center justify-center rounded-3xl border border-[#E7E5E4] bg-white p-12 text-center shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
             <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 text-3xl text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
               🔍
@@ -228,11 +235,30 @@ export default function HomeBookExplorer({
             </button>
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {filteredBooks.map((book) => (
-              <BookCard key={book._id} book={book} />
-            ))}
-          </div>
+          <>
+            {/* 4 columns on large screens: exactly 2 rows = 8 cards */}
+            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {visibleBooks.map((book) => (
+                <BookCard key={book._id} book={book} />
+              ))}
+            </div>
+
+            {/* Centered Show All Books Button */}
+            {maxDisplay && (
+              <div className="mt-12 flex flex-col items-center justify-center text-center">
+                <Link
+                  href="/books"
+                  className="group inline-flex items-center gap-2.5 rounded-2xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-8 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-900/25 transition-all hover:scale-102 hover:brightness-110 active:scale-[0.99]"
+                >
+                  <span>Show All Books</span>
+                  <span className="text-base transition-transform group-hover:translate-x-1.5">→</span>
+                </Link>
+                <p className="mt-2.5 text-xs font-medium text-[#6B7280] dark:text-[#A7F3D0]">
+                  Showing {visibleBooks.length} of {filteredBooks.length} books in this view • Explore the full community catalog
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
