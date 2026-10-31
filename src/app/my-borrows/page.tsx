@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { apiFetch, type Borrow } from "@/lib/api";
@@ -12,13 +13,62 @@ import { Button } from "@/components/ui/button";
  * and deletes the borrow record → list refreshes, toast shown.
  */
 function formatDate(value: string) {
-  return new Date(value).toLocaleDateString();
+  if (!value) return "N/A";
+  try {
+    return new Date(value).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  } catch {
+    return value;
+  }
+}
+
+function getLoanStatus(returnDate: string) {
+  if (!returnDate) {
+    return {
+      label: "Active Loan",
+      badgeClass:
+        "bg-emerald-50 text-emerald-700 ring-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-300 dark:ring-emerald-700/50",
+    };
+  }
+  const due = new Date(returnDate).getTime();
+  const now = new Date().getTime();
+  const diffDays = Math.ceil((due - now) / (1000 * 60 * 60 * 24));
+
+  if (diffDays < 0) {
+    return {
+      label: `Overdue by ${Math.abs(diffDays)}d`,
+      badgeClass:
+        "bg-rose-50 text-rose-700 ring-rose-300 dark:bg-rose-950/50 dark:text-rose-300 dark:ring-rose-700/50",
+    };
+  } else if (diffDays === 0) {
+    return {
+      label: "Due Today",
+      badgeClass:
+        "bg-amber-50 text-amber-700 ring-amber-300 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-700/50",
+    };
+  } else if (diffDays <= 2) {
+    return {
+      label: `${diffDays} days left`,
+      badgeClass:
+        "bg-amber-50 text-amber-700 ring-amber-300 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-700/50",
+    };
+  } else {
+    return {
+      label: `${diffDays} days left`,
+      badgeClass:
+        "bg-emerald-50 text-emerald-700 ring-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-300 dark:ring-emerald-700/50",
+    };
+  }
 }
 
 export default function MyBorrowsPage() {
   const [borrows, setBorrows] = useState<Borrow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [returningId, setReturningId] = useState<string | null>(null);
+  const [returningBorrow, setReturningBorrow] = useState<Borrow | null>(null);
+  const [returnLoading, setReturnLoading] = useState(false);
 
   const load = useCallback(async () => {
     try {
@@ -51,65 +101,293 @@ export default function MyBorrowsPage() {
     };
   }, [load]);
 
-  async function handleReturn(id: string) {
-    setReturningId(id);
+  async function handleConfirmReturn() {
+    if (!returningBorrow) return;
+    setReturnLoading(true);
     try {
-      await apiFetch(`/borrows/${id}`, { method: "DELETE", auth: true });
-      toast.success("Book returned successfully!");
-      load();
+      await apiFetch(`/borrows/${returningBorrow._id}`, { method: "DELETE", auth: true });
+      toast.success(`"${returningBorrow.bookTitle}" returned successfully!`);
+      setReturningBorrow(null);
+      await load();
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Failed to return book.");
     } finally {
-      setReturningId(null);
+      setReturnLoading(false);
     }
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <h1 className="font-serif text-3xl font-bold text-[#047857]">My Borrows</h1>
-      <p className="mt-2 text-sm text-[#6B7280]">Books you borrowed — return them on time.</p>
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      {/* Top Breadcrumbs & Page Header */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 text-xs text-[#6B7280] dark:text-[#A7F3D0]">
+            <Link href="/" className="hover:text-[#047857] hover:underline dark:hover:text-[#6EE7B7]">
+              Home
+            </Link>
+            <span>/</span>
+            <span>Dashboard</span>
+            <span>/</span>
+            <span className="font-semibold text-[#047857] dark:text-[#6EE7B7]">My Borrows</span>
+          </div>
+          <div className="mt-2 flex items-center gap-3">
+            <h1 className="font-serif text-3xl font-bold tracking-tight text-[#047857] sm:text-4xl dark:text-[#6EE7B7]">
+              My Borrows
+            </h1>
+            {!loading && (
+              <span className="rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
+                {borrows.length} {borrows.length === 1 ? "Active Loan" : "Active Loans"}
+              </span>
+            )}
+          </div>
+          <p className="mt-1 text-xs text-[#6B7280] sm:text-sm dark:text-[#A7F3D0]">
+            Books you have borrowed from BookNook — read, enjoy, and return on time to keep the loop going.
+          </p>
+        </div>
 
+        <Link
+          href="/books"
+          className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:brightness-110 active:scale-[0.99]"
+        >
+          <span>Explore Library</span>
+          <span>📖</span>
+        </Link>
+      </div>
+
+      {/* Summary KPI Badges */}
+      {!loading && borrows.length > 0 && (
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="flex items-center gap-4 rounded-2xl border border-[#E7E5E4] bg-white p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECFDF5] text-2xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              📚
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
+                Borrowed Books
+              </p>
+              <p className="font-serif text-2xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
+                {borrows.length}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 rounded-2xl border border-[#E7E5E4] bg-white p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
+              ⏱️
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
+                Loan Policy
+              </p>
+              <p className="font-serif text-2xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
+                7 Days Free
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 rounded-2xl border border-[#E7E5E4] bg-white p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECFDF5] text-2xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              🤝
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
+                Community Loop
+              </p>
+              <p className="font-serif text-2xl font-bold text-[#047857] dark:text-[#6EE7B7]">
+                Instant Return
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Content Area */}
       {loading ? (
-        <p className="mt-8 text-sm text-[#6B7280]">Loading...</p>
+        <div className="flex min-h-60 flex-col items-center justify-center gap-3 rounded-3xl border border-[#E7E5E4] bg-white p-8 dark:border-[#134E4A] dark:bg-[#073B2E]">
+          <div className="h-9 w-9 animate-spin rounded-full border-3 border-[#A7F3D0] border-t-[#047857] dark:border-[#134E4A] dark:border-t-[#6EE7B7]" />
+          <p className="text-xs font-medium text-[#6B7280] dark:text-[#A7F3D0]">
+            Loading your borrowed books...
+          </p>
+        </div>
       ) : borrows.length === 0 ? (
-        <p className="mt-8 text-sm text-[#6B7280]">
-          You have not borrowed any books yet.
-        </p>
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-[#E7E5E4] bg-white p-12 text-center shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ECFDF5] text-3xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+            📖
+          </span>
+          <h3 className="mt-4 font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
+            No Borrowed Books
+          </h3>
+          <p className="mt-2 max-w-sm text-sm text-[#6B7280] dark:text-[#A7F3D0]">
+            You have not borrowed any books from BookNook yet. Browse the catalog and borrow your next favorite story!
+          </p>
+          <Link
+            href="/books"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#047857] px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#065F46]"
+          >
+            <span>Browse Library Books</span>
+            <span>→</span>
+          </Link>
+        </div>
       ) : (
-        <div className="mt-8 overflow-x-auto rounded-2xl border border-[#E7E5E4] bg-white dark:border-[#134E4A] dark:bg-[#064E3B]">
-          <table className="w-full min-w-160 text-left text-sm">
-            <thead>
-              <tr className="border-b border-[#E7E5E4] dark:border-[#134E4A]">
-                <th className="px-4 py-3">Image</th>
-                <th className="px-4 py-3">Title</th>
-                <th className="px-4 py-3">Borrow Date</th>
-                <th className="px-4 py-3">Return Date</th>
-                <th className="px-4 py-3">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {borrows.map((borrow) => (
-                <tr key={borrow._id} className="border-b border-[#F3F4F6] last:border-0 dark:border-[#134E4A]">
-                  <td className="px-4 py-3">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={borrow.bookImage} alt={borrow.bookTitle} className="h-12 w-10 rounded object-cover" />
-                  </td>
-                  <td className="px-4 py-3 font-semibold text-[#1F2937] dark:text-[#ECFDF5]">{borrow.bookTitle}</td>
-                  <td className="px-4 py-3">{formatDate(borrow.borrowDate)}</td>
-                  <td className="px-4 py-3">{formatDate(borrow.returnDate)}</td>
-                  <td className="px-4 py-3">
-                    <Button
-                      size="sm"
-                      onClick={() => handleReturn(borrow._id)}
-                      disabled={returningId === borrow._id}
-                    >
-                      {returningId === borrow._id ? "Returning..." : "Return Book"}
-                    </Button>
-                  </td>
+        <div className="overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-160 text-left text-sm">
+              <thead>
+                <tr className="border-b border-[#E7E5E4] bg-[#FDFBF7] text-[11px] font-bold uppercase tracking-wider text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+                  <th className="px-6 py-4">Book Details</th>
+                  <th className="px-6 py-4">Borrow Date</th>
+                  <th className="px-6 py-4">Due Date</th>
+                  <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-[#F3F4F6] dark:divide-[#134E4A]/60">
+                {borrows.map((borrow) => {
+                  const status = getLoanStatus(borrow.returnDate);
+                  return (
+                    <tr
+                      key={borrow._id}
+                      className="transition hover:bg-[#FDFBF7]/70 dark:hover:bg-[#052E22]/50"
+                    >
+                      {/* Book Cover + Title */}
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3.5">
+                          <Link
+                            href={`/books/${borrow.bookId}`}
+                            className="group relative shrink-0"
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={borrow.bookImage}
+                              alt={borrow.bookTitle}
+                              className="aspect-2/3 h-14 w-auto rounded-lg object-cover shadow-xs ring-1 ring-[#E7E5E4] transition group-hover:scale-105 dark:ring-[#134E4A]"
+                            />
+                          </Link>
+                          <div className="min-w-0">
+                            <Link
+                              href={`/books/${borrow.bookId}`}
+                              className="block truncate font-serif text-sm font-bold text-[#1F2937] transition hover:text-[#047857] dark:text-[#F0FDF4] dark:hover:text-[#6EE7B7]"
+                            >
+                              {borrow.bookTitle}
+                            </Link>
+                            <span className="mt-0.5 inline-block text-[11px] text-[#6B7280] dark:text-[#A7F3D0]">
+                              Loan ID: #{borrow._id.slice(-6).toUpperCase()}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Borrow Date */}
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">📅</span>
+                          <div>
+                            <p className="text-xs font-semibold text-[#1F2937] dark:text-[#F0FDF4]">
+                              {formatDate(borrow.borrowDate)}
+                            </p>
+                            <p className="text-[10px] text-[#6B7280] dark:text-[#A7F3D0]">
+                              Checked out
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Due Date + Status Pill */}
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">⏰</span>
+                          <div>
+                            <p className="text-xs font-semibold text-[#1F2937] dark:text-[#F0FDF4]">
+                              {formatDate(borrow.returnDate)}
+                            </p>
+                            <span
+                              className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ring-1 ${status.badgeClass}`}
+                            >
+                              {status.label}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Actions */}
+                      <td className="px-6 py-4 text-right">
+                        <Button
+                          size="sm"
+                          onClick={() => setReturningBorrow(borrow)}
+                          className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-linear-to-r from-[#D97706] to-[#B45309] px-3.5 py-1.5 text-xs font-bold text-white shadow-xs transition hover:brightness-110 active:scale-[0.98]"
+                        >
+                          <span>Return Book</span>
+                          <span>↩️</span>
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Return Book Confirmation Modal */}
+      {returningBorrow && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs px-4">
+          <div className="w-full max-w-md rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-2xl dark:border-[#134E4A] dark:bg-[#073B2E]">
+            <div className="flex items-center gap-3.5">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-100 bg-amber-50 text-2xl text-[#D97706] shadow-xs dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#FCD34D]">
+                ↩️
+              </span>
+              <div>
+                <h3 className="font-serif text-xl font-bold text-[#1F2937] sm:text-2xl dark:text-[#F0FDF4]">
+                  Return Book
+                </h3>
+                <p className="text-xs font-semibold text-[#047857] dark:text-[#6EE7B7]">
+                  Community Library Return
+                </p>
+              </div>
+            </div>
+
+            {/* Book Info Snippet */}
+            <div className="mt-4 flex items-center gap-3.5 rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] p-3.5 dark:border-[#134E4A] dark:bg-[#052E22]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={returningBorrow.bookImage}
+                alt={returningBorrow.bookTitle}
+                className="aspect-2/3 h-14 w-auto rounded-lg object-cover shadow-xs ring-1 ring-[#E7E5E4] dark:ring-[#134E4A]"
+              />
+              <div className="min-w-0">
+                <p className="truncate font-serif text-sm font-bold text-[#1F2937] dark:text-[#F0FDF4]">
+                  {returningBorrow.bookTitle}
+                </p>
+                <p className="text-xs text-[#6B7280] dark:text-[#A7F3D0]">
+                  Due: {formatDate(returningBorrow.returnDate)}
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-3.5 text-xs sm:text-sm leading-relaxed text-[#4B5563] dark:text-[#A7F3D0]">
+              Are you sure you want to return this book? The available copies in the library will increase immediately for other readers.
+            </p>
+
+            <div className="mt-6 flex gap-3 border-t border-[#E7E5E4] pt-4 dark:border-[#134E4A]">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setReturningBorrow(null)}
+                disabled={returnLoading}
+                className="flex-1 rounded-xl border-[#E7E5E4] bg-white text-xs font-bold text-[#4B5563] transition hover:bg-stone-50 dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#ECFDF5] dark:hover:bg-[#047857]/30"
+              >
+                Keep Reading
+              </Button>
+              <Button
+                type="button"
+                onClick={handleConfirmReturn}
+                disabled={returnLoading}
+                className="flex-1 rounded-xl bg-linear-to-r from-[#D97706] to-[#B45309] text-xs font-bold text-white shadow-md transition hover:brightness-110 active:scale-[0.98]"
+              >
+                {returnLoading ? "Returning..." : "Yes, Return Book"}
+              </Button>
+            </div>
+          </div>
         </div>
       )}
     </div>
