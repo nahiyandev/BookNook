@@ -19,6 +19,8 @@
 
 ---
 
+<video src="docs/BookNook-Walkthrough-Video-v4-syncfix.mp4" poster="docs/demo-thumbnail.png" controls width="100%"></video>
+
 </div>
 
 ## 🌿 Overview & Philosophy
