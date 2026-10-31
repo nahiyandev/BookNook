@@ -49,24 +49,25 @@ export default async function BookDetailsPage({
       {/* Main presentation card */}
       <div className="overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-xl shadow-stone-200/50 sm:p-8 lg:p-10 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column — Full Height Complete Book Cover (No Cropping) */}
-          <div className="flex h-full flex-col lg:col-span-5">
-            <div className="relative flex flex-1 items-center justify-center overflow-hidden rounded-2xl border border-[#E7E5E4] bg-linear-to-b from-[#FDFBF7] to-[#F5F2EB] p-4 shadow-lg dark:border-[#134E4A] dark:bg-linear-to-b dark:from-[#052E22] dark:to-[#04241B]">
-              <div className="relative flex h-full min-h-115 w-full items-center justify-center lg:min-h-150">
+          {/* Left Column — Auto-fit Book Cover & Library Policy */}
+          <div className="flex flex-col gap-5 lg:col-span-5">
+            {/* Book Cover Frame (auto-fit full image, no awkward padding or side gaps) */}
+            <div className="relative overflow-hidden rounded-2xl border border-[#E7E5E4] bg-white shadow-xl dark:border-[#134E4A] dark:bg-[#052E22]">
+              <div className="relative aspect-[2/3] w-full overflow-hidden bg-[#F3F4F6] dark:bg-[#052E22]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={book.image}
                   alt={book.title}
-                  className="max-h-140 w-auto max-w-full rounded-xl object-contain shadow-xl transition-transform duration-500 hover:scale-[1.02]"
+                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
                 />
-                {/* Category Pill — Amber accent */}
-                <span className="absolute top-2 left-2 rounded-full bg-[#D97706] px-3.5 py-1 text-xs font-bold tracking-wide uppercase text-white shadow-md">
+                {/* Category Pill — pinned directly on book cover */}
+                <span className="absolute top-3 left-3 rounded-full bg-[#D97706] px-3.5 py-1 text-xs font-bold tracking-wide uppercase text-white shadow-md">
                   {book.category}
                 </span>
 
-                {/* Copies Left Pill */}
+                {/* Copies Left Pill — pinned directly on book cover */}
                 <span
-                  className={`absolute top-2 right-2 rounded-full px-3.5 py-1 text-xs font-bold shadow-md ${
+                  className={`absolute top-3 right-3 rounded-full px-3.5 py-1 text-xs font-bold shadow-md ${
                     book.availableCopies > 0
                       ? "bg-[#047857] text-white ring-1 ring-white/20"
                       : "bg-red-600 text-white ring-1 ring-white/20"
@@ -77,6 +78,26 @@ export default async function BookDetailsPage({
                     : "Out of Stock"}
                 </span>
               </div>
+            </div>
+
+            {/* BookNook Library Loop Card — balances the left column height */}
+            <div className="rounded-2xl border border-[#FDE68A] bg-[#FFFBEB] p-4 shadow-xs dark:border-[#D97706]/40 dark:bg-[#052E22]">
+              <div className="flex items-center gap-2">
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D97706] text-sm text-white shadow-xs">
+                  📖
+                </span>
+                <div>
+                  <h4 className="text-xs font-bold tracking-wide uppercase text-[#92400E] dark:text-[#FCD34D]">
+                    BookNook Library Loop
+                  </h4>
+                  <p className="text-[11px] font-medium text-[#B45309] dark:text-[#FDE68A]">
+                    Community Shared Library
+                  </p>
+                </div>
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-[#78350F] dark:text-[#D1FAE5]">
+                Borrow for 7 days, enjoy reading, and return from My Borrows to keep the shelf alive for the next reader.
+              </p>
             </div>
           </div>
 
@@ -189,21 +210,6 @@ export default async function BookDetailsPage({
                     {book.description}
                   </p>
                 </div>
-              </div>
-
-              {/* BookNook Library Loop Card — Amber & Emerald combination */}
-              <div className="mt-4 rounded-2xl border border-[#FDE68A] bg-[#FFFBEB] p-3.5 dark:border-[#D97706]/40 dark:bg-[#052E22]">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#D97706] text-xs text-white">
-                    📖
-                  </span>
-                  <h4 className="text-xs font-bold tracking-wide uppercase text-[#92400E] dark:text-[#FCD34D]">
-                    BookNook Library Loop
-                  </h4>
-                </div>
-                <p className="mt-1 text-xs leading-relaxed text-[#78350F] dark:text-[#D1FAE5]">
-                  Borrow free for 7 days, enjoy reading, and return from My Borrows to keep the shelf alive for the next reader.
-                </p>
               </div>
             </div>
 
