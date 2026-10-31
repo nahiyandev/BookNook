@@ -2,8 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { API_URL } from "../../../lib/config";
 import type { Book } from "../../../lib/api";
-import { Button } from "../../../components/ui/button";
-import BorrowButton from "../../../components/BorrowButton";
+import { Button } from "@/components/ui/button";
+import BorrowButton from "@/components/BorrowButton";
+import WishlistActionButton from "@/components/WishlistActionButton";
 
 export const instant = false;
 
@@ -213,8 +214,12 @@ export default async function BookDetailsPage({
               </div>
             </div>
 
-            {/* Action buttons with brand color combinations */}
-            <div className="mt-8 border-t border-[#E7E5E4] pt-6 dark:border-[#134E4A]">
+            {/* Action buttons with brand color combinations & Wishlist */}
+            <div className="mt-8 space-y-4 border-t border-[#E7E5E4] pt-6 dark:border-[#134E4A]">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <WishlistActionButton book={book} />
+              </div>
+
               <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center">
                 <div className="flex-1">
                   <BorrowButton

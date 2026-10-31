@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { apiFetch, type Book, type Borrow } from "@/lib/api";
+import { useWishlist } from "@/lib/wishlist";
 import EditProfileModal, { type UserProfileData } from "@/components/EditProfileModal";
 
 export default function ProfilePage() {
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
+  const { count: wishlistCount } = useWishlist();
 
   // Custom profile overrides from localStorage
   const [customProfile, setCustomProfile] = useState<Partial<UserProfileData>>({});
@@ -164,14 +166,28 @@ export default function ProfilePage() {
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setIsEditOpen(true)}
-          className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:brightness-110 active:scale-[0.99]"
-        >
-          <span>Edit Profile</span>
-          <span>✏️</span>
-        </button>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/wishlist"
+            className="inline-flex items-center gap-2 rounded-xl border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm font-bold text-[#D97706] shadow-xs transition hover:bg-amber-100 dark:border-amber-700/50 dark:bg-[#052E22] dark:text-[#FCD34D]"
+          >
+            <span>🔖 Wishlist</span>
+            {wishlistCount > 0 && (
+              <span className="rounded-full bg-[#D97706] px-2 py-0.5 text-xs text-white">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setIsEditOpen(true)}
+            className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:brightness-110 active:scale-[0.99]"
+          >
+            <span>Edit Profile</span>
+            <span>✏️</span>
+          </button>
+        </div>
       </div>
 
       {/* 2. Main Hero Profile Card */}

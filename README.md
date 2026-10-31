@@ -53,7 +53,8 @@
 - **Edit Book Modal**: In-place updates with old data pre-filled, instant feedback, and automatic list refreshing.
 - **Custom Confirmation Modal**: Zero default browser alert/confirm dialogues; safe, styled confirmation before deleting books or returning loans.
 
-### 🔄 5. Real-Time Borrow Loop & Prevention
+### 🔄 5. Real-Time Borrow Loop & Wishlist
+- **1-Click Wishlist & Save**: Bookmark favorite books from any card or details page (`🔖`), view saved books in dedicated `/wishlist` with live counter in the Navbar and Profile.
 - **Copy Tracking**: Borrowing immediately decrements available copies by 1; returning increments it back.
 - **Zero-Stock Protection**: At 0 copies, the borrow button disables automatically.
 - **Anti-Double Borrow**: A user cannot borrow the same book twice simultaneously.
@@ -190,7 +191,7 @@ Designed and crafted with care by **Nahiyan**:
 
 - **GitHub**: [@nahiyandev](https://github.com/nahiyandev)
 - **LinkedIn**: [Nahiyan on LinkedIn](https://www.linkedin.com/in/nahiyandev)
-- **Facebook**: [Nahiyan on Facebook](https://www.facebook.com/nahiyandev)
+- **Facebook**: [Nahiyan on Facebook](https://www.facebook.com/nahiyan24)
 
 ---
 

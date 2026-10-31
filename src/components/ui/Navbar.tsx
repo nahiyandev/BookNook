@@ -6,6 +6,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
 import { authClient } from "../../lib/auth-client";
+import { useWishlist } from "@/lib/wishlist";
 
 /**
  * BookNook Navbar — Section 2 (Authentication) version.
@@ -87,6 +88,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = authClient.useSession();
+  const { count: wishlistCount } = useWishlist();
   const isLoggedIn = !!session;
   const userName = session?.user?.name ?? "Reader";
   const userPhoto = session?.user?.image ?? "";
@@ -140,13 +142,31 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right side: theme toggle + auth area */}
+        {/* Right side: wishlist + theme toggle + auth area */}
         <div className="flex items-center gap-2">
+          {/* Reading Wishlist Icon Button */}
+          <Link
+            href="/wishlist"
+            aria-label={`Reading Wishlist (${wishlistCount} saved)`}
+            className={cn(
+              "relative flex items-center gap-1.5 rounded-full border border-[#E7E5E4] bg-white px-3 py-1.5 text-xs font-bold text-[#4B5563] shadow-2xs transition hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5] dark:hover:border-[#6EE7B7]",
+              pathname === "/wishlist" && "border-[#047857] bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22]"
+            )}
+          >
+            <span>🔖</span>
+            <span className="hidden sm:inline">Wishlist</span>
+            {wishlistCount > 0 && (
+              <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[#D97706] text-[10px] font-bold text-white shadow-xs">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
+
           <button
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle dark / light theme"
-            className="rounded-full border border-[#E7E5E4] bg-white px-3 py-2 text-sm dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5]"
+            className="rounded-full border border-[#E7E5E4] bg-white px-3 py-1.5 text-xs font-semibold text-[#4B5563] shadow-2xs dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5]"
           >
             {dark ? "☀️ Light" : "🌙 Dark"}
           </button>
@@ -187,6 +207,18 @@ export default function Navbar() {
                     className="block rounded-lg px-3 py-2 text-sm text-[#374151] hover:bg-[#ECFDF5] dark:text-[#D1FAE5] dark:hover:bg-[#052E22]"
                   >
                     My Profile
+                  </Link>
+                  <Link
+                    href="/wishlist"
+                    onClick={() => setDropdownOpen(false)}
+                    className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-[#374151] hover:bg-[#ECFDF5] dark:text-[#D1FAE5] dark:hover:bg-[#052E22]"
+                  >
+                    <span>Reading Wishlist</span>
+                    {wishlistCount > 0 && (
+                      <span className="rounded-full bg-[#D97706] px-1.5 py-0.5 text-[10px] font-bold text-white">
+                        {wishlistCount}
+                      </span>
+                    )}
                   </Link>
                   <button
                     type="button"
