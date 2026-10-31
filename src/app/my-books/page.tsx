@@ -1,13 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { apiFetch, type Book } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import EditBookModal from "@/components/EditBookModal";
 import ConfirmModal from "@/components/ConfirmModal";
+
+const CATEGORIES = [
+  { id: "all", name: "All Shelves", icon: "📚" },
+  { id: "Fiction", name: "Fiction", icon: "✨" },
+  { id: "Science", name: "Science", icon: "🔬" },
+  { id: "History", name: "History", icon: "🏛️" },
+  { id: "Kids", name: "Kids", icon: "🧸" },
+  { id: "Others", name: "Others", icon: "💡" },
+];
+
+const PAGE_SIZE = 10;
 
 async function fetchMyBooks(email: string): Promise<Book[]> {
   const all = await apiFetch<Book[]>("/books");
@@ -16,9 +27,7 @@ async function fetchMyBooks(email: string): Promise<Book[]> {
 
 /**
  * BookNook My Books — Books section, PRIVATE route (middleware guards it).
- * The backend has no "my books" endpoint in the spec's 8 routes, so this
- * page fetches all books (public GET) and filters to the logged-in user's
- * own books (addedBy.email === session email) on the client.
+ * Supports search, shelf category filtering, and 10-item pagination with Next/Prev.
  */
 export default function MyBooksPage() {
   const { data: session } = authClient.useSession();
@@ -27,6 +36,12 @@ export default function MyBooksPage() {
   const [editing, setEditing] = useState<Book | null>(null);
   const [deleting, setDeleting] = useState<Book | null>(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
+
+  // Filters & Pagination State
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+
   const userEmail = session?.user?.email;
 
   const load = useCallback(async () => {
@@ -60,6 +75,47 @@ export default function MyBooksPage() {
     };
   }, [userEmail]);
 
+  // Reset to page 1 whenever filters change
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val);
+    setCurrentPage(1);
+  };
+
+  const handleCategorySelect = (catId: string) => {
+    setSelectedCategory(catId);
+    setCurrentPage(1);
+  };
+
+  // Filter books by search query and category
+  const filteredBooks = useMemo(() => {
+    return books.filter((book) => {
+      if (
+        selectedCategory !== "all" &&
+        book.category?.toLowerCase() !== selectedCategory.toLowerCase()
+      ) {
+        return false;
+      }
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matchesTitle = book.title?.toLowerCase().includes(q);
+        const matchesAuthor = book.author?.toLowerCase().includes(q);
+        const matchesCat = book.category?.toLowerCase().includes(q);
+        if (!matchesTitle && !matchesAuthor && !matchesCat) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }, [books, searchQuery, selectedCategory]);
+
+  // Pagination calculation
+  const totalPages = Math.max(1, Math.ceil(filteredBooks.length / PAGE_SIZE));
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const endIndex = Math.min(startIndex + PAGE_SIZE, filteredBooks.length);
+  const paginatedBooks = useMemo(() => {
+    return filteredBooks.slice(startIndex, endIndex);
+  }, [filteredBooks, startIndex, endIndex]);
+
   async function handleDelete() {
     if (!deleting) return;
     setDeleteLoading(true);
@@ -74,6 +130,12 @@ export default function MyBooksPage() {
       setDeleteLoading(false);
     }
   }
+
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:py-12">
@@ -95,7 +157,7 @@ export default function MyBooksPage() {
             </h1>
             {!loading && books.length > 0 && (
               <span className="rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
-                {books.length} {books.length === 1 ? "Book" : "Books"}
+                {books.length} Total {books.length === 1 ? "Book" : "Books"}
               </span>
             )}
           </div>
@@ -140,98 +202,255 @@ export default function MyBooksPage() {
           </Link>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-170 text-left text-sm">
-              <thead>
-                <tr className="border-b border-[#E7E5E4] bg-[#FDFBF7] text-[11px] font-bold uppercase tracking-wider text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-                  <th className="px-6 py-4">Book Title & Author</th>
-                  <th className="px-6 py-4">Category</th>
-                  <th className="px-6 py-4">Copies Available</th>
-                  <th className="px-6 py-4 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#F3F4F6] dark:divide-[#134E4A]/60">
-                {books.map((book) => (
-                  <tr
-                    key={book._id}
-                    className="transition hover:bg-[#FDFBF7]/70 dark:hover:bg-[#052E22]/50"
+        <div className="space-y-6">
+          {/* Search Lens + Shelf Category Filters for My Books */}
+          <div className="rounded-3xl border border-[#E7E5E4] bg-white p-4 shadow-xl shadow-stone-200/40 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              {/* Search box */}
+              <div className="relative flex-1">
+                <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm text-[#047857] dark:text-[#6EE7B7]">
+                  🔍
+                </span>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  placeholder="Filter your books by title, author, or shelf..."
+                  className="w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] py-2.5 pr-10 pl-11 text-xs sm:text-sm text-[#1F2937] placeholder-[#9CA3AF] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-[#6EE7B7]/40 dark:focus:border-[#6EE7B7]"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => handleSearchChange("")}
+                    className="absolute inset-y-0 right-3 flex items-center px-2 text-xs font-bold text-[#9CA3AF] hover:text-[#1F2937] dark:hover:text-[#F0FDF4]"
                   >
-                    {/* Book Cover + Title */}
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3.5">
-                        <Link href={`/books/${book._id}`} className="group relative shrink-0">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={book.image}
-                            alt={book.title}
-                            className="aspect-2/3 h-14 w-auto rounded-lg object-cover shadow-xs ring-1 ring-[#E7E5E4] transition group-hover:scale-105 dark:ring-[#134E4A]"
-                          />
-                        </Link>
-                        <div className="min-w-0">
-                          <Link
-                            href={`/books/${book._id}`}
-                            className="block truncate font-serif text-base font-bold text-[#1F2937] transition hover:text-[#047857] hover:underline dark:text-[#F0FDF4] dark:hover:text-[#6EE7B7]"
-                          >
-                            {book.title}
-                          </Link>
-                          <span className="block truncate text-xs text-[#6B7280] dark:text-[#A7F3D0]">
-                            by {book.author}
-                          </span>
-                        </div>
-                      </div>
-                    </td>
+                    ✕
+                  </button>
+                )}
+              </div>
 
-                    {/* Category pill */}
-                    <td className="px-6 py-4">
-                      <span className="inline-block rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-semibold text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
-                        {book.category}
-                      </span>
-                    </td>
+              {/* Showing stats counter */}
+              <div className="flex items-center justify-between gap-3 text-xs font-semibold text-[#6B7280] dark:text-[#A7F3D0]">
+                <span>
+                  Showing <strong className="text-[#047857] dark:text-[#6EE7B7]">{filteredBooks.length === 0 ? 0 : startIndex + 1}–{endIndex}</strong> of <strong className="text-[#1F2937] dark:text-[#F0FDF4]">{filteredBooks.length}</strong> books
+                </span>
+                {(searchQuery || selectedCategory !== "all") && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedCategory("all");
+                      setCurrentPage(1);
+                    }}
+                    className="font-bold text-[#D97706] hover:underline dark:text-[#FCD34D]"
+                  >
+                    Reset Filter
+                  </button>
+                )}
+              </div>
+            </div>
 
-                    {/* Copies Available */}
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-base font-extrabold text-[#047857] dark:text-[#34D399]">
-                          {book.availableCopies}
-                        </span>
-                        <span className="text-xs text-[#9CA3AF]">
-                          / {book.totalCopies} copies
-                        </span>
-                        <span
-                          className={`inline-block h-2 w-2 rounded-full ${
-                            book.availableCopies > 0 ? "bg-[#10B981]" : "bg-red-500"
-                          }`}
-                          title={book.availableCopies > 0 ? "In Stock" : "Out of Stock"}
-                        />
-                      </div>
-                    </td>
-
-                    {/* Action Buttons */}
-                    <td className="px-6 py-4 text-right">
-                      <div className="inline-flex items-center gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => setEditing(book)}
-                          className="rounded-lg border border-[#A7F3D0] bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] shadow-xs transition hover:bg-[#047857] hover:text-white dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7] dark:hover:bg-[#047857] dark:hover:text-white"
-                        >
-                          ✏️ Edit
-                        </Button>
-                        <Button
-                          size="sm"
-                          onClick={() => setDeleting(book)}
-                          className="rounded-lg border border-red-200 bg-red-50 px-3 py-1 text-xs font-bold text-red-600 shadow-xs transition hover:bg-red-600 hover:text-white dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-600 dark:hover:text-white"
-                        >
-                          🗑️ Delete
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {/* Category Filter Pills */}
+            <div className="mt-3 flex flex-wrap items-center gap-1.5 border-t border-[#F3F4F6] pt-3 dark:border-[#134E4A]/60">
+              <span className="mr-1 text-xs font-bold uppercase tracking-wider text-[#9CA3AF] dark:text-[#6EE7B7]/60">
+                Filter:
+              </span>
+              {CATEGORIES.map((cat) => {
+                const isSelected = selectedCategory.toLowerCase() === cat.id.toLowerCase();
+                const count =
+                  cat.id === "all"
+                    ? books.length
+                    : books.filter((b) => b.category?.toLowerCase() === cat.id.toLowerCase()).length;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => handleCategorySelect(cat.id)}
+                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all ${
+                      isSelected
+                        ? "bg-[#047857] text-white shadow-xs dark:bg-[#6EE7B7] dark:text-[#052E22]"
+                        : "border border-[#E7E5E4] bg-[#FDFBF7] text-[#4B5563] hover:border-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]"
+                    }`}
+                  >
+                    <span>{cat.icon}</span>
+                    <span>{cat.name}</span>
+                    <span
+                      className={`rounded-full px-1.5 py-0.2 text-[10px] font-semibold ${
+                        isSelected
+                          ? "bg-white/20 text-white dark:bg-black/20 dark:text-[#052E22]"
+                          : "bg-[#E7E5E4]/60 text-[#6B7280] dark:bg-[#134E4A]/60 dark:text-[#A7F3D0]"
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          {/* Table Container */}
+          {paginatedBooks.length === 0 ? (
+            <div className="rounded-3xl border border-[#E7E5E4] bg-white p-8 text-center text-sm text-[#6B7280] dark:border-[#134E4A] dark:bg-[#073B2E] dark:text-[#A7F3D0]">
+              No books found matching your current filter.
+            </div>
+          ) : (
+            <div className="overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-170 text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-[#E7E5E4] bg-[#FDFBF7] text-[11px] font-bold uppercase tracking-wider text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+                      <th className="px-6 py-4">Book Title & Author</th>
+                      <th className="px-6 py-4">Category</th>
+                      <th className="px-6 py-4">Copies Available</th>
+                      <th className="px-6 py-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#F3F4F6] dark:divide-[#134E4A]/60">
+                    {paginatedBooks.map((book) => (
+                      <tr
+                        key={book._id}
+                        className="transition hover:bg-[#FDFBF7]/70 dark:hover:bg-[#052E22]/50"
+                      >
+                        {/* Book Cover + Title */}
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-3.5">
+                            <Link href={`/books/${book._id}`} className="group relative shrink-0">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={book.image}
+                                alt={book.title}
+                                className="aspect-2/3 h-14 w-auto rounded-lg object-cover shadow-xs ring-1 ring-[#E7E5E4] transition group-hover:scale-105 dark:ring-[#134E4A]"
+                              />
+                            </Link>
+                            <div className="min-w-0">
+                              <Link
+                                href={`/books/${book._id}`}
+                                className="block truncate font-serif text-base font-bold text-[#1F2937] transition hover:text-[#047857] hover:underline dark:text-[#F0FDF4] dark:hover:text-[#6EE7B7]"
+                              >
+                                {book.title}
+                              </Link>
+                              <span className="block truncate text-xs text-[#6B7280] dark:text-[#A7F3D0]">
+                                by {book.author}
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+
+                        {/* Category pill */}
+                        <td className="px-6 py-4">
+                          <span className="inline-block rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-semibold text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
+                            {book.category}
+                          </span>
+                        </td>
+
+                        {/* Copies Available */}
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-base font-extrabold text-[#047857] dark:text-[#34D399]">
+                              {book.availableCopies}
+                            </span>
+                            <span className="text-xs text-[#9CA3AF]">
+                              / {book.totalCopies} copies
+                            </span>
+                            <span
+                              className={`inline-block h-2 w-2 rounded-full ${
+                                book.availableCopies > 0 ? "bg-[#10B981]" : "bg-red-500"
+                              }`}
+                              title={book.availableCopies > 0 ? "In Stock" : "Out of Stock"}
+                            />
+                          </div>
+                        </td>
+
+                        {/* Action Buttons */}
+                        <td className="px-6 py-4 text-right">
+                          <div className="inline-flex items-center gap-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => setEditing(book)}
+                              className="rounded-lg border border-[#A7F3D0] bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] shadow-xs transition hover:bg-[#047857] hover:text-white dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7] dark:hover:bg-[#047857] dark:hover:text-white"
+                            >
+                              ✏️ Edit
+                            </Button>
+                            <Button
+                              size="sm"
+                              onClick={() => setDeleting(book)}
+                              className="rounded-lg border border-red-200 bg-red-50 px-3 py-1 text-xs font-bold text-red-600 shadow-xs transition hover:bg-red-600 hover:text-white dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-600 dark:hover:text-white"
+                            >
+                              🗑️ Delete
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* 10 Items Pagination Bar for My Books */}
+          {totalPages > 1 && (
+            <div className="flex flex-col items-center justify-between gap-4 rounded-3xl border border-[#E7E5E4] bg-white p-5 shadow-lg shadow-stone-200/40 sm:flex-row dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+              <div className="text-xs text-[#6B7280] dark:text-[#A7F3D0]">
+                Showing <strong className="font-bold text-[#1F2937] dark:text-[#F0FDF4]">{startIndex + 1}</strong> to{" "}
+                <strong className="font-bold text-[#1F2937] dark:text-[#F0FDF4]">{endIndex}</strong> of{" "}
+                <strong className="font-bold text-[#047857] dark:text-[#6EE7B7]">{filteredBooks.length}</strong> total books on your shelf
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className={`inline-flex items-center gap-1 rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
+                    currentPage === 1
+                      ? "cursor-not-allowed opacity-40 bg-stone-100 text-stone-400 dark:bg-[#052E22] dark:text-stone-600"
+                      : "border border-[#E7E5E4] bg-[#FDFBF7] text-[#1F2937] hover:border-[#047857] hover:bg-[#ECFDF5] hover:text-[#047857] shadow-xs active:scale-95 dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#ECFDF5] dark:hover:border-[#6EE7B7] dark:hover:text-[#6EE7B7]"
+                  }`}
+                >
+                  <span>←</span>
+                  <span>Previous</span>
+                </button>
+
+                <div className="flex items-center gap-1.5">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                    const isActive = page === currentPage;
+                    return (
+                      <button
+                        key={page}
+                        type="button"
+                        onClick={() => goToPage(page)}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`flex h-9 w-9 items-center justify-center rounded-xl text-xs font-bold transition-all ${
+                          isActive
+                            ? "bg-[#047857] text-white shadow-md shadow-emerald-900/20 ring-2 ring-[#047857]/30 dark:bg-[#6EE7B7] dark:text-[#052E22]"
+                            : "border border-[#E7E5E4] bg-[#FDFBF7] text-[#4B5563] hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0] dark:hover:border-[#6EE7B7] dark:hover:text-[#6EE7B7]"
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage >= totalPages}
+                  className={`inline-flex items-center gap-1 rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
+                    currentPage >= totalPages
+                      ? "cursor-not-allowed opacity-40 bg-stone-100 text-stone-400 dark:bg-[#052E22] dark:text-stone-600"
+                      : "border border-[#E7E5E4] bg-[#FDFBF7] text-[#1F2937] hover:border-[#047857] hover:bg-[#ECFDF5] hover:text-[#047857] shadow-xs active:scale-95 dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#ECFDF5] dark:hover:border-[#6EE7B7] dark:hover:text-[#6EE7B7]"
+                  }`}
+                >
+                  <span>Next</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
