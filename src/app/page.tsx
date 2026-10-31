@@ -36,7 +36,7 @@ async function getLatestBooks(): Promise<Book[]> {
           (a as Book & { addedAt?: string }).addedAt || 0,
         ).getTime(),
     );
-    return books.slice(0, 6);
+    return books.slice(0, 8);
   } catch {
     return [];
   }
@@ -75,32 +75,43 @@ export default async function HomePage() {
     <div>
       <HomeBanner />
 
-      {/* New Arrivals — dynamic, latest 6 */}
+      {/* New Arrivals — dynamic, latest 8 in 4-column grid */}
       <section className="bg-[#FDFBF7] py-12 dark:bg-[#052E22] md:py-16">
         <div className="mx-auto max-w-7xl px-4">
-          <h2 className="font-serif text-3xl font-bold text-[#1F2937] dark:text-[#ECFDF5]">
-            New Arrivals
-          </h2>
-          <p className="mt-2 text-[#6B7280] dark:text-[#A7F3D0]">
-            The latest books readers have added to BookNook.
-          </p>
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <h2 className="font-serif text-3xl font-bold text-[#1F2937] dark:text-[#ECFDF5]">
+                New Arrivals
+              </h2>
+              <p className="mt-2 text-[#6B7280] dark:text-[#A7F3D0]">
+                The latest books readers have added to BookNook.
+              </p>
+            </div>
+            <Link
+              href="/books"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-[#E7E5E4] bg-white px-4 py-2 text-sm font-semibold text-[#047857] shadow-xs transition hover:border-[#047857] hover:bg-[#ECFDF5] dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#6EE7B7] dark:hover:bg-[#052E22]"
+            >
+              See All Books
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
 
           {books.length === 0 ? (
             <div className="mt-8 rounded-2xl border border-[#E7E5E4] bg-white p-8 text-center dark:border-[#134E4A] dark:bg-[#064E3B]">
               <p className="text-[#6B7280] dark:text-[#A7F3D0]">
                 No books yet — be the first to add one.
               </p>
-              <Button render={<Link href="/add-book" />} nativeButton={false} className="mt-4">Add Book</Button>
+              <Button render={<Link href="/add-book" />} nativeButton={false} className="mt-4 bg-[#047857] text-white hover:bg-[#065F46]">Add Book</Button>
             </div>
           ) : (
             <>
-              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {books.map((book) => (
                   <BookCard key={book._id} book={book} />
                 ))}
               </div>
               <div className="mt-10 text-center">
-                <Button render={<Link href="/books" />} nativeButton={false} size="lg">See All Books</Button>
+                <Button render={<Link href="/books" />} nativeButton={false} size="lg" className="bg-[#047857] text-white hover:bg-[#065F46]">See All Books</Button>
               </div>
             </>
           )}
