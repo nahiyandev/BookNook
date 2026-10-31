@@ -113,10 +113,20 @@ function EditBookForm({
           <input type="number" min={0} required value={totalCopies} onChange={(e) => setTotalCopies(Number(e.target.value))} className={`${inputClass} mt-1`} />
         </label>
         <div className="mt-6 flex gap-3">
-          <Button type="button" variant="outline" onClick={onClose} className="flex-1" disabled={loading}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onClose}
+            className="flex-1 rounded-xl border border-[#E7E5E4] py-2.5 font-semibold text-[#1F2937] hover:bg-[#F3F4F6] dark:border-[#134E4A] dark:text-[#ECFDF5] dark:hover:bg-[#052E22]"
+            disabled={loading}
+          >
             Cancel
           </Button>
-          <Button type="submit" className="flex-1" disabled={loading}>
+          <Button
+            type="submit"
+            className="flex-1 rounded-xl bg-linear-to-r from-[#047857] to-[#059669] py-2.5 font-bold text-white shadow-md transition hover:brightness-110"
+            disabled={loading}
+          >
             {loading ? "Saving..." : "Save Changes"}
           </Button>
         </div>
