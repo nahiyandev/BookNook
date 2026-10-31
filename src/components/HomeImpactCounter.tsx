@@ -29,10 +29,10 @@ const stats: ImpactStat[] = [
     icon: "🤝",
   },
   {
-    id: "fines",
-    number: "৳0",
-    label: "Late Fines Ever Charged",
-    subtext: "100% free & trust-based sharing",
+    id: "community",
+    number: "100%",
+    label: "Peer-to-Peer Sharing",
+    subtext: "Entirely run & shared by readers",
     icon: "💚",
   },
 ];

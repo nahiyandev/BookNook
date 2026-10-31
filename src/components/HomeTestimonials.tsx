@@ -35,7 +35,7 @@ const reviews: ReviewCard[] = [
     location: "Dhanmondi, Dhaka",
     rating: 5,
     review:
-      "Honestly didn't expect the 7-day borrowing to be this smooth! Borrowed 'The Midnight Library', finished it over the weekend, and returned it from the dashboard with zero fuss. No rental fee, no hidden catch. BookNook is a blessing for readers.",
+      "Honestly didn't expect the 7-day borrowing to be this smooth! Borrowed 'The Midnight Library', finished it over the weekend, and returned it from the dashboard with zero fuss. No commercial hurdles, just readers sharing directly. BookNook is a blessing for readers.",
     bookTag: "📖 Borrowed: The Midnight Library",
     likes: 38,
     replies: 4,
@@ -69,7 +69,7 @@ const reviews: ReviewCard[] = [
     location: "Gulshan, Dhaka",
     rating: 5,
     review:
-      "The Kids & Young Readers shelf has saved me so much money. My 8-year-old daughter now reads a new illustrated book every single week. She was so excited to click 'Borrow' herself! Safe, cozy, and completely community-driven.",
+      "The Kids & Young Readers shelf is such a delight for our home! My 8-year-old daughter now reads a new illustrated story every single week shared by other parents. She was so excited to pick them out herself! Safe, cozy, and completely community-driven.",
     bookTag: "📖 Borrowed: The Little Prince",
     likes: 29,
     replies: 2,
@@ -86,7 +86,7 @@ const reviews: ReviewCard[] = [
     location: "Chattogram",
     rating: 5,
     review:
-      "I was skeptical about the 'zero overdue fines' promise, but it truly runs on mutual respect. The 7-day loan countdown on the My Borrows page keeps me accountable without any pressure. Five stars to the creators!",
+      "I love that BookNook is entirely user-driven and runs purely on mutual respect. The 7-day loan countdown on the My Borrows page keeps me accountable and reading consistently without any pressure. Five stars to the creators!",
     bookTag: "📖 Borrowed: Atomic Habits",
     likes: 44,
     replies: 6,

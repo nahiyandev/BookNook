@@ -15,14 +15,14 @@ const faqs: FAQItem[] = [
     category: "Borrowing",
     question: "How does borrowing a book work on BookNook?",
     answer:
-      "Browsing and borrowing is 100% free. Once you find a book you'd like to read, simply click 'Borrow Book' on its detail page. The book's available copy count will update automatically and appear in your 'My Borrows' dashboard with a 7-day loan timer.",
+      "Browsing and borrowing is open to all community readers. Once you find a book you'd like to read, simply click 'Borrow Book' on its detail page. The book's available copy count will update automatically and appear in your 'My Borrows' dashboard with a 7-day reading loan.",
   },
   {
     id: "faq-2",
-    category: "Pricing & Trust",
-    question: "Are there any hidden fees, subscriptions, or overdue fines?",
+    category: "Community & Trust",
+    question: "Can books be bought or sold here, or is it entirely user-driven?",
     answer:
-      "None at all! BookNook is a community-first, peer-to-peer library built entirely on trust. There are no registration fees, no rental charges, and no late penalties. We simply ask that you return books promptly so others can enjoy them.",
+      "No buying, selling, or financial transactions take place on BookNook. It is a peer-to-peer sharing circle run entirely by users. Readers put up books from their personal shelves at home for fellow readers to borrow and return. It is purely community-powered.",
   },
   {
     id: "faq-3",

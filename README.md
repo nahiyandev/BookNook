@@ -23,7 +23,7 @@
 
 ## 🌿 Overview & Philosophy
 
-**BookNook** is a peer-to-peer community library platform designed with a warm literary aesthetic. Built around a trust-based loop, there are no administrative gatekeepers or overdue fines:
+**BookNook** is a 100% user-driven, peer-to-peer community library platform where nobody buys or sells anything. Built entirely around trust and reader exchange, there are no commercial transactions, fees, or monetary barriers:
 
 1. **Share**: Any reader can add books from their personal shelf to the public catalog.
 2. **Borrow**: Members borrow available books with instant copy tracking for a 7-day reading period.

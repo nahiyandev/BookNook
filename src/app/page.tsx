@@ -61,13 +61,13 @@ const highlights = [
   },
   {
     icon: "⏱️",
-    title: "7-Day Free Loan",
-    desc: "Read without subscription or hidden fees",
+    title: "7-Day Reading Loan",
+    desc: "Read and circulate with fellow bookworms",
   },
   {
     icon: "🤝",
     title: "Trust-Based Sharing",
-    desc: "Zero fines, just return when you are done",
+    desc: "Honor code: read and pass it on",
   },
   {
     icon: "📚",
@@ -200,7 +200,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <span className="rounded-full bg-[#ECFDF5] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#047857] dark:bg-[#073B2E] dark:text-[#6EE7B7]">
-              Simple & Free
+              Peer-to-Peer Circulation
             </span>
             <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-[#1F2937] sm:text-4xl dark:text-[#F0FDF4]">
               How BookNook Works
