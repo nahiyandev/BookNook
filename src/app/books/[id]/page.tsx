@@ -42,7 +42,7 @@ export default async function BookDetailsPage({
           <span>/</span>
           <span className="font-semibold text-[#047857] dark:text-[#6EE7B7] capitalize">{book.category}</span>
           <span>/</span>
-          <span className="truncate max-w-[200px] text-[#9CA3AF]">{book.title}</span>
+          <span className="truncate max-w-48 text-[#9CA3AF]">{book.title}</span>
         </div>
       </div>
 
