@@ -6,6 +6,8 @@ import HomeGenres from "@/components/HomeGenres";
 import HomeImpactCounter from "@/components/HomeImpactCounter";
 import HomeTestimonials from "@/components/HomeTestimonials";
 import HomeFAQ from "@/components/HomeFAQ";
+import HomeBookRequests from "@/components/HomeBookRequests";
+import HomeNewsletter from "@/components/HomeNewsletter";
 import { API_URL } from "@/lib/config";
 import type { Book } from "@/lib/api";
 
@@ -249,7 +251,13 @@ export default async function HomePage() {
       {/* 9. Frequently Asked Questions (FAQ Accordion) */}
       <HomeFAQ />
 
-      {/* 10. Community Share Callout (CTA) */}
+      {/* 10. Community Book Requests (Wish Wall) */}
+      <HomeBookRequests />
+
+      {/* 11. Weekly Book Club Newsletter */}
+      <HomeNewsletter />
+
+      {/* 12. Community Share Callout (CTA) */}
       <section className="bg-white py-16 dark:bg-[#073B2E] md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-[#047857] via-[#065F46] to-[#047857] p-8 text-center text-white shadow-2xl shadow-emerald-900/30 sm:p-12 md:p-16">

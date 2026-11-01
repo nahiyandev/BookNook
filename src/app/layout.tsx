@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "../components/ui/Navbar";
 import Footer from "../components/ui/Footer";
+import CommandPalette from "@/components/CommandPalette";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Suspense fallback={<div className="h-16 w-full border-b border-[#E7E5E4] bg-white dark:border-[#134E4A] dark:bg-[#073B2E]" />}>
           <Navbar />
         </Suspense>
+        <CommandPalette />
         <main>{children}</main>
         <Footer />
         <ToastContainer

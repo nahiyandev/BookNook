@@ -8,14 +8,6 @@ import { cn } from "../../lib/utils";
 import { authClient } from "../../lib/auth-client";
 import { useWishlist } from "@/lib/wishlist";
 
-/**
- * BookNook Navbar — Section 2 (Authentication) version.
- * REPLACES the Section 1 Navbar completely: the isLoggedIn placeholder is
- * gone. This version reads the REAL BetterAuth session with useSession(),
- * so private links, the photo dropdown and Logout all follow the actual
- * login state. Everything else (theme toggle, mobile menu, Emerald styling)
- * is unchanged from Section 1.
- */
 
 const publicLinks = [
   { href: "/", label: "Home" },
@@ -47,9 +39,7 @@ function subscribeToTheme(callback: () => void) {
   };
 }
 
-/** Sharing-loop logo mark, inline SVG (same paths as assets/logo.svg).
- *  Inline, not an image import, so it works in any Next.js setup without
- *  SVG-import type configuration, and it stays sharp at every size. */
+
 function LogoMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
@@ -142,8 +132,22 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right side: wishlist + theme toggle + auth area */}
+        {/* Right side: search trigger + wishlist + theme toggle + auth area */}
         <div className="flex items-center gap-2">
+          {/* Spotlight Quick Search Ctrl+K trigger */}
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("booknook_open_command_palette"))}
+            aria-label="Search library (Ctrl+K)"
+            className="flex items-center gap-1.5 rounded-full border border-[#E7E5E4] bg-white px-2.5 py-1.5 text-xs font-semibold text-[#6B7280] shadow-2xs transition hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#A7F3D0] dark:hover:border-[#6EE7B7]"
+          >
+            <span>🔍</span>
+            <span className="hidden md:inline text-[11px]">Search</span>
+            <kbd className="hidden lg:inline-block rounded-md bg-[#FDFBF7] px-1.5 py-0.2 text-[9px] font-bold text-[#9CA3AF] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              ⌘K
+            </kbd>
+          </button>
+
           {/* Reading Wishlist Icon Button */}
           <Link
             href="/wishlist"
@@ -153,7 +157,7 @@ export default function Navbar() {
               pathname === "/wishlist" && "border-[#047857] bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22]"
             )}
           >
-            <span>🔖</span>
+            
             <span className="hidden sm:inline">Wishlist</span>
             {wishlistCount > 0 && (
               <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[#D97706] text-[10px] font-bold text-white shadow-xs">
@@ -168,7 +172,7 @@ export default function Navbar() {
             aria-label="Toggle dark / light theme"
             className="rounded-full border border-[#E7E5E4] bg-white px-3 py-1.5 text-xs font-semibold text-[#4B5563] shadow-2xs dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5]"
           >
-            {dark ? "☀️ Light" : "🌙 Dark"}
+            {dark ? "☀️" : "🌙"}
           </button>
 
           {isLoggedIn ? (

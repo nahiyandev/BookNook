@@ -175,7 +175,7 @@ export default function Footer() {
           <div className="flex items-center gap-1.5 text-[11px] text-[#A7F3D0]">
             <span>Designed & Developed by</span>
             <a
-              href="https://github.com/nahiyandev"
+              href="https://nahiyandev.vercel.app/"
               target="_blank"
               rel="noreferrer"
               className="group inline-flex items-center gap-1 font-bold text-white transition hover:text-[#FCD34D]"
