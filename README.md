@@ -3,23 +3,6 @@
 # 📚 BookNook
 ### A Modern, Community-Driven Book Sharing & Borrowing Platform
 
-
-
-A library built by its readers — one reader puts a book up, another borrows it, reads it, and returns it.
-
-[![Watch BookNook Walkthrough Video](docs/demo-thumbnail.png)](https://github.com/nahiyandev/BookNook/blob/main/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4)
-
-<p align="center">
-  <a href="https://github.com/nahiyandev/BookNook/blob/main/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4">
-    <img src="https://img.shields.io/badge/▶_Watch_on_GitHub_Video_Player-047857?style=for-the-badge&logo=github&logoColor=white" alt="Watch on GitHub" />
-  </a>
-  &nbsp;
-  <a href="https://booknook-lovat.vercel.app/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4">
-    <img src="https://img.shields.io/badge/▶_Stream_Online_HD-D97706?style=for-the-badge&logo=vercel&logoColor=white" alt="Stream Online" />
-  </a>
-</p>
-
-
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-BookNook%20on%20Vercel-047857?style=for-the-badge&logo=vercel&logoColor=white)](https://booknook-lovat.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-16.4-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
