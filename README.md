@@ -3,6 +3,13 @@
 # 📚 BookNook
 ### A Modern, Community-Driven Book Sharing & Borrowing Platform
 
+# BookNook — A Small Online Library
+
+A library built by its readers — one reader puts a book up, another borrows it, reads it, and returns it.
+
+<video src="docs/BookNook-Walkthrough-Video-v4-syncfix.mp4" poster="docs/demo-thumbnail.png" controls width="100%"></video>
+
+
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-BookNook%20on%20Vercel-047857?style=for-the-badge&logo=vercel&logoColor=white)](https://booknook-lovat.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-16.4-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
