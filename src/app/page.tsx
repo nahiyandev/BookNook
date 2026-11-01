@@ -256,40 +256,6 @@ export default async function HomePage() {
 
       {/* 11. Weekly Book Club Newsletter */}
       <HomeNewsletter />
-
-      {/* 12. Community Share Callout (CTA) */}
-      <section className="bg-white py-16 dark:bg-[#073B2E] md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-[#047857] via-[#065F46] to-[#047857] p-8 text-center text-white shadow-2xl shadow-emerald-900/30 sm:p-12 md:p-16">
-            <div className="mx-auto max-w-2xl">
-              <span className="inline-block text-3xl sm:text-4xl">📚✨</span>
-              <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-                Share a Book, Spark a Journey
-              </h2>
-              <p className="mt-3 text-sm text-[#ECFDF5] sm:text-base leading-relaxed">
-                Have books resting on your shelf at home? Share them with fellow readers in your community and let stories travel.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/add-book"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-[#047857] shadow-md transition hover:bg-[#FDFBF7] active:scale-[0.99]"
-                >
-                  <span>Add a Book to Library</span>
-                  <span>➕</span>
-                </Link>
-                <Link
-                  href="/books"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-xs transition hover:bg-white/20 active:scale-[0.99]"
-                >
-                  <span>Browse All Books</span>
-                  <span>📖</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
