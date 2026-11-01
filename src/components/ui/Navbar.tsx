@@ -144,7 +144,7 @@ export default function Navbar() {
             <span>🔍</span>
             <span className="hidden md:inline text-[11px]">Search</span>
             <kbd className="hidden lg:inline-block rounded-md bg-[#FDFBF7] px-1.5 py-0.2 text-[9px] font-bold text-[#9CA3AF] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              ⌘K
+              
             </kbd>
           </button>
 

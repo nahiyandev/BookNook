@@ -86,10 +86,10 @@ export default function NotFound() {
 
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             {[
-              { name: "Fiction & Novels", icon: "✨" },
-              { name: "Science & Tech", icon: "🔬" },
-              { name: "History & Ideas", icon: "🏛️" },
-              { name: "Kids & Young", icon: "🧸" },
+              { name: "Fiction & Novels", icon: "" },
+              { name: "Science & Tech", icon: "" },
+              { name: "History & Ideas", icon: "" },
+              { name: "Kids & Young", icon: "" },
             ].map((shelf) => (
               <Link
                 key={shelf.name}

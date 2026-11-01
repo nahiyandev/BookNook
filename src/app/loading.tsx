@@ -1,8 +1,4 @@
-/**
- * BookNook loading state — Section 1 (Client Base).
- * Why this exact filename? Next.js App Router renders `loading.tsx`
- * automatically while a route is loading — no wiring is needed anywhere else.
- */
+
 export default function Loading() {
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4">

@@ -4,18 +4,6 @@
 
 
 
-/*
- * BookNook theme — Section 1 (Client Base), Emerald Reading Room.
- *
- * MERGE NOTE — READ BEFORE REPLACING YOUR FILE:
- * This file assumes Tailwind v4 (CSS-based config, `@import "tailwindcss"`),
- * which is the setup shown by this project's shadcn + Turbopack config.
- * If your existing globals.css instead starts with `@tailwind base;` etc.
- * (Tailwind v3), KEEP those lines and only copy the :root / .dark variables
- * and the heading rules below into your file — do not paste the v4 import
- * over a v3 file.
- */
-
 
 /* Class-based dark mode (for the Navbar toggle), not system-only. */
 @custom-variant dark (&:where(.dark, .dark *));

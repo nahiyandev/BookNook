@@ -6,12 +6,12 @@ import BookCard from "./BookCard";
 import type { Book } from "@/lib/api";
 
 const CATEGORIES = [
-  { id: "all", name: "All Shelves", icon: "📚" },
-  { id: "Fiction", name: "Fiction", icon: "✨" },
-  { id: "Science", name: "Science", icon: "🔬" },
-  { id: "History", name: "History", icon: "🏛️" },
-  { id: "Kids", name: "Kids", icon: "🧸" },
-  { id: "Others", name: "Others", icon: "💡" },
+  { id: "all", name: "All Shelves", icon: "" },
+  { id: "Fiction", name: "Fiction", icon: "" },
+  { id: "Science", name: "Science", icon: "" },
+  { id: "History", name: "History", icon: "" },
+  { id: "Kids", name: "Kids", icon: "" },
+  { id: "Others", name: "Others", icon: "" },
 ];
 
 export default function HomeBookExplorer({
@@ -87,8 +87,6 @@ export default function HomeBookExplorer({
     return counts;
   }, [books]);
 
-  // If maxDisplay is provided (e.g. Home page preview of 8), use that slice;
-  // otherwise, display all books together on one page.
   const visibleBooks = useMemo(() => {
     if (maxDisplay) {
       return filteredBooks.slice(0, maxDisplay);

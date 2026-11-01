@@ -6,6 +6,7 @@ import type { Book } from "../../../lib/api";
 import { Button } from "@/components/ui/button";
 import BorrowButton from "@/components/BorrowButton";
 import WishlistActionButton from "@/components/WishlistActionButton";
+import BookReviewsSection from "@/components/BookReviewsSection";
 
 export const instant = false;
 export const metadata = { title: "Book Details" };
@@ -242,6 +243,9 @@ export default async function BookDetailsPage({
           </div>
         </div>
       </div>
+
+      {/* Reader Reviews & Ratings Section */}
+      <BookReviewsSection bookId={book._id} bookTitle={book.title} />
     </div>
   );
 }
