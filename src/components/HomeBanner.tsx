@@ -16,12 +16,7 @@ import bannerKids from "../../assets/banner-04-kids.jpg";
 import bannerHistory from "../../assets/banner-05-history.jpg";
 import bannerScience from "../../assets/banner-06-science.jpg";
 
-/**
- * BookNook Home Banner — Step 6 (Home).
- * Full-width carousel cycling through all 6 curated community banner images
- * (Shelf, Reading, Sharing, Kids, History, Science).
- * Automatically loops through all banners, starting at a randomized slide.
- */
+
 const slides = [
   {
     image: bannerShelf,

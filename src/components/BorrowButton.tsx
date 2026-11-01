@@ -4,12 +4,6 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import BorrowModal from "./BorrowModal";
 
-/**
- * BookNook Borrow button — Borrow section.
- * 0 copies → disabled "Not Available" (spec challenge), never clickable.
- * Otherwise → opens the borrow modal. If the user is somehow logged out,
- * the middleware already redirected them to Login before this page loaded.
- */
 export default function BorrowButton({
   bookId,
   bookTitle,

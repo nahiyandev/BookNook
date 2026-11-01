@@ -55,10 +55,7 @@ function FacebookIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-/**
- * BookNook Footer — Minimal, elegant, reader-focused footer with LinkedIn, GitHub, Facebook links,
- * and developer watermark signature.
- */
+
 export default function Footer() {
   return (
     <footer className="border-t border-[#134E4A] bg-[#052E22] text-[#ECFDF5]">

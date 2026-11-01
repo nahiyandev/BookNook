@@ -6,11 +6,6 @@ import type { Book } from "@/lib/api";
 import { useWishlist } from "@/lib/wishlist";
 import { Button } from "./ui/button";
 
-/**
- * BookNook book card — Books section.
- * Equal height/width by design (assignment rule): fixed image height,
- * flex column, button pinned to the bottom. Includes 1-click Wishlist save.
- */
 export default function BookCard({ book }: { book: Book }) {
   const isAvailable = book.availableCopies > 0;
   const isLowStock = book.availableCopies === 1;

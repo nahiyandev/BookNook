@@ -8,14 +8,7 @@ import { apiFetch, uploadToImgbb } from "../../lib/api";
 import { authClient } from "../../lib/auth-client";
 import { Button } from "../../components/ui/button";
 
-/**
- * BookNook Add Book — Books section, PRIVATE route (middleware guards it).
- * Spec fields: Book Title, Author Name, Category (select), Book Image
- * (upload to imgbb), Short Description, User Name + Email (read-only,
- * from the logged-in user), Total Copies, Add Book button. On submit the
- * book is saved with its added date (backend sets addedAt) and a success
- * toast is shown, then the user goes to My Books.
- */
+
 const CATEGORIES = ["Fiction", "Science", "History", "Kids", "Others"];
 
 export default function AddBookPage() {
