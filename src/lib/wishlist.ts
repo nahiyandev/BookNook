@@ -60,26 +60,29 @@ export function isBookInWishlist(bookId: string): boolean {
   return current.some((b) => b._id === bookId);
 }
 
+// Static empty array constant to prevent re-render loops in getServerSnapshot
+const EMPTY_WISHLIST: WishlistBook[] = [];
+
 // React Subscribe Helper for real-time reactivity
-let cachedSnapshot: WishlistBook[] = [];
+let cachedSnapshot: WishlistBook[] = EMPTY_WISHLIST;
 let cachedString = "";
 
 function getSnapshot(): WishlistBook[] {
-  if (typeof window === "undefined") return [];
+  if (typeof window === "undefined") return EMPTY_WISHLIST;
   const raw = localStorage.getItem(WISHLIST_STORAGE_KEY) || "[]";
   if (raw !== cachedString) {
     cachedString = raw;
     try {
       cachedSnapshot = JSON.parse(raw);
     } catch {
-      cachedSnapshot = [];
+      cachedSnapshot = EMPTY_WISHLIST;
     }
   }
   return cachedSnapshot;
 }
 
 function getServerSnapshot(): WishlistBook[] {
-  return [];
+  return EMPTY_WISHLIST;
 }
 
 function subscribe(callback: () => void): () => void {
