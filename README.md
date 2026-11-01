@@ -7,11 +7,15 @@
 
 A library built by its readers — one reader puts a book up, another borrows it, reads it, and returns it.
 
-[![Watch BookNook Walkthrough Video](docs/demo-thumbnail.png)](https://github.com/nahiyandev/BookNook/raw/main/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4)
+[![Watch BookNook Walkthrough Video](docs/demo-thumbnail.png)](https://github.com/nahiyandev/BookNook/blob/main/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4)
 
 <p align="center">
-  <a href="https://github.com/nahiyandev/BookNook/raw/main/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4">
-    <img src="https://img.shields.io/badge/%E2%96%B6_Watch_Full_Walkthrough_Video_(MP4)-047857?style=for-the-badge&logo=youtube&logoColor=white" alt="Play Video" />
+  <a href="https://github.com/nahiyandev/BookNook/blob/main/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4">
+    <img src="https://img.shields.io/badge/▶_Watch_on_GitHub_Video_Player-047857?style=for-the-badge&logo=github&logoColor=white" alt="Watch on GitHub" />
+  </a>
+  &nbsp;
+  <a href="https://booknook-lovat.vercel.app/docs/BookNook-Walkthrough-Video-v4-syncfix.mp4">
+    <img src="https://img.shields.io/badge/▶_Stream_Online_HD-D97706?style=for-the-badge&logo=vercel&logoColor=white" alt="Stream Online" />
   </a>
 </p>
 
