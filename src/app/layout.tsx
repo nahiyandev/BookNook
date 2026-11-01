@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "../components/ui/Navbar";
 import Footer from "../components/ui/Footer";
@@ -38,7 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-[#FDFBF7] text-[#1F2937] antialiased dark:bg-[#052E22] dark:text-[#ECFDF5]">
-        <Navbar />
+        <Suspense fallback={<div className="h-16 w-full border-b border-[#E7E5E4] bg-white dark:border-[#134E4A] dark:bg-[#073B2E]" />}>
+          <Navbar />
+        </Suspense>
         <main>{children}</main>
         <Footer />
         <ToastContainer
