@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { connection } from "next/server";
 import { API_URL } from "@/lib/config";
 import type { Book as BookType } from "@/lib/api";
 import HomeBookExplorer from "@/components/HomeBookExplorer";
 
 export const metadata = { title: "All Books | BookNook" };
-export const dynamic = "force-dynamic";
 
 export default async function AllBooksPage() {
+  await connection();
   let books: BookType[] = [];
   let loadError = "";
   try {

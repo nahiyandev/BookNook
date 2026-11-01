@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { API_URL } from "../../../lib/config";
 import type { Book } from "../../../lib/api";
 import { Button } from "@/components/ui/button";
 import BorrowButton from "@/components/BorrowButton";
 import WishlistActionButton from "@/components/WishlistActionButton";
 
-export const dynamic = "force-dynamic";
 export const metadata = { title: "Book Details" };
 
 export default async function BookDetailsPage({
@@ -14,6 +14,7 @@ export default async function BookDetailsPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await connection();
   const { id } = await params;
   let book: Book | null = null;
   try {

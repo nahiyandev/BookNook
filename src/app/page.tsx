@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { connection } from "next/server";
 import HomeBanner from "@/components/HomeBanner";
 import HomeBookExplorer from "@/components/HomeBookExplorer";
 import HomeGenres from "@/components/HomeGenres";
@@ -14,9 +15,9 @@ import type { Book } from "@/lib/api";
  * search lens, category shelf filtering, and community storytelling.
  */
 export const metadata = { title: "Home | BookNook" };
-export const dynamic = "force-dynamic";
 
 async function getBooks(): Promise<Book[]> {
+  await connection();
   try {
     const res = await fetch(`${API_URL}/books`, { cache: "no-store" });
     if (!res.ok) return [];
