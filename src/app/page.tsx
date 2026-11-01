@@ -14,6 +14,7 @@ import type { Book } from "@/lib/api";
  * search lens, category shelf filtering, and community storytelling.
  */
 export const metadata = { title: "Home | BookNook" };
+export const dynamic = "force-dynamic";
 
 async function getBooks(): Promise<Book[]> {
   try {

@@ -4,6 +4,7 @@ import type { Book as BookType } from "@/lib/api";
 import HomeBookExplorer from "@/components/HomeBookExplorer";
 
 export const metadata = { title: "All Books | BookNook" };
+export const dynamic = "force-dynamic";
 
 export default async function AllBooksPage() {
   let books: BookType[] = [];

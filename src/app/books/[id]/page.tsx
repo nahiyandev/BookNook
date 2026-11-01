@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import BorrowButton from "@/components/BorrowButton";
 import WishlistActionButton from "@/components/WishlistActionButton";
 
-export const instant = false;
-
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Book Details" };
 
 export default async function BookDetailsPage({
