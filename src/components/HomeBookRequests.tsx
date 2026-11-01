@@ -21,12 +21,12 @@ export default function HomeBookRequests() {
 
   const handleUpvote = (id: string, title: string) => {
     if (upvotedIds[id]) {
-      toast.info("You already upvoted this request! 👍");
+      toast.info("You already upvoted this request.");
       return;
     }
     upvote(id);
     setUpvotedIds((prev) => ({ ...prev, [id]: true }));
-    toast.success(`Upvoted "${title}"! Fellow readers will see the interest.`);
+    toast.success(`Upvoted "${title}". Fellow readers will see your interest.`);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -44,7 +44,7 @@ export default function HomeBookRequests() {
       note,
     });
 
-    toast.success(`Request for "${title}" posted to the community wall! 📋`);
+    toast.success(`Request for "${title}" posted to the community wall.`);
     setTitle("");
     setAuthor("");
     setRequesterName("");
@@ -53,13 +53,20 @@ export default function HomeBookRequests() {
   };
 
   return (
-    <section className="border-t border-[#E7E5E4] bg-[#FDFBF7] py-16 dark:border-[#134E4A] dark:bg-[#052E22] md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden border-t border-stone-200/70 bg-[#FAF9F6]/80 py-16 dark:border-emerald-950 dark:bg-[#052E22] md:py-20">
+      {/* Subtle ambient light for glass glow */}
+      <div className="pointer-events-none absolute -top-24 left-1/3 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-400/5" />
+      <div className="pointer-events-none absolute -bottom-24 right-1/4 h-80 w-80 rounded-full bg-amber-400/10 blur-3xl dark:bg-amber-300/5" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ECFDF5] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#047857] dark:bg-[#073B2E] dark:text-[#6EE7B7]">
-              <span>📋</span> Community Wish Wall
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/70 bg-emerald-100/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#047857] backdrop-blur-md dark:border-emerald-700/40 dark:bg-emerald-950/60 dark:text-[#6EE7B7]">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+              </svg>
+              <span>Community Wish Wall</span>
             </span>
             <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-[#1F2937] sm:text-4xl dark:text-[#F0FDF4]">
               Books Our Readers Are Looking For
@@ -72,26 +79,31 @@ export default function HomeBookRequests() {
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-2 self-start rounded-2xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-3 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:scale-102 hover:brightness-110 active:scale-[0.99] sm:self-end"
+            className="inline-flex items-center gap-2 self-start rounded-2xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-3 text-sm font-bold text-white shadow-md shadow-emerald-900/20 backdrop-blur-sm transition-all hover:scale-102 hover:brightness-110 active:scale-[0.99] sm:self-end"
           >
             <span>+ Wish a Book</span>
-            <span>✨</span>
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
           </button>
         </div>
 
-        {/* Requests Grid */}
+        {/* Requests Grid — Frosted Glass Cards */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {requests.slice(0, 4).map((req: BookRequest) => {
             const hasUpvoted = !!upvotedIds[req.id];
             return (
               <div
                 key={req.id}
-                className="group relative flex flex-col justify-between rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-lg shadow-stone-200/40 transition-all duration-300 hover:-translate-y-1 hover:border-[#047857]/40 hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40"
+                className="group relative flex flex-col justify-between rounded-3xl border border-white/80 bg-white/70 p-6 shadow-lg shadow-stone-200/40 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-xl dark:border-emerald-500/20 dark:bg-[#073B2E]/60 dark:shadow-2xl dark:hover:border-[#6EE7B7]/40"
               >
+                {/* Glass hairline top reflex */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/80 to-transparent dark:via-emerald-400/20" />
+
                 <div>
                   {/* Category Pill + Status */}
                   <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-[#ECFDF5] px-2.5 py-0.5 text-[11px] font-bold text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+                    <span className="rounded-full border border-emerald-200/60 bg-emerald-100/50 px-2.5 py-0.5 text-[11px] font-semibold text-[#047857] backdrop-blur-xs dark:border-emerald-700/40 dark:bg-emerald-950/60 dark:text-[#6EE7B7]">
                       {req.category}
                     </span>
                     <span className="text-[11px] text-[#9CA3AF] dark:text-[#A7F3D0]/60">
@@ -108,38 +120,42 @@ export default function HomeBookRequests() {
                   </p>
 
                   {/* Reader Note */}
-                  <div className="mt-3.5 rounded-2xl bg-[#FDFBF7] p-3 text-xs leading-relaxed text-[#4B5563] dark:bg-[#052E22] dark:text-[#A7F3D0]">
+                  <div className="mt-3.5 rounded-2xl border border-stone-200/50 bg-[#FDFBF7]/80 p-3 text-xs leading-relaxed text-[#4B5563] backdrop-blur-xs dark:border-emerald-800/30 dark:bg-[#052E22]/60 dark:text-[#A7F3D0]">
                     &ldquo;{req.note}&rdquo;
                   </div>
 
-                  <p className="mt-2 text-[11px] font-medium text-[#6B7280] dark:text-[#A7F3D0]/80">
+                  <p className="mt-2.5 text-[11px] font-medium text-[#6B7280] dark:text-[#A7F3D0]/80">
                     Requested by <span className="font-bold text-[#1F2937] dark:text-[#F0FDF4]">{req.requesterName}</span>
                   </p>
                 </div>
 
                 {/* Actions: Upvote + I Have This Book */}
-                <div className="mt-6 border-t border-[#E7E5E4] pt-4 dark:border-[#134E4A]">
+                <div className="mt-6 border-t border-stone-200/60 pt-4 dark:border-emerald-800/40">
                   <div className="flex items-center justify-between gap-2">
                     <button
                       type="button"
                       onClick={() => handleUpvote(req.id, req.title)}
-                      className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+                      className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold backdrop-blur-sm transition-all ${
                         hasUpvoted
                           ? "bg-[#047857] text-white shadow-xs"
-                          : "border border-[#E7E5E4] bg-white text-[#4B5563] hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]"
+                          : "border border-stone-200/80 bg-white/80 text-[#4B5563] hover:border-[#047857] hover:text-[#047857] dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#A7F3D0]"
                       }`}
                     >
-                      <span>👍</span>
+                      <svg className="h-3.5 w-3.5 text-[#047857] dark:text-[#6EE7B7]" fill={hasUpvoted ? "currentColor" : "none"} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2" />
+                      </svg>
                       <span>{req.upvotes}</span>
                       <span className="hidden sm:inline">Me too</span>
                     </button>
 
                     <Link
                       href="/add-book"
-                      className="inline-flex items-center gap-1 rounded-xl bg-[#ECFDF5] px-3 py-1.5 text-xs font-bold text-[#047857] transition hover:bg-[#047857] hover:text-white dark:bg-[#052E22] dark:text-[#6EE7B7] dark:hover:bg-[#6EE7B7] dark:hover:text-[#052E22]"
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-200/80 bg-emerald-50/80 px-3 py-1.5 text-xs font-bold text-[#047857] backdrop-blur-xs transition hover:bg-[#047857] hover:text-white dark:border-emerald-700/40 dark:bg-emerald-950/50 dark:text-[#6EE7B7] dark:hover:bg-[#6EE7B7] dark:hover:text-[#052E22]"
                     >
                       <span>I Have This</span>
-                      <span>➕</span>
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
                     </Link>
                   </div>
                 </div>
@@ -149,7 +165,7 @@ export default function HomeBookRequests() {
         </div>
       </div>
 
-      {/* "Wish a Book" Modal */}
+      {/* "Wish a Book" Frosted Glass Modal */}
       {modalOpen && (
         <div
           role="dialog"
@@ -160,15 +176,17 @@ export default function HomeBookRequests() {
           {/* Backdrop */}
           <div
             onClick={() => setModalOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity"
           />
 
           {/* Dialog Container */}
-          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-2xl dark:border-[#134E4A] dark:bg-[#073B2E] sm:p-8">
+          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/80 bg-white/90 p-6 shadow-2xl backdrop-blur-2xl dark:border-emerald-500/20 dark:bg-[#073B2E]/90 sm:p-8">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#ECFDF5] text-xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-                  📋
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100/60 text-[#047857] dark:bg-emerald-950/60 dark:text-[#6EE7B7]">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
                 </span>
                 <div>
                   <h3 id="wish-book-title" className="font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
@@ -200,7 +218,7 @@ export default function HomeBookRequests() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Sapiens, The Alchemist, Dune..."
-                  className="mt-1.5 w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
                 />
               </div>
 
@@ -215,7 +233,7 @@ export default function HomeBookRequests() {
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     placeholder="e.g. Frank Herbert"
-                    className="mt-1.5 w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4]"
+                    className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
                   />
                 </div>
 
@@ -226,7 +244,7 @@ export default function HomeBookRequests() {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="mt-1.5 w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] px-4 py-2.5 text-sm font-medium text-[#1F2937] focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4]"
+                    className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm font-medium text-[#1F2937] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
                   >
                     {CATEGORIES.map((c) => (
                       <option key={c} value={c}>
@@ -246,7 +264,7 @@ export default function HomeBookRequests() {
                   value={requesterName}
                   onChange={(e) => setRequesterName(e.target.value)}
                   placeholder="e.g. Anika (or leave anonymous)"
-                  className="mt-1.5 w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
                 />
               </div>
 
@@ -259,7 +277,7 @@ export default function HomeBookRequests() {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="e.g. Recommended by my professor / Need for research..."
-                  className="mt-1.5 w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
                 />
               </div>
 
@@ -267,15 +285,18 @@ export default function HomeBookRequests() {
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="rounded-xl border border-[#E7E5E4] bg-white px-4 py-2 text-xs font-bold text-[#4B5563] hover:bg-stone-50 dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]"
+                  className="rounded-xl border border-stone-200/80 bg-white/80 px-4 py-2 text-xs font-bold text-[#4B5563] backdrop-blur-xs hover:bg-stone-50 dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#A7F3D0]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-900/20 transition hover:brightness-110 active:scale-[0.99]"
+                  className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-900/20 backdrop-blur-xs transition hover:brightness-110 active:scale-[0.99]"
                 >
-                  Post Request 📋
+                  <span>Post Request</span>
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
                 </button>
               </div>
             </form>
@@ -285,4 +306,3 @@ export default function HomeBookRequests() {
     </section>
   );
 }
-

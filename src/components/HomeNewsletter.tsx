@@ -54,20 +54,28 @@ export default function HomeNewsletter() {
   };
 
   return (
-    <section className="border-t border-[#E7E5E4] bg-[#FAF9F6] py-10 dark:border-[#134E4A] dark:bg-[#04241B] md:py-12">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border border-[#E7E5E4] bg-white/95 p-6 shadow-xs backdrop-blur-xs transition hover:shadow-sm sm:p-8 dark:border-[#134E4A] dark:bg-[#063327]/80">
+    <section className="relative overflow-hidden border-t border-stone-200/70 bg-[#FAF9F6]/80 py-10 dark:border-emerald-900/60 dark:bg-[#04241B]/90 md:py-12">
+      {/* Ambient Glass Glow Orbs */}
+      <div className="pointer-events-none absolute -top-16 left-1/4 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-400/10" />
+      <div className="pointer-events-none absolute -bottom-16 right-1/4 h-64 w-64 rounded-full bg-amber-400/10 blur-3xl dark:bg-amber-300/5" />
+
+      <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        {/* Frosted Glass Container */}
+        <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/70 p-6 shadow-xl shadow-stone-300/20 backdrop-blur-xl transition-all duration-300 hover:shadow-2xl hover:shadow-stone-300/30 sm:p-8 dark:border-emerald-500/20 dark:bg-[#063327]/60 dark:shadow-2xl dark:shadow-black/40">
+          {/* Subtle Glass Highlight Line */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/80 to-transparent dark:via-emerald-400/30" />
+
           <div className="flex flex-col items-center justify-between gap-6 lg:flex-row lg:gap-10">
             {/* Left Content */}
             <div className="max-w-xl text-center lg:text-left">
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-50/90 px-3 py-0.5 text-xs font-semibold tracking-wide text-[#047857] dark:border-emerald-700/50 dark:bg-emerald-900/40 dark:text-[#6EE7B7]">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300/40 bg-emerald-100/50 px-3 py-1 text-xs font-semibold tracking-wide text-[#047857] backdrop-blur-md dark:border-emerald-600/40 dark:bg-emerald-950/60 dark:text-[#6EE7B7]">
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>Weekly Dispatch</span>
+                <span>The Friday Dispatch</span>
               </div>
 
-              <h3 className="mt-2.5 font-serif text-xl font-bold tracking-tight text-[#1F2937] sm:text-2xl dark:text-[#F0FDF4]">
+              <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight text-[#1F2937] sm:text-3xl dark:text-[#F0FDF4]">
                 Subscribe to BookNook Weekly
               </h3>
               <p className="mt-1.5 text-xs text-[#6B7280] sm:text-sm dark:text-[#A7F3D0] leading-relaxed">
@@ -78,54 +86,69 @@ export default function HomeNewsletter() {
             {/* Right Form or Subscribed State */}
             <div className="w-full lg:max-w-md">
               {isSubscribed ? (
-                <div className="flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-xs dark:border-emerald-800/60 dark:bg-emerald-950/40">
-                  <div className="flex items-center gap-2 text-[#047857] dark:text-[#6EE7B7]">
-                    <svg className="h-4 w-4 shrink-0 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-medium">You are on the weekly reading list.</span>
+                <div className="flex items-center justify-between rounded-2xl border border-emerald-300/40 bg-emerald-50/70 p-4 text-xs backdrop-blur-md shadow-xs dark:border-emerald-700/40 dark:bg-emerald-950/50">
+                  <div className="flex items-center gap-2.5 text-[#047857] dark:text-[#6EE7B7]">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-200/60 dark:bg-emerald-900/60">
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="font-semibold text-sm">You are on the weekly reading list.</span>
                   </div>
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="font-medium text-[#D97706] hover:underline dark:text-[#FCD34D] ml-2 shrink-0 text-xs"
+                    className="font-medium text-[#D97706] hover:underline dark:text-[#FCD34D] ml-3 shrink-0 text-xs"
                   >
                     Change
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2.5">
                   <div className="relative flex-1">
+                    <div className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[#9CA3AF] dark:text-emerald-400/50">
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                      </svg>
+                    </div>
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address"
-                      className="w-full rounded-xl border border-[#E7E5E4] bg-white px-3.5 py-2.5 text-xs text-[#1F2937] placeholder-[#9CA3AF] focus:border-[#047857] focus:outline-hidden focus:ring-1 focus:ring-[#047857] sm:text-sm dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-emerald-400/40"
+                      className="w-full rounded-2xl border border-stone-300/80 bg-white/80 py-2.5 pr-3.5 pl-10 text-xs text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-sm transition focus:border-[#047857] focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#047857]/20 sm:text-sm dark:border-emerald-700/50 dark:bg-[#052E22]/80 dark:text-[#F0FDF4] dark:placeholder-emerald-400/40 dark:focus:border-[#6EE7B7]"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="inline-flex shrink-0 items-center justify-center rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-2.5 text-xs font-semibold text-white shadow-xs transition hover:brightness-110 active:scale-[0.98] sm:text-sm"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-900/20 backdrop-blur-md transition hover:scale-102 hover:brightness-110 active:scale-[0.98] sm:text-sm"
                   >
-                    Subscribe
+                    <span>Subscribe</span>
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                   </button>
                 </form>
               )}
 
               {/* Minimal Trust Micro-details */}
-              <div className="mt-2.5 flex items-center justify-center gap-3 text-[11px] text-[#6B7280] lg:justify-start dark:text-[#A7F3D0]">
-                <span className="flex items-center gap-1">
-                  <svg className="h-3 w-3 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mt-3 flex items-center justify-center gap-3.5 text-[11px] font-medium text-[#6B7280] lg:justify-start dark:text-[#A7F3D0]">
+                <span className="flex items-center gap-1.5">
+                  <svg className="h-3 w-3 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                   Free forever
                 </span>
                 <span>•</span>
-                <span>Weekly on Friday</span>
+                <span className="flex items-center gap-1.5">
+                  <svg className="h-3 w-3 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Weekly on Friday
+                </span>
                 <span>•</span>
-                <span>No spam</span>
+                <span>Zero spam</span>
               </div>
             </div>
           </div>
