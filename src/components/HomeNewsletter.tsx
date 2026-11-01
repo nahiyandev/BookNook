@@ -40,7 +40,7 @@ export default function HomeNewsletter() {
 
     setIsSubscribed(true);
     setEmail("");
-    toast.success("Welcome to the Book Club! 🎉 Fresh reads will arrive in your inbox every Friday.");
+    toast.success("Welcome! You are now subscribed to the weekly book dispatch.");
   };
 
   const handleReset = () => {
@@ -50,85 +50,83 @@ export default function HomeNewsletter() {
       // Ignore
     }
     setIsSubscribed(false);
-    toast.info("Subscription reset. You can sign up with a new email anytime.");
+    toast.info("Subscription reset. You can enter a new email anytime.");
   };
 
   return (
-    <section className="bg-white py-16 dark:bg-[#073B2E] md:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-[#E7E5E4] bg-linear-to-br from-[#FDFBF7] via-white to-[#ECFDF5] p-8 shadow-xl shadow-stone-200/50 sm:p-12 md:p-16 dark:border-[#134E4A] dark:from-[#052E22] dark:via-[#073B2E] dark:to-[#052E22] dark:shadow-2xl">
-          <div className="mx-auto max-w-2xl text-center">
-            {/* Header Badge */}
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ECFDF5] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              <span>💌</span> Friday Book Dispatch
-            </span>
-
-            {/* Title & Description */}
-            <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight text-[#1F2937] sm:text-4xl dark:text-[#F0FDF4]">
-              Join the Weekly Reading Nook Club
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#6B7280] sm:text-base dark:text-[#A7F3D0]">
-              Every Friday morning, we curate our community&apos;s freshest book additions, reader reviews, and most-wanted book requests. Pure reading joy, zero spam.
-            </p>
-
-            {/* Form or Subscribed State */}
-            {isSubscribed ? (
-              <div className="mt-8 rounded-2xl border border-emerald-200 bg-[#ECFDF5] p-6 text-center dark:border-emerald-800 dark:bg-[#052E22]">
-                <span className="text-3xl">🎉</span>
-                <h4 className="mt-2 font-serif text-lg font-bold text-[#047857] dark:text-[#6EE7B7]">
-                  You&apos;re Officially on the Reading List!
-                </h4>
-                <p className="mt-1 text-xs text-[#4B5563] dark:text-[#A7F3D0]">
-                  Look out for our Friday morning dispatch. Happy reading!
-                </p>
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className="mt-4 text-xs font-semibold text-[#D97706] hover:underline dark:text-[#FCD34D]"
-                >
-                  Change email address ↺
-                </button>
+    <section className="border-t border-[#E7E5E4] bg-[#FAF9F6] py-10 dark:border-[#134E4A] dark:bg-[#04241B] md:py-12">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-2xl border border-[#E7E5E4] bg-white/95 p-6 shadow-xs backdrop-blur-xs transition hover:shadow-sm sm:p-8 dark:border-[#134E4A] dark:bg-[#063327]/80">
+          <div className="flex flex-col items-center justify-between gap-6 lg:flex-row lg:gap-10">
+            {/* Left Content */}
+            <div className="max-w-xl text-center lg:text-left">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-50/90 px-3 py-0.5 text-xs font-semibold tracking-wide text-[#047857] dark:border-emerald-700/50 dark:bg-emerald-900/40 dark:text-[#6EE7B7]">
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Weekly Dispatch</span>
               </div>
-            ) : (
-              <form
-                onSubmit={handleSubscribe}
-                className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
-              >
-                <div className="relative w-full max-w-md">
-                  <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm text-[#047857] dark:text-[#6EE7B7]">
-                    ✉️
-                  </span>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address..."
-                    className="w-full rounded-2xl border border-[#E7E5E4] bg-white py-3.5 pr-4 pl-11 text-sm text-[#1F2937] placeholder-[#9CA3AF] shadow-xs focus:border-[#047857] focus:ring-2 focus:ring-[#047857]/20 focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4]"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full shrink-0 rounded-2xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:scale-102 hover:brightness-110 active:scale-[0.99] sm:w-auto"
-                >
-                  Subscribe Free 📬
-                </button>
-              </form>
-            )}
 
-            {/* Trust Micro-Bullets */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-[#6B7280] dark:text-[#A7F3D0]">
-              <span className="flex items-center gap-1">
-                <span>✓</span> 100% Free
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <span>✓</span> One email per week
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <span>✓</span> Unsubscribe anytime
-              </span>
+              <h3 className="mt-2.5 font-serif text-xl font-bold tracking-tight text-[#1F2937] sm:text-2xl dark:text-[#F0FDF4]">
+                Subscribe to BookNook Weekly
+              </h3>
+              <p className="mt-1.5 text-xs text-[#6B7280] sm:text-sm dark:text-[#A7F3D0] leading-relaxed">
+                Handpicked book additions, community recommendations, and reading notes delivered every Friday.
+              </p>
+            </div>
+
+            {/* Right Form or Subscribed State */}
+            <div className="w-full lg:max-w-md">
+              {isSubscribed ? (
+                <div className="flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-xs dark:border-emerald-800/60 dark:bg-emerald-950/40">
+                  <div className="flex items-center gap-2 text-[#047857] dark:text-[#6EE7B7]">
+                    <svg className="h-4 w-4 shrink-0 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="font-medium">You are on the weekly reading list.</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="font-medium text-[#D97706] hover:underline dark:text-[#FCD34D] ml-2 shrink-0 text-xs"
+                  >
+                    Change
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
+                  <div className="relative flex-1">
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      className="w-full rounded-xl border border-[#E7E5E4] bg-white px-3.5 py-2.5 text-xs text-[#1F2937] placeholder-[#9CA3AF] focus:border-[#047857] focus:outline-hidden focus:ring-1 focus:ring-[#047857] sm:text-sm dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-emerald-400/40"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="inline-flex shrink-0 items-center justify-center rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-2.5 text-xs font-semibold text-white shadow-xs transition hover:brightness-110 active:scale-[0.98] sm:text-sm"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              )}
+
+              {/* Minimal Trust Micro-details */}
+              <div className="mt-2.5 flex items-center justify-center gap-3 text-[11px] text-[#6B7280] lg:justify-start dark:text-[#A7F3D0]">
+                <span className="flex items-center gap-1">
+                  <svg className="h-3 w-3 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Free forever
+                </span>
+                <span>•</span>
+                <span>Weekly on Friday</span>
+                <span>•</span>
+                <span>No spam</span>
+              </div>
             </div>
           </div>
         </div>
