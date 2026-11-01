@@ -7,7 +7,7 @@
 
 A library built by its readers — one reader puts a book up, another borrows it, reads it, and returns it.
 
-<video src="docs/BookNook-Walkthrough-Video-v4-syncfix.mp4" poster="docs/demo-thumbnail.png" controls width="100%"></video>
+<video src="docs/BookNook-Walkthrough-Video-v4-syncfix.mp4" poster="docs/demo-thumbnail.png" autoplay loop muted playsinline controls width="100%"></video>
 
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-BookNook%20on%20Vercel-047857?style=for-the-badge&logo=vercel&logoColor=white)](https://booknook-lovat.vercel.app)
@@ -25,8 +25,6 @@ A library built by its readers — one reader puts a book up, another borrows it
 [**Explore Live Website ↗**](https://booknook-lovat.vercel.app) • [**Client Repository**](https://github.com/nahiyandev/BookNook) • [**Report Issue**](https://github.com/nahiyandev/BookNook/issues)
 
 ---
-
-<video src="docs/BookNook-Walkthrough-Video-v4-syncfix.mp4" poster="docs/demo-thumbnail.png" controls width="100%"></video>
 
 </div>
 
