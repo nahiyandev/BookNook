@@ -150,7 +150,9 @@ export default function MyBorrowsPage() {
           className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:brightness-110 active:scale-[0.99]"
         >
           <span>Explore Library</span>
-          <span>📖</span>
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
         </Link>
       </div>
 
@@ -158,8 +160,10 @@ export default function MyBorrowsPage() {
       {!loading && borrows.length > 0 && (
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="flex items-center gap-4 rounded-2xl border border-[#E7E5E4] bg-white p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECFDF5] text-2xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              📚
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
             </span>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
@@ -172,8 +176,10 @@ export default function MyBorrowsPage() {
           </div>
 
           <div className="flex items-center gap-4 rounded-2xl border border-[#E7E5E4] bg-white p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
-              ⏱️
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             </span>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
@@ -186,8 +192,10 @@ export default function MyBorrowsPage() {
           </div>
 
           <div className="flex items-center gap-4 rounded-2xl border border-[#E7E5E4] bg-white p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECFDF5] text-2xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              🤝
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
             </span>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#A7F3D0]">
@@ -211,8 +219,10 @@ export default function MyBorrowsPage() {
         </div>
       ) : borrows.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-3xl border border-[#E7E5E4] bg-white p-12 text-center shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
-          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ECFDF5] text-3xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-            📖
+          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+            <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
           </span>
           <h3 className="mt-4 font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
             No Borrowed Books
@@ -279,7 +289,9 @@ export default function MyBorrowsPage() {
                       {/* Borrow Date */}
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">📅</span>
+                          <svg className="h-4 w-4 text-[#6B7280] dark:text-[#A7F3D0]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
                           <div>
                             <p className="text-xs font-semibold text-[#1F2937] dark:text-[#F0FDF4]">
                               {formatDate(borrow.borrowDate)}

@@ -31,7 +31,7 @@ export default function ProfilePage() {
     favoriteAuthor: customProfile.favoriteAuthor ?? "Richard Dawkins",
     readingGoal: customProfile.readingGoal ?? 12,
     favoriteGenres: customProfile.favoriteGenres ?? ["Fiction", "Science", "History"],
-    readingHabit: customProfile.readingHabit ?? "Night Owl Reader 🌙",
+    readingHabit: customProfile.readingHabit ?? "Night Owl Reader",
   };
 
   useEffect(() => {
@@ -158,7 +158,7 @@ export default function ProfilePage() {
               My Reader Profile
             </h1>
             <span className="rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
-              Verified Reader ✨
+              Verified Reader
             </span>
           </div>
           <p className="mt-1 text-xs text-[#6B7280] sm:text-sm dark:text-[#A7F3D0]">
@@ -171,7 +171,10 @@ export default function ProfilePage() {
             href="/wishlist"
             className="inline-flex items-center gap-2 rounded-xl border border-amber-300 bg-amber-50 px-4 py-2.5 text-sm font-bold text-[#D97706] shadow-xs transition hover:bg-amber-100 dark:border-amber-700/50 dark:bg-[#052E22] dark:text-[#FCD34D]"
           >
-            <span>🔖 Wishlist</span>
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg>
+            <span>Wishlist</span>
             {wishlistCount > 0 && (
               <span className="rounded-full bg-[#D97706] px-2 py-0.5 text-xs text-white">
                 {wishlistCount}
@@ -184,8 +187,10 @@ export default function ProfilePage() {
             onClick={() => setIsEditOpen(true)}
             className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:brightness-110 active:scale-[0.99]"
           >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
             <span>Edit Profile</span>
-            <span>✏️</span>
           </button>
         </div>
       </div>
@@ -218,14 +223,21 @@ export default function ProfilePage() {
             </div>
 
             <div className="flex flex-wrap gap-2.5">
-              <span className="rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3 py-1.5 text-xs font-semibold text-[#4B5563] shadow-2xs dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]">
-                📍 {profileData.location || "Earth"}
+              <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3 py-1.5 text-xs font-semibold text-[#4B5563] shadow-2xs dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]">
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>{profileData.location || "Earth"}</span>
               </span>
               <span className="rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3 py-1.5 text-xs font-semibold text-[#4B5563] shadow-2xs dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]">
                 {profileData.readingHabit}
               </span>
-              <span className="rounded-xl bg-amber-50 px-3 py-1.5 text-xs font-bold text-[#D97706] ring-1 ring-amber-300 dark:bg-[#052E22] dark:text-[#FCD34D] dark:ring-amber-700/50">
-                ⭐ {readerTier}
+              <span className="inline-flex items-center gap-1 rounded-xl bg-amber-50 px-3 py-1.5 text-xs font-bold text-[#D97706] ring-1 ring-amber-300 dark:bg-[#052E22] dark:text-[#FCD34D] dark:ring-amber-700/50">
+                <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <span>{readerTier}</span>
               </span>
             </div>
           </div>
@@ -254,8 +266,10 @@ export default function ProfilePage() {
         {/* Card 1: Books Contributed */}
         <div className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-white p-6 shadow-lg shadow-emerald-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-2xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              📚
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
             </span>
             <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-bold text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
               Contribution
@@ -284,8 +298,10 @@ export default function ProfilePage() {
         {/* Card 2: Currently Borrowed */}
         <div className="relative overflow-hidden rounded-3xl border border-amber-100 bg-white p-6 shadow-lg shadow-amber-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-2xl text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
-              📖
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
             </span>
             <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-[10px] font-bold text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
               Active
@@ -314,8 +330,10 @@ export default function ProfilePage() {
         {/* Card 3: Annual Reading Goal */}
         <div className="relative overflow-hidden rounded-3xl border border-teal-100 bg-white p-6 shadow-lg shadow-teal-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-2xl text-teal-600 dark:bg-[#052E22] dark:text-teal-300">
-              🎯
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 dark:bg-[#052E22] dark:text-teal-300">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
             </span>
             <span className="rounded-full bg-teal-100 px-2.5 py-0.5 text-[10px] font-bold text-teal-700 dark:bg-[#052E22] dark:text-teal-300">
               {goalProgress}% Complete
@@ -338,7 +356,7 @@ export default function ProfilePage() {
             <p className="mt-1 text-[11px] text-[#6B7280] dark:text-[#A7F3D0]">
               {profileData.readingGoal - (borrowsCount || 0) > 0
                 ? `${profileData.readingGoal - (borrowsCount || 0)} books to reach milestone`
-                : "🎉 Goal achieved for this season!"}
+                : "Goal achieved for this season!"}
             </p>
           </div>
         </div>
@@ -346,8 +364,10 @@ export default function ProfilePage() {
         {/* Card 4: Reader Tier & Level */}
         <div className="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white p-6 shadow-lg shadow-indigo-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-2xl text-indigo-600 dark:bg-[#052E22] dark:text-indigo-300">
-              🏆
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-[#052E22] dark:text-indigo-300">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
             </span>
             <span className="rounded-full bg-indigo-100 px-2.5 py-0.5 text-[10px] font-bold text-indigo-700 dark:bg-[#052E22] dark:text-indigo-300">
               Status
@@ -372,8 +392,10 @@ export default function ProfilePage() {
         {/* Preferred Shelves & Genres Card */}
         <div className="rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-lg shadow-stone-200/40 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ECFDF5] text-xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              🔖
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+              </svg>
             </span>
             <div>
               <h3 className="font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
@@ -397,7 +419,7 @@ export default function ProfilePage() {
                       key={genre}
                       className="rounded-full bg-[#ECFDF5] px-3.5 py-1 text-xs font-bold text-[#047857] ring-1 ring-[#047857]/20 dark:bg-[#052E22] dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30"
                     >
-                      ✨ {genre}
+                      {genre}
                     </span>
                   ))
                 ) : (
@@ -429,8 +451,10 @@ export default function ProfilePage() {
         {/* Community Badges & Honors Card */}
         <div className="rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-lg shadow-stone-200/40 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-xl text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
-              🎖️
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
             </span>
             <div>
               <h3 className="font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
@@ -444,7 +468,11 @@ export default function ProfilePage() {
 
           <div className="mt-6 grid grid-cols-2 gap-3.5">
             <div className="rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] p-3.5 transition hover:border-[#047857] dark:border-[#134E4A] dark:bg-[#052E22]">
-              <span className="text-2xl">🌿</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] dark:bg-[#073B2E] dark:text-[#6EE7B7]">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </span>
               <p className="mt-2 font-serif text-sm font-bold text-[#1F2937] dark:text-[#F0FDF4]">
                 Eco-Reader
               </p>
@@ -454,7 +482,11 @@ export default function ProfilePage() {
             </div>
 
             <div className="rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] p-3.5 transition hover:border-[#047857] dark:border-[#134E4A] dark:bg-[#052E22]">
-              <span className="text-2xl">🤝</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] dark:bg-[#073B2E] dark:text-[#6EE7B7]">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </span>
               <p className="mt-2 font-serif text-sm font-bold text-[#1F2937] dark:text-[#F0FDF4]">
                 Shelf Partner
               </p>
@@ -464,7 +496,11 @@ export default function ProfilePage() {
             </div>
 
             <div className="rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] p-3.5 transition hover:border-[#047857] dark:border-[#134E4A] dark:bg-[#052E22]">
-              <span className="text-2xl">⏱️</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] dark:bg-[#073B2E] dark:text-[#6EE7B7]">
+                <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </span>
               <p className="mt-2 font-serif text-sm font-bold text-[#1F2937] dark:text-[#F0FDF4]">
                 Punctual Return
               </p>
@@ -474,7 +510,11 @@ export default function ProfilePage() {
             </div>
 
             <div className="rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] p-3.5 transition hover:border-[#047857] dark:border-[#134E4A] dark:bg-[#052E22]">
-              <span className="text-2xl">🌟</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-50 text-[#D97706] dark:bg-[#073B2E] dark:text-[#FCD34D]">
+                <svg className="h-4.5 w-4.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              </span>
               <p className="mt-2 font-serif text-sm font-bold text-[#1F2937] dark:text-[#F0FDF4]">
                 Founding Reader
               </p>
@@ -504,7 +544,9 @@ export default function ProfilePage() {
             className="inline-flex cursor-pointer items-center gap-2 self-start rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-xs font-bold text-red-600 transition hover:bg-red-100 sm:self-auto dark:border-red-900/40 dark:bg-red-950/40 dark:text-red-400"
           >
             <span>Sign Out of BookNook</span>
-            <span>🚪</span>
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
           </button>
         </div>
 

@@ -141,11 +141,10 @@ export default function Navbar() {
             aria-label="Search library (Ctrl+K)"
             className="flex items-center gap-1.5 rounded-full border border-[#E7E5E4] bg-white px-2.5 py-1.5 text-xs font-semibold text-[#6B7280] shadow-2xs transition hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#A7F3D0] dark:hover:border-[#6EE7B7]"
           >
-            <span>🔍</span>
+            <svg className="h-3.5 w-3.5 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
             <span className="hidden md:inline text-[11px]">Search</span>
-            <kbd className="hidden lg:inline-block rounded-md bg-[#FDFBF7] px-1.5 py-0.2 text-[9px] font-bold text-[#9CA3AF] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              
-            </kbd>
           </button>
 
           {/* Reading Wishlist Icon Button */}
@@ -157,7 +156,9 @@ export default function Navbar() {
               pathname === "/wishlist" && "border-[#047857] bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22]"
             )}
           >
-            
+            <svg className="h-3.5 w-3.5 text-[#D97706] dark:text-[#FCD34D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg>
             <span className="hidden sm:inline">Wishlist</span>
             {wishlistCount > 0 && (
               <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[#D97706] text-[10px] font-bold text-white shadow-xs">
@@ -166,13 +167,22 @@ export default function Navbar() {
             )}
           </Link>
 
+          {/* Minimalist Theme Toggle (no bulky border/shadow, pure icon) */}
           <button
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle dark / light theme"
-            className="rounded-full border border-[#E7E5E4] bg-white px-3 py-1.5 text-xs font-semibold text-[#4B5563] shadow-2xs dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5]"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] dark:text-[#A7F3D0] dark:hover:bg-[#064E3B] dark:hover:text-white"
           >
-            {dark ? "☀️" : "🌙"}
+            {dark ? (
+              <svg className="h-5 w-5 text-[#FCD34D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            ) : (
+              <svg className="h-5 w-5 text-[#4B5563]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            )}
           </button>
 
           {isLoggedIn ? (

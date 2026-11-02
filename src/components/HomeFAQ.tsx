@@ -43,7 +43,7 @@ const faqs: FAQItem[] = [
     category: "Availability",
     question: "What happens when a book has 0 copies available?",
     answer:
-      "When all copies are currently with readers, the book's status changes to 'Out of Stock' and borrowing is temporarily paused. You can save it to your Wishlist (🔖) so you can easily check back once a copy is returned.",
+      "When all copies are currently with readers, the book's status changes to 'Out of Stock' and borrowing is temporarily paused. You can save it to your Wishlist so you can easily check back once a copy is returned.",
   },
   {
     id: "faq-6",
@@ -67,7 +67,10 @@ export default function HomeFAQ() {
         {/* Section Header */}
         <div className="text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ECFDF5] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-            <span>💡</span> Got Questions?
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Got Questions?</span>
           </span>
           <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-[#1F2937] sm:text-4xl dark:text-[#F0FDF4]">
             Frequently Asked Questions

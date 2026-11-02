@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { connection } from "next/server";
 import { API_URL } from "../../../lib/config";
 import type { Book } from "../../../lib/api";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,7 @@ import BorrowButton from "@/components/BorrowButton";
 import WishlistActionButton from "@/components/WishlistActionButton";
 import BookReviewsSection from "@/components/BookReviewsSection";
 
-export const instant = false;
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Book Details" };
 
 export default async function BookDetailsPage({
@@ -16,7 +15,6 @@ export default async function BookDetailsPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  await connection();
   const { id } = await params;
   let book: Book | null = null;
   try {
@@ -86,8 +84,10 @@ export default async function BookDetailsPage({
             {/* BookNook Library Loop Card — balances the left column height */}
             <div className="rounded-2xl border border-[#FDE68A] bg-[#FFFBEB] p-4 shadow-xs dark:border-[#D97706]/40 dark:bg-[#052E22]">
               <div className="flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D97706] text-sm text-white shadow-xs">
-                  📖
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D97706] text-white shadow-xs">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
                 </span>
                 <div>
                   <h4 className="text-xs font-bold tracking-wide uppercase text-[#92400E] dark:text-[#FCD34D]">
@@ -137,7 +137,9 @@ export default async function BookDetailsPage({
                     <p className="text-[11px] font-bold tracking-wider uppercase text-[#047857] dark:text-[#6EE7B7]">
                       Available Copies
                     </p>
-                    <span className="text-xs">📚</span>
+                    <svg className="h-4 w-4 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
                   </div>
                   <div className="mt-2 flex items-baseline gap-1.5">
                     <span className="text-3xl font-black text-[#047857] dark:text-[#34D399]">
@@ -180,7 +182,9 @@ export default async function BookDetailsPage({
                     <p className="text-[11px] font-bold tracking-wider uppercase text-[#D97706] dark:text-[#FBBF24]">
                       Added By
                     </p>
-                    <span className="text-xs">👤</span>
+                    <svg className="h-4 w-4 text-[#D97706] dark:text-[#FBBF24]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
                   </div>
                   <div className="mt-2 flex items-center gap-2">
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#D97706] text-xs font-bold text-white shadow-xs">

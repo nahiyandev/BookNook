@@ -95,7 +95,7 @@ export default function HomeBanner() {
                 <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
                   <div className="max-w-xl">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-[#D97706]/90 px-3 py-1 text-xs font-bold text-white shadow-xs backdrop-blur-xs">
-                      <span>✨</span>
+                      
                       <span>{slide.badge}</span>
                     </span>
 
@@ -123,7 +123,7 @@ export default function HomeBanner() {
                         size="lg"
                         className="rounded-xl border-white/40 bg-white/10 px-5 text-sm font-bold text-white backdrop-blur-xs transition hover:bg-white/20 active:scale-[0.99]"
                       >
-                        Add a Book ➕
+                        Add a Book
                       </Button>
                     </div>
                   </div>

@@ -122,8 +122,10 @@ export default function RegisterPage() {
           {/* Top Branding Header */}
           <div className="relative">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-2xl backdrop-blur-xs ring-1 ring-white/20">
-                📚
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-xs ring-1 ring-white/20">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
               </span>
               <div>
                 <span className="font-serif text-2xl font-bold tracking-tight text-white">
@@ -137,7 +139,9 @@ export default function RegisterPage() {
 
             <div className="mt-12">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-[#A7F3D0] backdrop-blur-xs ring-1 ring-white/15">
-                <span>✨</span>
+                <svg className="h-3.5 w-3.5 text-[#FCD34D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
                 <span>Join The Reading Circle</span>
               </span>
               <h2 className="mt-4 font-serif text-3xl font-bold leading-tight text-white">
@@ -152,24 +156,30 @@ export default function RegisterPage() {
           {/* Member Community Checklist */}
           <div className="relative space-y-3.5 border-t border-white/15 pt-8">
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-base">
-                📖
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
               </span>
               <span className="text-xs font-medium text-[#ECFDF5]">
                 Borrow books with 1-click confirmation
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-base">
-                ➕
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
               </span>
               <span className="text-xs font-medium text-[#ECFDF5]">
                 Contribute and manage your books easily
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-base">
-                🔒
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
               </span>
               <span className="text-xs font-medium text-[#ECFDF5]">
                 Encrypted credentials & secure access
@@ -183,8 +193,10 @@ export default function RegisterPage() {
           {/* Mobile Top Brand Header */}
           <div className="mb-6 text-center lg:hidden">
             <Link href="/" className="inline-flex items-center gap-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#ECFDF5] text-xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-                📚
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
               </span>
               <span className="font-serif text-2xl font-bold text-[#047857] dark:text-[#6EE7B7]">
                 BookNook
@@ -232,8 +244,10 @@ export default function RegisterPage() {
                 Full Name
               </label>
               <div className="relative mt-1.5">
-                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-sm text-[#9CA3AF]">
-                  👤
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[#9CA3AF] dark:text-[#6EE7B7]/60">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
                 </span>
                 <input
                   id="register-name"
@@ -256,8 +270,10 @@ export default function RegisterPage() {
                 Email Address
               </label>
               <div className="relative mt-1.5">
-                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-sm text-[#9CA3AF]">
-                  ✉️
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[#9CA3AF] dark:text-[#6EE7B7]/60">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
                 </span>
                 <input
                   id="register-email"
@@ -281,8 +297,10 @@ export default function RegisterPage() {
               </label>
               <div className="relative mt-1.5 flex items-center gap-2">
                 <div className="relative flex-1">
-                  <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-sm text-[#9CA3AF]">
-                    🖼️
+                  <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[#9CA3AF] dark:text-[#6EE7B7]/60">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                   </span>
                   <input
                     id="register-photo"
@@ -314,8 +332,10 @@ export default function RegisterPage() {
                 Password
               </label>
               <div className="relative mt-1.5">
-                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-sm text-[#9CA3AF]">
-                  🔒
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[#9CA3AF] dark:text-[#6EE7B7]/60">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
                 </span>
                 <input
                   id="register-password"
@@ -332,7 +352,16 @@ export default function RegisterPage() {
                   className="absolute inset-y-0 right-3 flex items-center px-1 text-xs text-[#9CA3AF] hover:text-[#1F2937] dark:hover:text-[#F0FDF4]"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? "🙈" : "👁️"}
+                  {showPassword ? (
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                    </svg>
+                  ) : (
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  )}
                 </button>
               </div>
 
@@ -369,7 +398,7 @@ export default function RegisterPage() {
 
             {formError && (
               <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-600 dark:border-red-900/40 dark:bg-red-950/40 dark:text-red-400">
-                <p className="font-semibold">⚠️ {formError}</p>
+                <p className="font-semibold">{formError}</p>
               </div>
             )}
 

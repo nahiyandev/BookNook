@@ -98,8 +98,10 @@ function LoginForm() {
           {/* Top Brand Header */}
           <div className="relative">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-2xl backdrop-blur-xs ring-1 ring-white/20">
-                📚
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-xs ring-1 ring-white/20">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
               </span>
               <div>
                 <span className="font-serif text-2xl font-bold tracking-tight text-white">
@@ -113,7 +115,9 @@ function LoginForm() {
 
             <div className="mt-12">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-[#A7F3D0] backdrop-blur-xs ring-1 ring-white/15">
-                <span>🌿</span>
+                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
                 <span>Community Shared Library</span>
               </span>
               <h2 className="mt-4 font-serif text-3xl font-bold leading-tight text-white">
@@ -128,24 +132,30 @@ function LoginForm() {
           {/* Value Highlights */}
           <div className="relative space-y-3.5 border-t border-white/15 pt-8">
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-base">
-                ✨
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
               </span>
               <span className="text-xs font-medium text-[#ECFDF5]">
                 100% Free community book loans
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-base">
-                ⏱️
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </span>
               <span className="text-xs font-medium text-[#ECFDF5]">
                 7-Day loan cycle with easy return
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-base">
-                🤝
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
               </span>
               <span className="text-xs font-medium text-[#ECFDF5]">
                 Reader-powered collection
@@ -159,8 +169,10 @@ function LoginForm() {
           {/* Mobile Top Brand Header */}
           <div className="mb-6 text-center lg:hidden">
             <Link href="/" className="inline-flex items-center gap-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#ECFDF5] text-xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-                📚
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
               </span>
               <span className="font-serif text-2xl font-bold text-[#047857] dark:text-[#6EE7B7]">
                 BookNook
@@ -207,8 +219,10 @@ function LoginForm() {
                 Email Address
               </label>
               <div className="relative mt-1.5">
-                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-sm text-[#9CA3AF]">
-                  ✉️
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[#9CA3AF]">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
                 </span>
                 <input
                   id="login-email"
@@ -244,8 +258,10 @@ function LoginForm() {
               </div>
 
               <div className="relative mt-1.5">
-                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-sm text-[#9CA3AF]">
-                  🔒
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-[#9CA3AF]">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
                 </span>
                 <input
                   id="login-password"
@@ -262,14 +278,23 @@ function LoginForm() {
                   className="absolute inset-y-0 right-3 flex items-center px-1 text-xs text-[#9CA3AF] hover:text-[#1F2937] dark:hover:text-[#F0FDF4]"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? "🙈" : "👁️"}
+                  {showPassword ? (
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                    </svg>
+                  ) : (
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  )}
                 </button>
               </div>
             </div>
 
             {formError && (
               <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-600 dark:border-red-900/40 dark:bg-red-950/40 dark:text-red-400">
-                <p className="font-semibold">⚠️ {formError}</p>
+                <p className="font-semibold">{formError}</p>
               </div>
             )}
 

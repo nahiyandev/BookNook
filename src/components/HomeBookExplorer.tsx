@@ -18,7 +18,7 @@ export default function HomeBookExplorer({
   books,
   title = "New Arrivals",
   subtitle = "The latest books readers have added to BookNook.",
-  badge = "✨ Fresh Additions",
+  badge = "Fresh Additions",
   showViewAll = true,
   maxDisplay,
 }: {
@@ -136,8 +136,10 @@ export default function HomeBookExplorer({
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           {/* Search Lens Input */}
           <div className="relative flex-1">
-            <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-lg text-[#047857] dark:text-[#6EE7B7]">
-              🔍
+            <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#047857] dark:text-[#6EE7B7]">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
             </span>
             <input
               type="text"
@@ -231,8 +233,10 @@ export default function HomeBookExplorer({
       <div className="mt-8">
         {visibleBooks.length === 0 ? (
           <div className="flex flex-col items-center justify-center rounded-3xl border border-[#E7E5E4] bg-white p-12 text-center shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
-            <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 text-3xl text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
-              🔍
+            <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
+              <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
             </span>
             <h3 className="mt-4 font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
               No Books Found
@@ -248,7 +252,9 @@ export default function HomeBookExplorer({
               className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#047857] px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#065F46] dark:bg-[#6EE7B7] dark:text-[#052E22] dark:hover:bg-[#A7F3D0]"
             >
               <span>Clear All Filters</span>
-              <span>🔄</span>
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
             </button>
           </div>
         ) : (

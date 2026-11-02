@@ -90,8 +90,10 @@ export default function AddBookPage() {
         {/* Form Header */}
         <div className="border-b border-[#E7E5E4] pb-6 dark:border-[#134E4A]">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ECFDF5] text-xl text-[#047857] shadow-xs dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              📖
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] shadow-xs dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
             </span>
             <div>
               <h1 className="font-serif text-2xl font-bold tracking-tight text-[#1F2937] sm:text-3xl dark:text-[#F0FDF4]">
@@ -213,7 +215,9 @@ export default function AddBookPage() {
                     />
                   ) : (
                     <div className="px-3 text-center">
-                      <span className="text-2xl">🖼️</span>
+                      <svg className="mx-auto h-8 w-8 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
                       <p className="mt-1 text-[11px] font-medium text-[#9CA3AF]">
                         Cover Preview
                       </p>
@@ -262,8 +266,10 @@ export default function AddBookPage() {
           <div className="rounded-2xl border border-[#FDE68A] bg-[#FFFBEB] p-4 dark:border-[#D97706]/40 dark:bg-[#052E22]">
             <div className="flex items-center justify-between pb-3 border-b border-[#FDE68A]/60 dark:border-[#134E4A]">
               <div className="flex items-center gap-2">
-                <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#D97706] text-xs text-white">
-                  👤
+                <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#D97706] text-white">
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
                 </span>
                 <span className="text-xs font-bold uppercase tracking-wide text-[#92400E] dark:text-[#FBBF24]">
                   Contributor Identity (Read-only)
@@ -313,10 +319,7 @@ export default function AddBookPage() {
                   <span>Adding Book to Library...</span>
                 </span>
               ) : (
-                <span className="flex items-center justify-center gap-2">
-                  <span>Add Book to Library</span>
-                  <span>📚</span>
-                </span>
+                <span>Add Book to Library</span>
               )}
             </Button>
           </div>

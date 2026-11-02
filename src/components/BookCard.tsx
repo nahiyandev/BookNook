@@ -17,7 +17,7 @@ export default function BookCard({ book }: { book: Book }) {
     e.stopPropagation();
     const added = toggle(book);
     if (added) {
-      toast.success(`"${book.title}" saved to Wishlist! 🔖`);
+      toast.success(`"${book.title}" saved to Wishlist!`);
     } else {
       toast.info(`"${book.title}" removed from Wishlist.`);
     }
@@ -52,7 +52,14 @@ export default function BookCard({ book }: { book: Book }) {
               : "bg-white/85 text-[#4B5563] shadow-xs backdrop-blur-xs hover:bg-white hover:text-[#D97706] dark:bg-[#052E22]/85 dark:text-[#A7F3D0] dark:hover:bg-[#052E22] dark:hover:text-[#FCD34D]"
           }`}
         >
-          <span className="text-sm leading-none">{saved ? "🔖" : "🤍"}</span>
+          <svg
+            className={`h-4 w-4 ${saved ? "fill-current text-white" : "stroke-current fill-none"}`}
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+          </svg>
         </button>
       </div>
 

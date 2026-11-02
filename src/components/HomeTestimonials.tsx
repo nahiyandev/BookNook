@@ -36,7 +36,7 @@ const reviews: ReviewCard[] = [
     rating: 5,
     review:
       "Honestly didn't expect the 7-day borrowing to be this smooth! Borrowed 'The Midnight Library', finished it over the weekend, and returned it from the dashboard with zero fuss. No commercial hurdles, just readers sharing directly. BookNook is a blessing for readers.",
-    bookTag: "📖 Borrowed: The Midnight Library",
+    bookTag: "Borrowed: The Midnight Library",
     likes: 38,
     replies: 4,
   },
@@ -53,7 +53,7 @@ const reviews: ReviewCard[] = [
     rating: 5,
     review:
       "Listed 6 of my old computer science and sci-fi books that were just sitting on my bedroom shelf. Within 48 hours, two junior students borrowed 'Clean Code' and 'Sapiens'. The feeling of passing books forward instead of letting them gather dust is unmatched.",
-    bookTag: "📚 Shared: Clean Code & Sapiens",
+    bookTag: "Shared: Clean Code & Sapiens",
     likes: 52,
     replies: 9,
   },
@@ -70,7 +70,7 @@ const reviews: ReviewCard[] = [
     rating: 5,
     review:
       "The Kids & Young Readers shelf is such a delight for our home! My 8-year-old daughter now reads a new illustrated story every single week shared by other parents. She was so excited to pick them out herself! Safe, cozy, and completely community-driven.",
-    bookTag: "📖 Borrowed: The Little Prince",
+    bookTag: "Borrowed: The Little Prince",
     likes: 29,
     replies: 2,
   },
@@ -87,7 +87,7 @@ const reviews: ReviewCard[] = [
     rating: 5,
     review:
       "I love that BookNook is entirely user-driven and runs purely on mutual respect. The 7-day loan countdown on the My Borrows page keeps me accountable and reading consistently without any pressure. Five stars to the creators!",
-    bookTag: "📖 Borrowed: Atomic Habits",
+    bookTag: "Borrowed: Atomic Habits",
     likes: 44,
     replies: 6,
   },
@@ -103,8 +103,8 @@ const reviews: ReviewCard[] = [
     location: "Sylhet",
     rating: 5,
     review:
-      "The Wishlist feature is fantastic! Whenever a book like 'Project Hail Mary' is out of stock, I just bookmark it (🔖) and check back when the copy is returned. Clean UI, dark mode looks gorgeous too.",
-    bookTag: "📖 Borrowed: Project Hail Mary",
+      "The Wishlist feature is fantastic! Whenever a book like 'Project Hail Mary' is out of stock, I just bookmark it and check back when the copy is returned. Clean UI, dark mode looks gorgeous too.",
+    bookTag: "Borrowed: Project Hail Mary",
     likes: 31,
     replies: 3,
   },
@@ -121,7 +121,7 @@ const reviews: ReviewCard[] = [
     rating: 5,
     review:
       "Added 4 Bengali literature classics here. Got notified when a university student borrowed one for her research. Love the community ethos, the trust loop, and the emerald reading room design.",
-    bookTag: "📚 Shared: Ekattorer Dinguli",
+    bookTag: "Shared: Ekattorer Dinguli",
     likes: 63,
     replies: 11,
   },
@@ -134,7 +134,10 @@ export default function HomeTestimonials() {
         {/* Section Header */}
         <div className="text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ECFDF5] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#047857] dark:bg-[#073B2E] dark:text-[#6EE7B7]">
-            <span>💬</span> Verified Community Reviews
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <span>Verified Community Reviews</span>
           </span>
           <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-[#1F2937] sm:text-4xl dark:text-[#F0FDF4]">
             Loved by Readers, Backed by Trust
@@ -143,7 +146,7 @@ export default function HomeTestimonials() {
             Real feedback captured from readers across Bangladesh borrowing and sharing books on BookNook.
           </p>
           <div className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#047857] dark:text-[#6EE7B7]">
-            <span>👈 Swipe to explore reader stories 👉</span>
+            <span>Swipe to explore reader stories</span>
           </div>
         </div>
 
@@ -252,12 +255,16 @@ export default function HomeTestimonials() {
                     </div>
 
                     <div className="mt-3 flex items-center justify-between text-[11px] text-[#6B7280] dark:text-[#A7F3D0]">
-                      <span className="flex items-center gap-1">
-                        <span>❤️</span>
+                      <span className="flex items-center gap-1.5">
+                        <svg className="h-3.5 w-3.5 text-rose-500 fill-current" viewBox="0 0 24 24">
+                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
                         <span>{rev.likes} Found helpful</span>
                       </span>
-                      <span className="flex items-center gap-1">
-                        <span>💬</span>
+                      <span className="flex items-center gap-1.5">
+                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
                         <span>{rev.replies} replies</span>
                       </span>
                     </div>

@@ -17,11 +17,11 @@ export type UserProfileData = {
 const AVAILABLE_GENRES = ["Fiction", "Science", "History", "Kids", "Others"];
 
 const READING_HABITS = [
-  "Night Owl Reader 🌙",
-  "Morning Coffee Reader ☕",
-  "Weekend Bookworm 📖",
-  "Daily Commuter 🚆",
-  "Casual Explorer 🌿",
+  "Night Owl Reader",
+  "Morning Coffee Reader",
+  "Weekend Bookworm",
+  "Daily Commuter",
+  "Casual Explorer",
 ];
 
 export default function EditProfileModal({
@@ -85,8 +85,10 @@ export default function EditProfileModal({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#E7E5E4] pb-4 dark:border-[#134E4A]">
           <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ECFDF5] text-2xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-              ✏️
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
             </span>
             <div>
               <h2 className="font-serif text-2xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">

@@ -1,14 +1,13 @@
+import { Suspense } from "react";
 import Link from "next/link";
-import { connection } from "next/server";
 import { API_URL } from "@/lib/config";
 import type { Book as BookType } from "@/lib/api";
 import HomeBookExplorer from "@/components/HomeBookExplorer";
 
-export const instant = false;
+export const dynamic = "force-dynamic";
 export const metadata = { title: "All Books | BookNook" };
 
-export default async function AllBooksPage() {
-  await connection();
+async function BooksList() {
   let books: BookType[] = [];
   let loadError = "";
   try {
@@ -19,6 +18,40 @@ export default async function AllBooksPage() {
     loadError = "Could not load books. Please check that the backend is running and try again.";
   }
 
+  if (loadError) {
+    return (
+      <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-600 dark:border-red-900/40 dark:bg-red-950/40 dark:text-red-400">
+        <p className="font-bold">Error loading books:</p>
+        <p className="mt-1">{loadError}</p>
+      </div>
+    );
+  }
+
+  return (
+    <HomeBookExplorer
+      books={books}
+      title="All Library Books"
+      subtitle="Search by title or author, and filter by shelf category to find your next great read."
+      badge="Complete Catalog"
+      showViewAll={false}
+    />
+  );
+}
+
+function BooksSkeleton() {
+  return (
+    <div className="animate-pulse space-y-8">
+      <div className="h-10 w-64 rounded-xl bg-stone-200 dark:bg-[#073B2E]" />
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="h-80 rounded-2xl bg-stone-200 dark:bg-[#073B2E]" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function AllBooksPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
@@ -30,20 +63,9 @@ export default async function AllBooksPage() {
         <span className="font-semibold text-[#047857] dark:text-[#6EE7B7]">All Books</span>
       </div>
 
-      {loadError ? (
-        <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-600 dark:border-red-900/40 dark:bg-red-950/40 dark:text-red-400">
-          <p className="font-bold">Error loading books:</p>
-          <p className="mt-1">{loadError}</p>
-        </div>
-      ) : (
-        <HomeBookExplorer
-          books={books}
-          title="All Library Books"
-          subtitle="Search by title or author, and filter by shelf category to find your next great read."
-          badge="📚 Complete Catalog"
-          showViewAll={false}
-        />
-      )}
+      <Suspense fallback={<BooksSkeleton />}>
+        <BooksList />
+      </Suspense>
     </div>
   );
 }

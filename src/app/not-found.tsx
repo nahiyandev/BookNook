@@ -21,7 +21,9 @@ export default function NotFound() {
       <div className="mx-auto max-w-2xl text-center">
         {/* Top Literary Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/80 px-4 py-1.5 text-xs font-bold text-[#047857] shadow-xs backdrop-blur-md dark:border-emerald-800/60 dark:bg-[#073B2E]/80 dark:text-[#6EE7B7]">
-          <span>📖</span>
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
           <span>Chapter Not Found</span>
           <span>•</span>
           <span className="font-mono text-[11px] text-[#D97706] dark:text-[#FCD34D]">Error 404</span>
@@ -33,8 +35,10 @@ export default function NotFound() {
             404
           </span>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="flex h-20 w-20 items-center justify-center rounded-3xl border border-[#E7E5E4] bg-white text-4xl shadow-2xl shadow-emerald-900/15 transition-transform duration-300 hover:rotate-6 hover:scale-110 sm:h-24 sm:w-24 sm:text-5xl dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-black/50">
-              📚
+            <span className="flex h-20 w-20 items-center justify-center rounded-3xl border border-[#E7E5E4] bg-white text-[#047857] shadow-2xl shadow-emerald-900/15 transition-transform duration-300 hover:rotate-6 hover:scale-110 sm:h-24 sm:w-24 dark:border-[#134E4A] dark:bg-[#073B2E] dark:text-[#6EE7B7] dark:shadow-black/50">
+              <svg className="h-10 w-10 sm:h-12 sm:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
             </span>
           </div>
         </div>
@@ -55,7 +59,7 @@ export default function NotFound() {
             className="inline-flex items-center gap-2 rounded-2xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-900/25 transition-all hover:scale-102 hover:brightness-110 active:scale-[0.99]"
           >
             <span>Back to Home Shelf</span>
-            <span>🏠</span>
+            <span>→</span>
           </Link>
 
           <Link
@@ -63,7 +67,7 @@ export default function NotFound() {
             className="inline-flex items-center gap-2 rounded-2xl border border-[#E7E5E4] bg-white px-6 py-3.5 text-sm font-bold text-[#1F2937] shadow-xs transition hover:border-[#047857] hover:text-[#047857] active:scale-[0.99] dark:border-[#134E4A] dark:bg-[#073B2E] dark:text-[#F0FDF4] dark:hover:border-[#6EE7B7] dark:hover:text-[#6EE7B7]"
           >
             <span>Explore All Books</span>
-            <span>📖</span>
+            <span>→</span>
           </Link>
 
           <Link
@@ -71,7 +75,7 @@ export default function NotFound() {
             className="inline-flex items-center gap-2 rounded-2xl border border-[#E7E5E4] bg-white px-5 py-3.5 text-sm font-bold text-[#4B5563] shadow-xs transition hover:border-[#D97706] hover:text-[#D97706] active:scale-[0.99] dark:border-[#134E4A] dark:bg-[#073B2E] dark:text-[#A7F3D0] dark:hover:border-[#FCD34D] dark:hover:text-[#FCD34D]"
           >
             <span>My Wishlist</span>
-            <span>🔖</span>
+            <span>→</span>
           </Link>
         </div>
 

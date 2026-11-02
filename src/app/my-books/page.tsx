@@ -10,12 +10,12 @@ import EditBookModal from "@/components/EditBookModal";
 import ConfirmModal from "@/components/ConfirmModal";
 
 const CATEGORIES = [
-  { id: "all", name: "All Shelves", icon: "📚" },
-  { id: "Fiction", name: "Fiction", icon: "✨" },
-  { id: "Science", name: "Science", icon: "🔬" },
-  { id: "History", name: "History", icon: "🏛️" },
-  { id: "Kids", name: "Kids", icon: "🧸" },
-  { id: "Others", name: "Others", icon: "💡" },
+  { id: "all", name: "All Shelves", icon: "" },
+  { id: "Fiction", name: "Fiction", icon: "" },
+  { id: "Science", name: "Science", icon: "" },
+  { id: "History", name: "History", icon: "" },
+  { id: "Kids", name: "Kids", icon: "" },
+  { id: "Others", name: "Others", icon: "" },
 ];
 
 const PAGE_SIZE = 10;
@@ -171,7 +171,9 @@ export default function MyBooksPage() {
           className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition-all hover:brightness-110 active:scale-[0.99]"
         >
           <span>Add New Book</span>
-          <span className="text-base">➕</span>
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
         </Link>
       </div>
 
@@ -184,8 +186,10 @@ export default function MyBooksPage() {
         </div>
       ) : books.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-3xl border border-[#E7E5E4] bg-white p-12 text-center shadow-xl shadow-stone-200/50 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
-          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ECFDF5] text-3xl text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-            📚
+          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+            <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
           </span>
           <h3 className="mt-4 font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
             Your Shelf is Empty
@@ -208,8 +212,10 @@ export default function MyBooksPage() {
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               {/* Search box */}
               <div className="relative flex-1">
-                <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm text-[#047857] dark:text-[#6EE7B7]">
-                  🔍
+                <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#047857] dark:text-[#6EE7B7]">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
                 </span>
                 <input
                   type="text"
@@ -369,16 +375,22 @@ export default function MyBooksPage() {
                               size="sm"
                               variant="outline"
                               onClick={() => setEditing(book)}
-                              className="rounded-lg border border-[#A7F3D0] bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] shadow-xs transition hover:bg-[#047857] hover:text-white dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7] dark:hover:bg-[#047857] dark:hover:text-white"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-[#A7F3D0] bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] shadow-xs transition hover:bg-[#047857] hover:text-white dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#6EE7B7] dark:hover:bg-[#047857] dark:hover:text-white"
                             >
-                              ✏️ Edit
+                              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                              </svg>
+                              <span>Edit</span>
                             </Button>
                             <Button
                               size="sm"
                               onClick={() => setDeleting(book)}
-                              className="rounded-lg border border-red-200 bg-red-50 px-3 py-1 text-xs font-bold text-red-600 shadow-xs transition hover:bg-red-600 hover:text-white dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-600 dark:hover:text-white"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1 text-xs font-bold text-red-600 shadow-xs transition hover:bg-red-600 hover:text-white dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-600 dark:hover:text-white"
                             >
-                              🗑️ Delete
+                              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                              <span>Delete</span>
                             </Button>
                           </div>
                         </td>

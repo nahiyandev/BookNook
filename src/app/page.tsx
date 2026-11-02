@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { connection } from "next/server";
 import HomeBanner from "@/components/HomeBanner";
 import HomeBookExplorer from "@/components/HomeBookExplorer";
 import HomeGenres from "@/components/HomeGenres";
@@ -16,11 +15,10 @@ import type { Book } from "@/lib/api";
  * Refined editorial design combining brand emerald, amber accents,
  * search lens, category shelf filtering, and community storytelling.
  */
-export const instant = false;
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Home | BookNook" };
 
 async function getBooks(): Promise<Book[]> {
-  await connection();
   try {
     const res = await fetch(`${API_URL}/books`, { cache: "no-store" });
     if (!res.ok) return [];
@@ -40,19 +38,31 @@ async function getBooks(): Promise<Book[]> {
 const borrowSteps = [
   {
     step: "01",
-    icon: "🔍",
+    icon: (
+      <svg className="h-6 w-6 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    ),
     title: "Browse & Discover",
     text: "Explore books shared by fellow readers. Pick from Fiction, Science, History, Kids, and more with live availability.",
   },
   {
     step: "02",
-    icon: "📖",
+    icon: (
+      <svg className="h-6 w-6 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    ),
     title: "Borrow Instantly",
     text: "With one click, borrow any book for a 7-day reading period. The available copy count automatically reserves it for you.",
   },
   {
     step: "03",
-    icon: "🔄",
+    icon: (
+      <svg className="h-6 w-6 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+    ),
     title: "Read & Pass On",
     text: "Enjoy your reading time, then return the book from your Dashboard so the next reader can begin the journey.",
   },
@@ -60,22 +70,38 @@ const borrowSteps = [
 
 const highlights = [
   {
-    icon: "🌿",
+    icon: (
+      <svg className="h-5 w-5 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    ),
     title: "Community Driven",
     desc: "100% shared by real passionate readers",
   },
   {
-    icon: "⏱️",
+    icon: (
+      <svg className="h-5 w-5 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
     title: "7-Day Reading Loan",
     desc: "Read and circulate with fellow bookworms",
   },
   {
-    icon: "🤝",
+    icon: (
+      <svg className="h-5 w-5 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
     title: "Trust-Based Sharing",
     desc: "Honor code: read and pass it on",
   },
   {
-    icon: "📚",
+    icon: (
+      <svg className="h-5 w-5 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    ),
     title: "Growing Catalog",
     desc: "Fresh arrivals added to shelves daily",
   },
@@ -123,7 +149,7 @@ export default async function HomePage() {
             books={books}
             title="New Arrivals"
             subtitle="The latest books readers have added to BookNook."
-            badge="✨ New Arrivals"
+            badge="New Arrivals"
             showViewAll={true}
             maxDisplay={8}
           />
@@ -160,7 +186,10 @@ export default async function HomePage() {
                 {/* Book Details & Quote */}
                 <div className="md:col-span-8">
                   <div className="inline-flex items-center gap-2 rounded-full bg-[#ECFDF5] px-3 py-1 text-xs font-bold text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
-                    <span>⭐ Reader Spotlight</span>
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    <span>Reader Spotlight</span>
                     <span>•</span>
                     <span>Shelf: {featuredBook.category}</span>
                   </div>
@@ -183,7 +212,9 @@ export default async function HomePage() {
                       className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#047857] via-[#059669] to-[#047857] px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition hover:brightness-110 active:scale-[0.99]"
                     >
                       <span>Borrow This Book</span>
-                      <span>📖</span>
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
                     </Link>
                     <Link
                       href="/books"
