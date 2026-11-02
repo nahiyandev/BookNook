@@ -24,6 +24,34 @@ function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   );
 }
 
+/** Vector Icon: Mail */
+function MailIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  );
+}
+
+/** Vector Icon: Phone */
+function PhoneIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+    </svg>
+  );
+}
+
+/** Vector Icon: MapPin */
+function MapPinIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  );
+}
+
 /** Vector Icon: LinkedIn */
 function LinkedInIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -55,13 +83,12 @@ function FacebookIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-
 export default function Footer() {
   return (
     <footer className="border-t border-[#134E4A] bg-[#052E22] text-[#ECFDF5]">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
-        {/* Brand identity column */}
-        <div className="lg:col-span-5">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+        {/* 1. Brand identity column (4 cols) */}
+        <div className="lg:col-span-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
             <LogoMark className="h-9 w-9" />
             <span className="font-serif text-2xl font-bold tracking-tight text-white">
@@ -72,15 +99,17 @@ export default function Footer() {
             A reader-driven community library where stories travel from shelf to shelf. Borrow for free, enjoy at your pace, and pass it on.
           </p>
           <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-[#FCD34D]">
-            <span>🌿</span>
+            <svg className="h-3.5 w-3.5 text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
             <span>Borrow • Read • Return</span>
           </div>
         </div>
 
-        {/* Quick links column */}
-        <div className="lg:col-span-3">
+        {/* 2. Quick links column (2 cols) */}
+        <div className="lg:col-span-2">
           <h3 className="font-serif text-sm font-bold uppercase tracking-wider text-[#FCD34D]">
-            Library Navigation
+            Navigation
           </h3>
           <ul className="mt-4 space-y-2.5 text-xs sm:text-sm">
             <li>
@@ -95,12 +124,17 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/add-book" className="transition hover:text-white hover:underline">
-                Contribute a Book
+                Contribute Book
               </Link>
             </li>
             <li>
               <Link href="/my-borrows" className="transition hover:text-white hover:underline">
-                My Borrowed Books
+                Borrowed Books
+              </Link>
+            </li>
+            <li>
+              <Link href="/wishlist" className="transition hover:text-white hover:underline">
+                My Wishlist
               </Link>
             </li>
             <li>
@@ -111,13 +145,52 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Connect & Socials column (LinkedIn, GitHub, Facebook) */}
-        <div className="lg:col-span-4">
+        {/* 3. Contact Information column (3 cols) */}
+        <div className="lg:col-span-3">
           <h3 className="font-serif text-sm font-bold uppercase tracking-wider text-[#FCD34D]">
-            Connect With Readers
+            Contact & Support
           </h3>
-          <p className="mt-4 text-xs leading-relaxed text-[#A7F3D0] sm:text-sm">
-            Connect across social platforms for community announcements, code updates, and reading discussions.
+          <ul className="mt-4 space-y-3.5 text-xs sm:text-sm text-[#A7F3D0]">
+            <li>
+              <a
+                href="mailto:contact@booknook.dev"
+                className="group flex items-center gap-2.5 transition hover:text-white"
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#073B2E] text-[#6EE7B7] transition group-hover:bg-[#047857] group-hover:text-white">
+                  <MailIcon className="h-3.5 w-3.5" />
+                </span>
+                <span className="truncate">contact@booknook.dev</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+8801700000000"
+                className="group flex items-center gap-2.5 transition hover:text-white"
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#073B2E] text-[#6EE7B7] transition group-hover:bg-[#047857] group-hover:text-white">
+                  <PhoneIcon className="h-3.5 w-3.5" />
+                </span>
+                <span>+880 1700-000000</span>
+              </a>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#073B2E] text-[#6EE7B7] mt-0.5">
+                <MapPinIcon className="h-3.5 w-3.5" />
+              </span>
+              <span className="text-xs leading-relaxed text-[#A7F3D0]">
+                Dhanmondi, Dhaka 1205,<br />Bangladesh
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        {/* 4. Connect & Socials column (3 cols) */}
+        <div className="lg:col-span-3">
+          <h3 className="font-serif text-sm font-bold uppercase tracking-wider text-[#FCD34D]">
+            Connect With Us
+          </h3>
+          <p className="mt-4 text-xs leading-relaxed text-[#A7F3D0]">
+            Connect across social platforms for community announcements, new arrivals, and book discussions.
           </p>
 
           {/* Social Icons: LinkedIn, GitHub, Facebook */}
