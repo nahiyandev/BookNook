@@ -21,6 +21,7 @@ export default function HomeBookExplorer({
   badge = "Fresh Additions",
   showViewAll = true,
   maxDisplay,
+  showSearch = true,
 }: {
   books: Book[];
   title?: string;
@@ -28,6 +29,7 @@ export default function HomeBookExplorer({
   badge?: string;
   showViewAll?: boolean;
   maxDisplay?: number;
+  showSearch?: boolean;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -47,6 +49,7 @@ export default function HomeBookExplorer({
 
   // Filter books based on search query, category, and availability
   const filteredBooks = useMemo(() => {
+    if (!showSearch) return books;
     return books.filter((book) => {
       // Category filter
       if (
@@ -74,7 +77,7 @@ export default function HomeBookExplorer({
 
       return true;
     });
-  }, [books, searchQuery, selectedCategory, onlyAvailable]);
+  }, [books, searchQuery, selectedCategory, onlyAvailable, showSearch]);
 
   // Compute category count map
   const categoryCounts = useMemo(() => {
@@ -131,103 +134,105 @@ export default function HomeBookExplorer({
         )}
       </div>
 
-      {/* Search Lens Bar + Controls Bar */}
-      <div className="mt-8 rounded-3xl border border-[#E7E5E4] bg-white p-4 shadow-xl shadow-stone-200/40 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/30">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          {/* Search Lens Input */}
-          <div className="relative flex-1">
-            <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#047857] dark:text-[#6EE7B7]">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </span>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => handleSearchChange(e.target.value)}
-              placeholder="Search by book title, author, or keyword..."
-              className="w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] py-3 pr-10 pl-12 text-sm text-[#1F2937] placeholder-[#9CA3AF] transition focus:border-[#047857] focus:bg-white focus:ring-2 focus:ring-[#047857]/20 focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-[#6EE7B7]/40 dark:focus:border-[#6EE7B7]"
-            />
-            {searchQuery && (
+      {/* Search Lens Bar + Controls Bar (Shown when showSearch is true) */}
+      {showSearch && (
+        <div className="mt-8 rounded-3xl border border-[#E7E5E4] bg-white p-4 shadow-xl shadow-stone-200/40 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/30">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            {/* Search Lens Input */}
+            <div className="relative flex-1">
+              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#047857] dark:text-[#6EE7B7]">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                placeholder="Search by book title, author, or keyword..."
+                className="w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] py-3 pr-10 pl-12 text-sm text-[#1F2937] placeholder-[#9CA3AF] transition focus:border-[#047857] focus:bg-white focus:ring-2 focus:ring-[#047857]/20 focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-[#6EE7B7]/40 dark:focus:border-[#6EE7B7]"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => handleSearchChange("")}
+                  className="absolute inset-y-0 right-3 flex items-center px-2 text-xs font-bold text-[#9CA3AF] hover:text-[#1F2937] dark:hover:text-[#F0FDF4]"
+                  aria-label="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            {/* Availability Toggle + Results count */}
+            <div className="flex items-center justify-between gap-3 sm:justify-end">
               <button
                 type="button"
-                onClick={() => handleSearchChange("")}
-                className="absolute inset-y-0 right-3 flex items-center px-2 text-xs font-bold text-[#9CA3AF] hover:text-[#1F2937] dark:hover:text-[#F0FDF4]"
-                aria-label="Clear search"
+                onClick={handleToggleAvailable}
+                className={`inline-flex items-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-bold transition shadow-xs ${
+                  onlyAvailable
+                    ? "bg-[#047857] text-white ring-2 ring-[#047857]/30 dark:bg-[#6EE7B7] dark:text-[#052E22]"
+                    : "border border-[#E7E5E4] bg-stone-50 text-[#4B5563] hover:border-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]"
+                }`}
               >
-                ✕
+                <span className={`h-2 w-2 rounded-full ${onlyAvailable ? "bg-white dark:bg-[#052E22]" : "bg-emerald-500"}`} />
+                <span>Available to Borrow</span>
+              </button>
+
+              {/* Filtered count info */}
+              <span className="rounded-xl bg-[#FDFBF7] px-3.5 py-2 text-xs font-semibold text-[#6B7280] ring-1 ring-[#E7E5E4] dark:bg-[#052E22] dark:text-[#A7F3D0] dark:ring-[#134E4A]">
+                Showing <strong className="text-[#047857] dark:text-[#6EE7B7]">{visibleBooks.length}</strong> of {filteredBooks.length} {filteredBooks.length === 1 ? "book" : "books"}
+              </span>
+            </div>
+          </div>
+
+          {/* Category Pills Navigation */}
+          <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-[#F3F4F6] pt-4 dark:border-[#134E4A]/60">
+            <span className="mr-1 text-xs font-bold uppercase tracking-wider text-[#9CA3AF] dark:text-[#6EE7B7]/60">
+              Shelves:
+            </span>
+            {CATEGORIES.map((cat) => {
+              const count = categoryCounts[cat.id] ?? 0;
+              const isSelected = selectedCategory.toLowerCase() === cat.id.toLowerCase();
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => handleCategorySelect(cat.id)}
+                  className={`group inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all ${
+                    isSelected
+                      ? "bg-[#047857] text-white shadow-md shadow-emerald-900/20 ring-2 ring-[#047857]/20 dark:bg-[#6EE7B7] dark:text-[#052E22]"
+                      : "border border-[#E7E5E4] bg-[#FDFBF7] text-[#4B5563] hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0] dark:hover:border-[#6EE7B7] dark:hover:text-[#6EE7B7]"
+                  }`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.name}</span>
+                  <span
+                    className={`rounded-full px-1.5 py-0.2 text-[10px] font-semibold ${
+                      isSelected
+                        ? "bg-white/25 text-white dark:bg-[#052E22]/20 dark:text-[#052E22]"
+                        : "bg-[#E7E5E4]/60 text-[#6B7280] dark:bg-[#134E4A]/60 dark:text-[#A7F3D0]"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={handleResetFilters}
+                className="ml-auto inline-flex items-center gap-1 text-xs font-bold text-[#D97706] hover:underline dark:text-[#FCD34D]"
+              >
+                <span>Reset</span>
+                <span>✕</span>
               </button>
             )}
           </div>
-
-          {/* Availability Toggle + Results count */}
-          <div className="flex items-center justify-between gap-3 sm:justify-end">
-            <button
-              type="button"
-              onClick={handleToggleAvailable}
-              className={`inline-flex items-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-bold transition shadow-xs ${
-                onlyAvailable
-                  ? "bg-[#047857] text-white ring-2 ring-[#047857]/30 dark:bg-[#6EE7B7] dark:text-[#052E22]"
-                  : "border border-[#E7E5E4] bg-stone-50 text-[#4B5563] hover:border-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0]"
-              }`}
-            >
-              <span className={`h-2 w-2 rounded-full ${onlyAvailable ? "bg-white dark:bg-[#052E22]" : "bg-emerald-500"}`} />
-              <span>Available to Borrow</span>
-            </button>
-
-            {/* Filtered count info */}
-            <span className="rounded-xl bg-[#FDFBF7] px-3.5 py-2 text-xs font-semibold text-[#6B7280] ring-1 ring-[#E7E5E4] dark:bg-[#052E22] dark:text-[#A7F3D0] dark:ring-[#134E4A]">
-              Showing <strong className="text-[#047857] dark:text-[#6EE7B7]">{visibleBooks.length}</strong> of {filteredBooks.length} {filteredBooks.length === 1 ? "book" : "books"}
-            </span>
-          </div>
         </div>
-
-        {/* Category Pills Navigation */}
-        <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-[#F3F4F6] pt-4 dark:border-[#134E4A]/60">
-          <span className="mr-1 text-xs font-bold uppercase tracking-wider text-[#9CA3AF] dark:text-[#6EE7B7]/60">
-            Shelves:
-          </span>
-          {CATEGORIES.map((cat) => {
-            const count = categoryCounts[cat.id] ?? 0;
-            const isSelected = selectedCategory.toLowerCase() === cat.id.toLowerCase();
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => handleCategorySelect(cat.id)}
-                className={`group inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all ${
-                  isSelected
-                    ? "bg-[#047857] text-white shadow-md shadow-emerald-900/20 ring-2 ring-[#047857]/20 dark:bg-[#6EE7B7] dark:text-[#052E22]"
-                    : "border border-[#E7E5E4] bg-[#FDFBF7] text-[#4B5563] hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#A7F3D0] dark:hover:border-[#6EE7B7] dark:hover:text-[#6EE7B7]"
-                }`}
-              >
-                <span>{cat.icon}</span>
-                <span>{cat.name}</span>
-                <span
-                  className={`rounded-full px-1.5 py-0.2 text-[10px] font-semibold ${
-                    isSelected
-                      ? "bg-white/25 text-white dark:bg-[#052E22]/20 dark:text-[#052E22]"
-                      : "bg-[#E7E5E4]/60 text-[#6B7280] dark:bg-[#134E4A]/60 dark:text-[#A7F3D0]"
-                  }`}
-                >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-
-          {hasActiveFilters && (
-            <button
-              type="button"
-              onClick={handleResetFilters}
-              className="ml-auto inline-flex items-center gap-1 text-xs font-bold text-[#D97706] hover:underline dark:text-[#FCD34D]"
-            >
-              <span>Reset</span>
-              <span>✕</span>
-            </button>
-          )}
-        </div>
-      </div>
+      )}
 
       {/* Book Grid or Empty State */}
       <div className="mt-8">
