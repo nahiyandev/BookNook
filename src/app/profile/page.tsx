@@ -8,6 +8,7 @@ import { authClient } from "@/lib/auth-client";
 import { apiFetch, type Book, type Borrow } from "@/lib/api";
 import { useWishlist } from "@/lib/wishlist";
 import EditProfileModal, { type UserProfileData } from "@/components/EditProfileModal";
+import SignOutConfirmDialog from "@/components/SignOutConfirmDialog";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function ProfilePage() {
   const [booksCount, setBooksCount] = useState<number | null>(null);
   const [borrowsCount, setBorrowsCount] = useState<number | null>(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [signOutOpen, setSignOutOpen] = useState(false);
 
   // Derived profile data
   const profileData: UserProfileData = {
@@ -540,7 +542,7 @@ export default function ProfilePage() {
 
           <button
             type="button"
-            onClick={handleSignOut}
+            onClick={() => setSignOutOpen(true)}
             className="inline-flex cursor-pointer items-center gap-2 self-start rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-xs font-bold text-red-600 transition hover:bg-red-100 sm:self-auto dark:border-red-900/40 dark:bg-red-950/40 dark:text-red-400"
           >
             <span>Sign Out of BookNook</span>
@@ -585,6 +587,13 @@ export default function ProfilePage() {
         initialData={profileData}
         onClose={() => setIsEditOpen(false)}
         onSave={handleSaveProfile}
+      />
+
+      {/* 7. Sign Out Confirmation Dialog */}
+      <SignOutConfirmDialog
+        open={signOutOpen}
+        onOpenChange={setSignOutOpen}
+        onConfirm={handleSignOut}
       />
     </div>
   );

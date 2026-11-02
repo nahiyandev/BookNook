@@ -7,6 +7,8 @@ import { Button } from "./button";
 import { cn } from "../../lib/utils";
 import { authClient } from "../../lib/auth-client";
 import { useWishlist } from "@/lib/wishlist";
+import SignOutConfirmDialog from "@/components/SignOutConfirmDialog";
+import { toast } from "react-toastify";
 
 
 const publicLinks = [
@@ -84,6 +86,7 @@ export default function Navbar() {
   const userPhoto = session?.user?.image ?? "";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [signOutOpen, setSignOutOpen] = useState(false);
   const dark = useSyncExternalStore(
     subscribeToTheme,
     getThemeSnapshot,
@@ -236,15 +239,13 @@ export default function Navbar() {
                   </Link>
                   <button
                     type="button"
-                    onClick={async () => {
+                    onClick={() => {
                       setDropdownOpen(false);
-                      await authClient.signOut();
-                      router.push("/");
-                      router.refresh();
+                      setSignOutOpen(true);
                     }}
-                    className="block w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
+                    className="block w-full cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40"
                   >
-                    Logout
+                    Sign Out
                   </button>
                 </div>
               )}
@@ -256,12 +257,12 @@ export default function Navbar() {
             </div>
           )}
 
-          {/* Mobile menu button (3-line hamburger icon) */}
+          {/* Mobile menu button (3-line hamburger icon, zero shadow / no border) */}
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E7E5E4] text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] md:hidden dark:border-[#134E4A] dark:text-[#ECFDF5] dark:hover:bg-[#064E3B]"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] md:hidden dark:text-[#ECFDF5] dark:hover:bg-[#064E3B]"
           >
             {mobileOpen ? (
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -289,14 +290,39 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          {!isLoggedIn && (
+          {!isLoggedIn ? (
             <div className="mt-2 flex gap-2">
               <Button render={<Link href="/login" />} variant="outline" nativeButton={false} className="flex-1">Login</Button>
               <Button render={<Link href="/register" />} nativeButton={false} className="flex-1">Register</Button>
             </div>
+          ) : (
+            <div className="mt-2 border-t border-[#E7E5E4] pt-2 dark:border-[#134E4A]">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setSignOutOpen(true);
+                }}
+                className="flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40"
+              >
+                Sign Out
+              </button>
+            </div>
           )}
         </div>
       )}
+
+      {/* Sign Out Confirmation Dialog */}
+      <SignOutConfirmDialog
+        open={signOutOpen}
+        onOpenChange={setSignOutOpen}
+        onConfirm={async () => {
+          await authClient.signOut();
+          toast.success("Signed out successfully.");
+          router.push("/");
+          router.refresh();
+        }}
+      />
     </header>
   );
 }
