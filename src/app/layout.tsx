@@ -11,8 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const metadata: Metadata = {
   title: {
     default: "BookNook",
-    // A later page that sets title: "All Books" will show as "BookNook | All Books".
-    template: "BookNook | %s",
+    template: "%s | BookNook",
   },
   description:
     "A small online library where readers share books — borrow, read, return.",

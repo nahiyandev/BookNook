@@ -54,6 +54,10 @@ export default function MyBooksPage() {
   }, [userEmail]);
 
   useEffect(() => {
+    document.title = "My Books | BookNook";
+  }, []);
+
+  useEffect(() => {
     if (!userEmail) return;
     let active = true;
     fetchMyBooks(userEmail)

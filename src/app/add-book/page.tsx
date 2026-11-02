@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "react-toastify";
 import { apiFetch, uploadToImgbb } from "../../lib/api";
 import { authClient } from "../../lib/auth-client";
@@ -13,6 +13,10 @@ const CATEGORIES = ["Fiction", "Science", "History", "Kids", "Others"];
 
 export default function AddBookPage() {
   const router = useRouter();
+
+  useEffect(() => {
+    document.title = "Add Book | BookNook";
+  }, []);
   const { data: session } = authClient.useSession();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");

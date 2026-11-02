@@ -81,6 +81,10 @@ export default function MyBorrowsPage() {
   }, []);
 
   useEffect(() => {
+    document.title = "My Borrows | BookNook";
+  }, []);
+
+  useEffect(() => {
     let active = true;
     apiFetch<Borrow[]>("/borrows", { auth: true })
       .then((loadedBorrows) => {

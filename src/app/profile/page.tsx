@@ -37,6 +37,10 @@ export default function ProfilePage() {
   };
 
   useEffect(() => {
+    document.title = "My Profile | BookNook";
+  }, []);
+
+  useEffect(() => {
     if (!isPending && !session) {
       router.replace("/login");
       return;
@@ -45,7 +49,7 @@ export default function ProfilePage() {
     if (session?.user?.email) {
       const email = session.user.email;
 
-      // Asynchronously load custom profile preferences
+      // Load custom profile preferences asynchronously
       Promise.resolve().then(() => {
         try {
           const stored = localStorage.getItem(`booknook_profile_${email}`);
@@ -57,19 +61,35 @@ export default function ProfilePage() {
         }
       });
 
+      let active = true;
+
       // Dynamically load real stats from database
       apiFetch<Book[]>("/books")
         .then((all) => {
-          const myBooks = all.filter((b) => b.addedBy?.email === email);
-          setBooksCount(myBooks.length);
+          if (!active) return;
+          const list = Array.isArray(all) ? all : [];
+          const count = list.filter(
+            (b) => b.addedBy?.email?.toLowerCase() === email.toLowerCase()
+          ).length;
+          setBooksCount(count);
         })
-        .catch(() => setBooksCount(0));
+        .catch(() => {
+          if (active) setBooksCount(0);
+        });
 
       apiFetch<Borrow[]>("/borrows", { auth: true })
         .then((borrows) => {
-          setBorrowsCount(borrows.length);
+          if (!active) return;
+          const list = Array.isArray(borrows) ? borrows : [];
+          setBorrowsCount(list.length);
         })
-        .catch(() => setBorrowsCount(0));
+        .catch(() => {
+          if (active) setBorrowsCount(0);
+        });
+
+      return () => {
+        active = false;
+      };
     }
   }, [session, isPending, router]);
 
@@ -278,9 +298,13 @@ export default function ProfilePage() {
             </span>
           </div>
           <div className="mt-4">
-            <p className="font-serif text-3xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
-              {booksCount ?? "..."}
-            </p>
+            <div className="flex h-10 items-center font-serif text-3xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
+              {booksCount === null ? (
+                <span className="inline-block h-8 w-14 animate-pulse rounded-lg bg-stone-200 dark:bg-[#052E22]" />
+              ) : (
+                booksCount
+              )}
+            </div>
             <p className="text-xs font-semibold uppercase tracking-wider text-[#047857] dark:text-[#6EE7B7]">
               Books Added by You
             </p>
@@ -310,9 +334,13 @@ export default function ProfilePage() {
             </span>
           </div>
           <div className="mt-4">
-            <p className="font-serif text-3xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
-              {borrowsCount ?? "..."}
-            </p>
+            <div className="flex h-10 items-center font-serif text-3xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">
+              {borrowsCount === null ? (
+                <span className="inline-block h-8 w-14 animate-pulse rounded-lg bg-stone-200 dark:bg-[#052E22]" />
+              ) : (
+                borrowsCount
+              )}
+            </div>
             <p className="text-xs font-semibold uppercase tracking-wider text-[#D97706] dark:text-[#FCD34D]">
               Currently Borrowed
             </p>

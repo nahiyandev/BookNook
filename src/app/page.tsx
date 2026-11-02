@@ -15,7 +15,7 @@ import type { Book } from "@/lib/api";
  * Refined editorial design combining brand emerald, amber accents,
  * search lens, category shelf filtering, and community storytelling.
  */
-export const metadata = { title: "Home | BookNook" };
+export const metadata = { title: "Home" };
 
 async function getBooks(): Promise<Book[]> {
   try {

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
@@ -40,6 +40,10 @@ export default function RegisterPage() {
   const [formError, setFormError] = useState("");
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+
+  useEffect(() => {
+    document.title = "Register | BookNook";
+  }, []);
 
   // Real-time password validations (assignment spec rule)
   const hasMinLength = password.length >= 6;

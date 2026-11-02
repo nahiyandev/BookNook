@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import BookCard from "@/components/BookCard";
 import { useWishlist } from "@/lib/wishlist";
@@ -8,6 +9,10 @@ import type { Book } from "@/lib/api";
 
 export default function WishlistPage() {
   const { wishlist, count } = useWishlist();
+
+  useEffect(() => {
+    document.title = "Wishlist | BookNook";
+  }, []);
 
   const handleClearAll = () => {
     if (typeof window !== "undefined") {

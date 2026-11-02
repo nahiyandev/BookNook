@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useState, type FormEvent } from "react";
+import { Suspense, useEffect, useState, type FormEvent } from "react";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
@@ -40,6 +40,10 @@ function LoginForm() {
   const [formError, setFormError] = useState("");
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+
+  useEffect(() => {
+    document.title = "Login | BookNook";
+  }, []);
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();

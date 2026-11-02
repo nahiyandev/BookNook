@@ -109,11 +109,11 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#E7E5E4] bg-[#FDFBF7] dark:border-[#134E4A] dark:bg-[#052E22]">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        {/* Logo + name (left) */}
-        <Link href="/" className="flex items-center gap-2">
-          <LogoMark className="h-10 w-10" />
-          <span className="font-serif text-2xl font-bold text-[#047857] dark:text-[#ECFDF5]">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-4 sm:px-6 sm:py-3">
+        {/* Logo + name (left) - slightly smaller & sleek on mobile */}
+        <Link href="/" className="flex items-center gap-1.5 sm:gap-2">
+          <LogoMark className="h-7 w-7 shrink-0 sm:h-9 sm:w-9 md:h-10 md:w-10" />
+          <span className="font-serif text-lg font-bold tracking-tight text-[#047857] sm:text-xl md:text-2xl dark:text-[#ECFDF5]">
             BookNook
           </span>
         </Link>
@@ -136,13 +136,13 @@ export default function Navbar() {
         </div>
 
         {/* Right side: search trigger + wishlist + theme toggle + auth area */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Spotlight Quick Search Ctrl+K trigger */}
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event("booknook_open_command_palette"))}
             aria-label="Search library (Ctrl+K)"
-            className="flex items-center gap-1.5 rounded-full border border-[#E7E5E4] bg-white px-2.5 py-1.5 text-xs font-semibold text-[#6B7280] shadow-2xs transition hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#A7F3D0] dark:hover:border-[#6EE7B7]"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E7E5E4] bg-white text-xs font-semibold text-[#6B7280] shadow-2xs transition hover:border-[#047857] hover:text-[#047857] sm:h-auto sm:w-auto sm:px-2.5 sm:py-1.5 dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#A7F3D0] dark:hover:border-[#6EE7B7]"
           >
             <svg className="h-3.5 w-3.5 text-[#047857] dark:text-[#6EE7B7]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -155,7 +155,7 @@ export default function Navbar() {
             href="/wishlist"
             aria-label={`Reading Wishlist (${wishlistCount} saved)`}
             className={cn(
-              "relative flex items-center gap-1.5 rounded-full border border-[#E7E5E4] bg-white px-3 py-1.5 text-xs font-bold text-[#4B5563] shadow-2xs transition hover:border-[#047857] hover:text-[#047857] dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5] dark:hover:border-[#6EE7B7]",
+              "relative flex h-8 items-center gap-1 rounded-full border border-[#E7E5E4] bg-white px-2 py-1 text-xs font-bold text-[#4B5563] shadow-2xs transition hover:border-[#047857] hover:text-[#047857] sm:px-3 sm:py-1.5 dark:border-[#134E4A] dark:bg-[#064E3B] dark:text-[#ECFDF5] dark:hover:border-[#6EE7B7]",
               pathname === "/wishlist" && "border-[#047857] bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22]"
             )}
           >
@@ -164,7 +164,7 @@ export default function Navbar() {
             </svg>
             <span className="hidden sm:inline">Wishlist</span>
             {wishlistCount > 0 && (
-              <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[#D97706] text-[10px] font-bold text-white shadow-xs">
+              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#D97706] text-[9px] font-bold text-white shadow-xs sm:h-4.5 sm:w-4.5 sm:text-[10px]">
                 {wishlistCount}
               </span>
             )}
@@ -175,14 +175,14 @@ export default function Navbar() {
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle dark / light theme"
-            className="flex h-9 w-9 items-center justify-center rounded-full text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] dark:text-[#A7F3D0] dark:hover:bg-[#064E3B] dark:hover:text-white"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] sm:h-9 sm:w-9 dark:text-[#A7F3D0] dark:hover:bg-[#064E3B] dark:hover:text-white"
           >
             {dark ? (
-              <svg className="h-5 w-5 text-[#FCD34D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-4.5 w-4.5 text-[#FCD34D] sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
             ) : (
-              <svg className="h-5 w-5 text-[#4B5563]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-4.5 w-4.5 text-[#4B5563] sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
             )}
@@ -262,14 +262,14 @@ export default function Navbar() {
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            className="flex h-9 w-9 items-center justify-center rounded-full text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] md:hidden dark:text-[#ECFDF5] dark:hover:bg-[#064E3B]"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] sm:h-9 sm:w-9 md:hidden dark:text-[#ECFDF5] dark:hover:bg-[#064E3B]"
           >
             {mobileOpen ? (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-4.5 w-4.5 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
               </svg>
             )}

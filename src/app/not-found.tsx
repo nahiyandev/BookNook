@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "404 - Page Not Found | BookNook",
+  title: "404 - Page Not Found",
   description: "The page or book you are looking for is missing from our shelves.",
 };
 

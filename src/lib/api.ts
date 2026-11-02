@@ -28,6 +28,7 @@ export async function apiFetch<T>(
     headers,
     body: options.body ? JSON.stringify(options.body) : undefined,
     cache: "no-store",
+    signal: AbortSignal.timeout(8000),
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
