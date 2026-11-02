@@ -2,8 +2,10 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-
-
+@theme {
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+}
 
 /* Class-based dark mode (for the Navbar toggle), not system-only. */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -29,15 +31,18 @@
 }
 
 body {
+  font-family: var(--font-sans);
   background-color: var(--background);
   color: var(--foreground);
 }
 
-/* One heading style everywhere (assignment rule): serif display headings. */
+/* Cormorant Garamond display headings everywhere */
 h1,
 h2,
-h3 {
-  font-family: Georgia, "Times New Roman", serif;
+h3,
+h4,
+.font-serif {
+  font-family: var(--font-serif);
 }
 
 /* Swiper Pagination Theme custom styling */
