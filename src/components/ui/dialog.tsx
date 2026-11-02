@@ -36,7 +36,7 @@ function DialogBackdrop({
     <DialogPrimitive.Backdrop
       data-slot="dialog-backdrop"
       className={cn(
-        "fixed inset-0 z-50 bg-black/60 backdrop-blur-xs transition-opacity duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",
+        "fixed inset-0 z-50 bg-black/60 backdrop-blur-xs transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ function DialogPopup({
         <DialogPrimitive.Popup
           data-slot="dialog-popup"
           className={cn(
-            "relative w-full max-w-md rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-2xl transition-all duration-200 data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0 dark:border-[#134E4A] dark:bg-[#073B2E] dark:text-[#ECFDF5]",
+            "relative w-full max-w-md rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-2xl transition-all duration-200 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 dark:border-[#134E4A] dark:bg-[#073B2E] dark:text-[#ECFDF5]",
             className
           )}
           {...props}
@@ -110,3 +110,4 @@ export {
   DialogTitle,
   DialogDescription,
 };
+
