@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
 import { authClient } from "../../lib/auth-client";
@@ -38,6 +38,28 @@ function subscribeToTheme(callback: () => void) {
   return () => {
     window.removeEventListener("storage", callback);
     window.removeEventListener("booknook-theme-change", callback);
+  };
+}
+
+type AuthHint = { name: string; image?: string; email: string };
+
+function getAuthHintSnapshot(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("booknook_auth_hint");
+}
+
+function getServerAuthHintSnapshot(): string | null {
+  return null;
+}
+
+function subscribeToAuthHint(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+
+  window.addEventListener("storage", callback);
+  window.addEventListener("booknook_auth_change", callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener("booknook_auth_change", callback);
   };
 }
 
@@ -79,11 +101,50 @@ function LogoMark({ className }: { className?: string }) {
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending: isAuthPending } = authClient.useSession();
   const { count: wishlistCount } = useWishlist();
-  const isLoggedIn = !!session;
-  const userName = session?.user?.name ?? "Reader";
-  const userPhoto = session?.user?.image ?? "";
+
+  const rawAuthHint = useSyncExternalStore(
+    subscribeToAuthHint,
+    getAuthHintSnapshot,
+    getServerAuthHintSnapshot
+  );
+
+  const cachedUser: AuthHint | null = useMemo(() => {
+    if (!rawAuthHint) return null;
+    try {
+      return JSON.parse(rawAuthHint);
+    } catch {
+      return null;
+    }
+  }, [rawAuthHint]);
+
+  // Sync session into localStorage auth hint so subsequent page loads are instant with zero flicker
+  useEffect(() => {
+    if (!isAuthPending) {
+      if (session?.user) {
+        const hint = JSON.stringify({
+          name: session.user.name,
+          image: session.user.image,
+          email: session.user.email,
+        });
+        if (localStorage.getItem("booknook_auth_hint") !== hint) {
+          localStorage.setItem("booknook_auth_hint", hint);
+          window.dispatchEvent(new Event("booknook_auth_change"));
+        }
+      } else {
+        if (localStorage.getItem("booknook_auth_hint")) {
+          localStorage.removeItem("booknook_auth_hint");
+          window.dispatchEvent(new Event("booknook_auth_change"));
+        }
+      }
+    }
+  }, [session, isAuthPending]);
+
+  const activeUser = session?.user || cachedUser;
+  const isLoggedIn = !!activeUser;
+  const userName = activeUser?.name ?? "Reader";
+  const userPhoto = activeUser?.image ?? "";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [signOutOpen, setSignOutOpen] = useState(false);
@@ -250,6 +311,8 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+          ) : isAuthPending ? (
+            <div className="hidden h-8 w-24 items-center justify-center rounded-full bg-stone-200/50 animate-pulse sm:flex dark:bg-[#073B2E]" />
           ) : (
             <div className="hidden items-center gap-2 sm:flex">
               <Button render={<Link href="/login" />} variant="outline" nativeButton={false}>Login</Button>
@@ -290,12 +353,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          {!isLoggedIn ? (
-            <div className="mt-2 flex gap-2">
-              <Button render={<Link href="/login" />} variant="outline" nativeButton={false} className="flex-1">Login</Button>
-              <Button render={<Link href="/register" />} nativeButton={false} className="flex-1">Register</Button>
-            </div>
-          ) : (
+          {isLoggedIn ? (
             <div className="mt-2 border-t border-[#E7E5E4] pt-2 dark:border-[#134E4A]">
               <button
                 type="button"
@@ -308,6 +366,11 @@ export default function Navbar() {
                 Sign Out
               </button>
             </div>
+          ) : isAuthPending ? null : (
+            <div className="mt-2 flex gap-2">
+              <Button render={<Link href="/login" />} variant="outline" nativeButton={false} className="flex-1">Login</Button>
+              <Button render={<Link href="/register" />} nativeButton={false} className="flex-1">Register</Button>
+            </div>
           )}
         </div>
       )}
@@ -317,6 +380,8 @@ export default function Navbar() {
         open={signOutOpen}
         onOpenChange={setSignOutOpen}
         onConfirm={async () => {
+          localStorage.removeItem("booknook_auth_hint");
+          window.dispatchEvent(new Event("booknook_auth_change"));
           await authClient.signOut();
           toast.success("Signed out successfully.");
           router.push("/");
