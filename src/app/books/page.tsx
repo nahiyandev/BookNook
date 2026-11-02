@@ -4,7 +4,6 @@ import { API_URL } from "@/lib/config";
 import type { Book as BookType } from "@/lib/api";
 import HomeBookExplorer from "@/components/HomeBookExplorer";
 
-export const dynamic = "force-dynamic";
 export const metadata = { title: "All Books | BookNook" };
 
 async function BooksList() {

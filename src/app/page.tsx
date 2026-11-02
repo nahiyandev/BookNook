@@ -15,7 +15,6 @@ import type { Book } from "@/lib/api";
  * Refined editorial design combining brand emerald, amber accents,
  * search lens, category shelf filtering, and community storytelling.
  */
-export const dynamic = "force-dynamic";
 export const metadata = { title: "Home | BookNook" };
 
 async function getBooks(): Promise<Book[]> {
