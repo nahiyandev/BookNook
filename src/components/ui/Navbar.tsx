@@ -191,7 +191,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setDropdownOpen((v) => !v)}
                 aria-label="Open profile menu"
-                className="flex items-center gap-2 rounded-full border border-[#E7E5E4] p-1 pr-3 dark:border-[#134E4A]"
+                className="flex items-center gap-2 rounded-full transition focus:outline-hidden sm:border sm:border-[#E7E5E4] sm:p-1 sm:pr-3 sm:dark:border-[#134E4A]"
               >
                 {userPhoto ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -256,14 +256,22 @@ export default function Navbar() {
             </div>
           )}
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button (3-line hamburger icon) */}
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
-            className="rounded-full border border-[#E7E5E4] px-3 py-2 text-sm md:hidden dark:border-[#134E4A] dark:text-[#ECFDF5]"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E7E5E4] text-[#4B5563] transition hover:bg-[#ECFDF5] hover:text-[#047857] md:hidden dark:border-[#134E4A] dark:text-[#ECFDF5] dark:hover:bg-[#064E3B]"
           >
-            Menu
+            {mobileOpen ? (
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>
