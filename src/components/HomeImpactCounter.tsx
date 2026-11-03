@@ -75,28 +75,57 @@ export default function HomeImpactCounter() {
 
         {/* Counter Grid */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((item) => (
-            <div
-              key={item.id}
-              className="group relative flex flex-col items-center rounded-3xl border border-[#E7E5E4] bg-white p-7 text-center shadow-lg shadow-stone-200/40 transition-all duration-300 hover:-translate-y-1 hover:border-[#047857]/40 hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40"
-            >
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ECFDF5] text-2xl transition duration-300 group-hover:scale-110 dark:bg-[#052E22]">
-                {item.icon}
-              </span>
+          {stats.map((item, idx) => {
+            const styles = [
+              {
+                card: "border-emerald-200/90 bg-linear-to-b from-emerald-50/90 via-[#FAFDFB] to-emerald-100/30 hover:border-[#047857]",
+                icon: "bg-emerald-100 text-[#047857]",
+                num: "text-[#047857]",
+              },
+              {
+                card: "border-teal-200/90 bg-linear-to-b from-teal-50/90 via-[#F5FBFA] to-teal-100/30 hover:border-teal-700",
+                icon: "bg-teal-100 text-teal-700",
+                num: "text-teal-700",
+              },
+              {
+                card: "border-amber-200/90 bg-linear-to-b from-amber-50/90 via-[#FFFDF7] to-amber-100/30 hover:border-[#D97706]",
+                icon: "bg-amber-100 text-[#D97706]",
+                num: "text-[#D97706]",
+              },
+              {
+                card: "border-purple-200/90 bg-linear-to-b from-purple-50/90 via-[#FAF5FF] to-purple-100/30 hover:border-purple-700",
+                icon: "bg-purple-100 text-purple-700",
+                num: "text-purple-700",
+              },
+            ][idx] || {
+              card: "border-emerald-200 bg-emerald-50/50",
+              icon: "bg-[#ECFDF5] text-[#047857]",
+              num: "text-[#047857]",
+            };
 
-              <div className="mt-4 font-serif text-3xl font-extrabold tracking-tight text-[#047857] sm:text-4xl dark:text-[#6EE7B7]">
-                {item.number}
+            return (
+              <div
+                key={item.id}
+                className={`group relative flex flex-col items-center rounded-3xl border p-7 text-center shadow-lg shadow-stone-200/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40 ${styles.card}`}
+              >
+                <span className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl transition duration-300 group-hover:scale-110 dark:bg-[#052E22] dark:text-[#6EE7B7] ${styles.icon}`}>
+                  {item.icon}
+                </span>
+
+                <div className={`mt-4 font-serif text-3xl font-extrabold tracking-tight sm:text-4xl dark:text-[#6EE7B7] ${styles.num}`}>
+                  {item.number}
+                </div>
+
+                <h3 className="mt-1 font-serif text-base font-bold text-[#1F2937] dark:text-[#F0FDF4]">
+                  {item.label}
+                </h3>
+
+                <p className="mt-1 text-xs text-[#6B7280] dark:text-[#A7F3D0]">
+                  {item.subtext}
+                </p>
               </div>
-
-              <h3 className="mt-1 font-serif text-base font-bold text-[#1F2937] dark:text-[#F0FDF4]">
-                {item.label}
-              </h3>
-
-              <p className="mt-1 text-xs text-[#6B7280] dark:text-[#A7F3D0]">
-                {item.subtext}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

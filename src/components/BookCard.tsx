@@ -24,8 +24,8 @@ export default function BookCard({ book }: { book: Book }) {
   };
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-[#E7E5E4] bg-white shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-stone-200/60 dark:border-[#134E4A] dark:bg-[#073B2E] dark:hover:border-[#6EE7B7]/40 dark:hover:shadow-2xl dark:hover:shadow-black/50">
-      <div className="relative aspect-4/5 w-full overflow-hidden bg-[#F3F4F6] dark:bg-[#052E22]">
+    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#E8F5EF] shadow-md shadow-emerald-950/5 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#047857] hover:shadow-xl hover:shadow-emerald-950/15 dark:border-[#134E4A] dark:bg-[#073B2E] dark:hover:border-[#6EE7B7]/40 dark:hover:shadow-2xl dark:hover:shadow-black/50">
+      <div className="relative aspect-4/5 w-full overflow-hidden bg-emerald-50 dark:bg-[#052E22]">
         <Link href={`/books/${book._id}`} className="block h-full w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -36,7 +36,7 @@ export default function BookCard({ book }: { book: Book }) {
         </Link>
 
         {/* Category Badge on left */}
-        <span className="pointer-events-none absolute top-3 left-3 rounded-full bg-white/95 px-2.5 py-0.5 text-xs font-bold text-[#047857] shadow-xs backdrop-blur-xs ring-1 ring-black/5 dark:bg-[#052E22]/95 dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
+        <span className="pointer-events-none absolute top-3 left-3 rounded-full bg-[#047857] px-2.5 py-0.5 text-xs font-bold text-white shadow-xs backdrop-blur-xs ring-1 ring-white/30 dark:bg-[#052E22]/95 dark:text-[#6EE7B7] dark:ring-[#6EE7B7]/30">
           {book.category}
         </span>
 
@@ -49,7 +49,7 @@ export default function BookCard({ book }: { book: Book }) {
           className={`absolute top-3 right-3 z-10 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-90 ${
             saved
               ? "bg-[#D97706] text-white shadow-md ring-2 ring-white/60 dark:ring-[#073B2E]"
-              : "bg-white/85 text-[#4B5563] shadow-xs backdrop-blur-xs hover:bg-white hover:text-[#D97706] dark:bg-[#052E22]/85 dark:text-[#A7F3D0] dark:hover:bg-[#052E22] dark:hover:text-[#FCD34D]"
+              : "border border-emerald-200/60 bg-white/90 text-[#4B5563] shadow-xs backdrop-blur-xs hover:border-[#D97706] hover:bg-white hover:text-[#D97706] dark:bg-[#052E22]/85 dark:text-[#A7F3D0] dark:hover:bg-[#052E22] dark:hover:text-[#FCD34D]"
           }`}
         >
           <svg
@@ -63,7 +63,7 @@ export default function BookCard({ book }: { book: Book }) {
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col p-4.5">
+      <div className="flex flex-1 flex-col p-4.5 bg-linear-to-b from-transparent to-emerald-50/50 dark:to-transparent">
         <Link href={`/books/${book._id}`}>
           <h3 className="line-clamp-2 min-h-11 font-serif text-base font-bold leading-snug text-[#1F2937] transition hover:text-[#047857] dark:text-[#F0FDF4] dark:hover:text-[#6EE7B7]">
             {book.title}

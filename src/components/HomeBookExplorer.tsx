@@ -136,7 +136,7 @@ export default function HomeBookExplorer({
 
       {/* Search Lens Bar + Controls Bar (Shown when showSearch is true) */}
       {showSearch && (
-        <div className="mt-8 rounded-3xl border border-[#E7E5E4] bg-white p-4 shadow-xl shadow-stone-200/40 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/30">
+        <div className="mt-8 rounded-3xl border border-emerald-200/90 bg-linear-to-r from-[#F0FDF4] via-[#FAFDFB] to-[#ECFDF5] p-4 shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/30">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             {/* Search Lens Input */}
             <div className="relative flex-1">

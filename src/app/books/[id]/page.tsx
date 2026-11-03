@@ -8,6 +8,7 @@ import WishlistActionButton from "@/components/WishlistActionButton";
 import BookReviewsSection from "@/components/BookReviewsSection";
 
 export const metadata = { title: "Book Details" };
+export const instant = false;
 
 export default async function BookDetailsPage({
   params,
@@ -47,7 +48,7 @@ export default async function BookDetailsPage({
       </div>
 
       {/* Main presentation card */}
-      <div className="overflow-hidden rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-xl shadow-stone-200/50 sm:p-8 lg:p-10 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
+      <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-xl shadow-emerald-950/5 sm:p-8 lg:p-10 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           {/* Left Column — Auto-fit Book Cover & Library Policy */}
           <div className="flex flex-col gap-5 lg:col-span-5">

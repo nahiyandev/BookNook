@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${cormorant.variable} min-h-screen bg-[#FDFBF7] font-sans text-[#1F2937] antialiased dark:bg-[#052E22] dark:text-[#ECFDF5]`}>
-        <Suspense fallback={<div className="h-16 w-full border-b border-[#E7E5E4] bg-white dark:border-[#134E4A] dark:bg-[#073B2E]" />}>
+        <Suspense fallback={<div className="h-16 w-full border-b border-[#043D2E] bg-[#064E3B] dark:border-[#134E4A] dark:bg-[#052E22]" />}>
           <Navbar />
         </Suspense>
         <CommandPalette />
