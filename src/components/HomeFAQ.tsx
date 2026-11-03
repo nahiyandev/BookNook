@@ -89,8 +89,8 @@ export default function HomeFAQ() {
                 key={faq.id}
                 className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
                   isOpen
-                    ? "border-[#047857]/60 bg-linear-to-r from-emerald-50/80 via-[#FAFDFB] to-emerald-50/40 shadow-md shadow-emerald-900/5 dark:border-[#6EE7B7]/40 dark:bg-[#052E22]"
-                    : "border-emerald-200/70 bg-linear-to-r from-[#FAFDFB] to-[#F4FAF6] hover:border-[#047857]/40 dark:border-[#134E4A] dark:bg-[#073B2E] dark:hover:border-[#6EE7B7]/20"
+                    ? "border-[#047857]/60 bg-linear-to-r from-emerald-50/80 via-[#FAFDFB] to-emerald-50/40 shadow-md shadow-emerald-900/5 dark:border-[#6EE7B7]/40 dark:bg-none dark:bg-[#052E22]"
+                    : "border-emerald-200/70 bg-linear-to-r from-[#FAFDFB] to-[#F4FAF6] hover:border-[#047857]/40 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:hover:border-[#6EE7B7]/20"
                 }`}
               >
                 <button

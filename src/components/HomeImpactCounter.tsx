@@ -106,7 +106,7 @@ export default function HomeImpactCounter() {
             return (
               <div
                 key={item.id}
-                className={`group relative flex flex-col items-center rounded-3xl border p-7 text-center shadow-lg shadow-stone-200/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40 ${styles.card}`}
+                className={`group relative flex flex-col items-center rounded-3xl border p-7 text-center shadow-lg shadow-stone-200/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40 ${styles.card}`}
               >
                 <span className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl transition duration-300 group-hover:scale-110 dark:bg-[#052E22] dark:text-[#6EE7B7] ${styles.icon}`}>
                   {item.icon}

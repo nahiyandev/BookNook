@@ -218,7 +218,7 @@ export default function ProfilePage() {
       </div>
 
       {/* 2. Main Hero Profile Card */}
-      <div className="relative overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+      <div className="relative overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl">
         {/* Decorative Top Accent Banner */}
         <div className="h-28 w-full bg-linear-to-r from-[#047857] via-[#065F46] to-[#D97706] sm:h-36" />
 
@@ -286,7 +286,7 @@ export default function ProfilePage() {
       {/* 3. Colorful Modular Stat KPI Cards */}
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {/* Card 1: Books Contributed */}
-        <div className="relative overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-emerald-50/90 via-[#FAFDFB] to-emerald-100/30 p-6 shadow-lg shadow-emerald-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
+        <div className="relative overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-emerald-50/90 via-[#FAFDFB] to-emerald-100/30 p-6 shadow-lg shadow-emerald-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -322,7 +322,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Card 2: Currently Borrowed */}
-        <div className="relative overflow-hidden rounded-3xl border border-amber-200/90 bg-linear-to-b from-amber-50/90 via-[#FFFDF7] to-amber-100/30 p-6 shadow-lg shadow-amber-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
+        <div className="relative overflow-hidden rounded-3xl border border-amber-200/90 bg-linear-to-b from-amber-50/90 via-[#FFFDF7] to-amber-100/30 p-6 shadow-lg shadow-amber-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -358,7 +358,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Card 3: Annual Reading Goal */}
-        <div className="relative overflow-hidden rounded-3xl border border-teal-200/90 bg-linear-to-b from-teal-50/90 via-[#F5FBFA] to-teal-100/30 p-6 shadow-lg shadow-teal-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
+        <div className="relative overflow-hidden rounded-3xl border border-teal-200/90 bg-linear-to-b from-teal-50/90 via-[#F5FBFA] to-teal-100/30 p-6 shadow-lg shadow-teal-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 dark:bg-[#052E22] dark:text-teal-300">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -392,7 +392,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Card 4: Reader Tier & Level */}
-        <div className="relative overflow-hidden rounded-3xl border border-indigo-200/90 bg-linear-to-b from-indigo-50/90 via-[#F5F7FF] to-indigo-100/30 p-6 shadow-lg shadow-indigo-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E]">
+        <div className="relative overflow-hidden rounded-3xl border border-indigo-200/90 bg-linear-to-b from-indigo-50/90 via-[#F5F7FF] to-indigo-100/30 p-6 shadow-lg shadow-indigo-900/5 transition hover:shadow-xl dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
           <div className="flex items-center justify-between">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-[#052E22] dark:text-indigo-300">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -420,7 +420,7 @@ export default function ProfilePage() {
       {/* 4. Reading Preferences & Community Honors Cards Grid */}
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Preferred Shelves & Genres Card */}
-        <div className="rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+        <div className="rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl">
           <div className="flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ECFDF5] text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -479,7 +479,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Community Badges & Honors Card */}
-        <div className="rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+        <div className="rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl">
           <div className="flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -557,7 +557,7 @@ export default function ProfilePage() {
       </div>
 
       {/* 5. Account Security & Session Details Card */}
-      <div className="mt-8 rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+      <div className="mt-8 rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div>
             <h3 className="font-serif text-xl font-bold text-[#1F2937] dark:text-[#F0FDF4]">

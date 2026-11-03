@@ -116,7 +116,7 @@ export default async function HomePage() {
       <HomeBanner />
 
       {/* 2. Brand Trust Strip */}
-      <section className="border-b border-emerald-100 bg-linear-to-r from-[#F0FDF4] via-[#ECFDF5] to-[#F0FDF4] py-6 dark:border-[#134E4A] dark:bg-[#073B2E]">
+      <section className="border-b border-emerald-100 bg-linear-to-r from-[#F0FDF4] via-[#ECFDF5] to-[#F0FDF4] py-6 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {highlights.map((item) => (
@@ -161,7 +161,7 @@ export default async function HomePage() {
 
       {/* 5. Curated Spotlight: Featured Reader Addition */}
       {featuredBook && (
-        <section className="border-y border-emerald-200/80 bg-linear-to-b from-[#F0FDF4] via-[#FDFBF7] to-[#ECFDF5] py-14 dark:border-[#134E4A] dark:bg-[#073B2E] md:py-18">
+        <section className="border-y border-emerald-200/80 bg-linear-to-b from-[#F0FDF4] via-[#FDFBF7] to-[#ECFDF5] py-14 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] md:py-18">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="relative overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-br from-[#ECFDF5] via-[#FAFDFB] to-[#FEF3C7]/40 p-6 shadow-xl shadow-emerald-950/5 md:p-10 dark:border-[#134E4A] dark:from-[#052E22] dark:via-[#073B2E] dark:to-[#052E22] dark:shadow-2xl">
               <div className="grid items-center gap-8 md:grid-cols-12 md:gap-12">
@@ -273,7 +273,7 @@ export default async function HomePage() {
               return (
                 <div
                   key={item.step}
-                  className={`group relative flex flex-col rounded-3xl border p-7 shadow-lg shadow-stone-200/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40 ${styles.card}`}
+                  className={`group relative flex flex-col rounded-3xl border p-7 shadow-lg shadow-stone-200/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40 ${styles.card}`}
                 >
                   <div className="flex items-center justify-between">
                     <span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl dark:bg-[#052E22] dark:text-[#6EE7B7] ${styles.icon}`}>

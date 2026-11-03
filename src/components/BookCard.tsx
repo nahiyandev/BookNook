@@ -24,7 +24,7 @@ export default function BookCard({ book }: { book: Book }) {
   };
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#E8F5EF] shadow-md shadow-emerald-950/5 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#047857] hover:shadow-xl hover:shadow-emerald-950/15 dark:border-[#134E4A] dark:bg-[#073B2E] dark:hover:border-[#6EE7B7]/40 dark:hover:shadow-2xl dark:hover:shadow-black/50">
+    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#E8F5EF] shadow-md shadow-emerald-950/5 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#047857] hover:shadow-xl hover:shadow-emerald-950/15 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:hover:border-[#6EE7B7]/40 dark:hover:shadow-2xl dark:hover:shadow-black/50">
       <div className="relative aspect-4/5 w-full overflow-hidden bg-emerald-50 dark:bg-[#052E22]">
         <Link href={`/books/${book._id}`} className="block h-full w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -63,7 +63,7 @@ export default function BookCard({ book }: { book: Book }) {
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col p-4.5 bg-linear-to-b from-transparent to-emerald-50/50 dark:to-transparent">
+      <div className="flex flex-1 flex-col p-4.5 bg-linear-to-b from-transparent to-emerald-50/50 dark:bg-none">
         <Link href={`/books/${book._id}`}>
           <h3 className="line-clamp-2 min-h-11 font-serif text-base font-bold leading-snug text-[#1F2937] transition hover:text-[#047857] dark:text-[#F0FDF4] dark:hover:text-[#6EE7B7]">
             {book.title}

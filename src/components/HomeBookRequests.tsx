@@ -95,7 +95,7 @@ export default function HomeBookRequests() {
             return (
               <div
                 key={req.id}
-                className="group relative flex flex-col justify-between rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#047857] hover:shadow-xl dark:border-emerald-500/20 dark:bg-[#073B2E]/60 dark:shadow-2xl dark:hover:border-[#6EE7B7]/40"
+                className="group relative flex flex-col justify-between rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-lg shadow-emerald-950/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#047857] hover:shadow-xl dark:border-emerald-500/20 dark:bg-none dark:bg-[#073B2E]/60 dark:shadow-2xl dark:hover:border-[#6EE7B7]/40"
               >
                 {/* Glass hairline top reflex */}
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/80 to-transparent dark:via-emerald-400/20" />

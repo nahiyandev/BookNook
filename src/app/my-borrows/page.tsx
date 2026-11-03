@@ -163,7 +163,7 @@ export default function MyBorrowsPage() {
       {/* Summary KPI Badges */}
       {!loading && borrows.length > 0 && (
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="flex items-center gap-4 rounded-2xl border border-emerald-200/90 bg-linear-to-b from-emerald-50/90 via-[#FAFDFB] to-emerald-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
+          <div className="flex items-center gap-4 rounded-2xl border border-emerald-200/90 bg-linear-to-b from-emerald-50/90 via-[#FAFDFB] to-emerald-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100/80 text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -179,7 +179,7 @@ export default function MyBorrowsPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 rounded-2xl border border-amber-200/90 bg-linear-to-b from-amber-50/90 via-[#FFFDF7] to-amber-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
+          <div className="flex items-center gap-4 rounded-2xl border border-amber-200/90 bg-linear-to-b from-amber-50/90 via-[#FFFDF7] to-amber-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100/80 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -195,7 +195,7 @@ export default function MyBorrowsPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 rounded-2xl border border-teal-200/90 bg-linear-to-b from-teal-50/90 via-[#F5FBFA] to-teal-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
+          <div className="flex items-center gap-4 rounded-2xl border border-teal-200/90 bg-linear-to-b from-teal-50/90 via-[#F5FBFA] to-teal-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100/80 text-teal-700 dark:bg-[#052E22] dark:text-[#6EE7B7]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -243,7 +243,7 @@ export default function MyBorrowsPage() {
           </Link>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
+        <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
           <div className="overflow-x-auto">
             <table className="w-full min-w-160 text-left text-sm">
               <thead>

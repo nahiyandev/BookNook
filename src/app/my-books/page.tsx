@@ -212,7 +212,7 @@ export default function MyBooksPage() {
       ) : (
         <div className="space-y-6">
           {/* Search Lens + Shelf Category Filters for My Books */}
-          <div className="rounded-3xl border border-emerald-200/90 bg-linear-to-r from-[#F0FDF4] via-[#FAFDFB] to-[#ECFDF5] p-4 shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl">
+          <div className="rounded-3xl border border-emerald-200/90 bg-linear-to-r from-[#F0FDF4] via-[#FAFDFB] to-[#ECFDF5] p-4 shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               {/* Search box */}
               <div className="relative flex-1">
@@ -305,7 +305,7 @@ export default function MyBooksPage() {
               No books found matching your current filter.
             </div>
           ) : (
-            <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
+            <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-170 text-left text-sm">
                   <thead>

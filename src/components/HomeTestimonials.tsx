@@ -185,7 +185,7 @@ export default function HomeTestimonials() {
             {reviews.map((rev) => (
               <SwiperSlide key={rev.id} className="h-auto">
                 {/* Authentic "App Review Screenshot / Social Proof" Card */}
-                <div className="flex h-full flex-col justify-between rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-xl shadow-emerald-950/5 transition-all duration-300 hover:border-[#047857] hover:shadow-2xl dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40">
+                <div className="flex h-full flex-col justify-between rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-xl shadow-emerald-950/5 transition-all duration-300 hover:border-[#047857] hover:shadow-2xl dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:hover:border-[#6EE7B7]/40">
                   {/* Card Header — Social Style */}
                   <div>
                     <div className="flex items-start justify-between gap-3">
