@@ -28,9 +28,11 @@ function formatDate(value: string) {
 function getLoanStatus(returnDate: string) {
   if (!returnDate) {
     return {
+      type: "active",
       label: "Active Loan",
       badgeClass:
-        "bg-emerald-50 text-emerald-700 ring-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-300 dark:ring-emerald-700/50",
+        "border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-700/60 dark:bg-emerald-950/60 dark:text-emerald-200",
+      dotClass: "bg-emerald-500",
     };
   }
   const due = new Date(returnDate).getTime();
@@ -38,28 +40,37 @@ function getLoanStatus(returnDate: string) {
   const diffDays = Math.ceil((due - now) / (1000 * 60 * 60 * 24));
 
   if (diffDays < 0) {
+    const overdueDays = Math.abs(diffDays);
     return {
-      label: `Overdue by ${Math.abs(diffDays)}d`,
+      type: "overdue",
+      label: overdueDays === 1 ? "Overdue (1 day)" : `Overdue (${overdueDays} days)`,
       badgeClass:
-        "bg-rose-50 text-rose-700 ring-rose-300 dark:bg-rose-950/50 dark:text-rose-300 dark:ring-rose-700/50",
+        "border-rose-300 bg-rose-50 text-rose-800 dark:border-rose-700/60 dark:bg-rose-950/60 dark:text-rose-200",
+      dotClass: "bg-rose-500 animate-pulse",
     };
   } else if (diffDays === 0) {
     return {
+      type: "due-soon",
       label: "Due Today",
       badgeClass:
-        "bg-amber-50 text-amber-700 ring-amber-300 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-700/50",
+        "border-amber-300 bg-amber-50 text-amber-800 dark:border-amber-700/60 dark:bg-amber-950/60 dark:text-amber-200",
+      dotClass: "bg-amber-500 animate-pulse",
     };
   } else if (diffDays <= 2) {
     return {
-      label: `${diffDays} days left`,
+      type: "due-soon",
+      label: diffDays === 1 ? "Due Soon (1 day left)" : `Due Soon (${diffDays} days left)`,
       badgeClass:
-        "bg-amber-50 text-amber-700 ring-amber-300 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-700/50",
+        "border-amber-300 bg-amber-50 text-amber-800 dark:border-amber-700/60 dark:bg-amber-950/60 dark:text-amber-200",
+      dotClass: "bg-amber-500",
     };
   } else {
     return {
+      type: "normal",
       label: `${diffDays} days left`,
       badgeClass:
-        "bg-emerald-50 text-emerald-700 ring-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-300 dark:ring-emerald-700/50",
+        "border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-700/60 dark:bg-emerald-950/60 dark:text-emerald-200",
+      dotClass: "bg-emerald-500",
     };
   }
 }
@@ -163,7 +174,7 @@ export default function MyBorrowsPage() {
       {/* Summary KPI Badges */}
       {!loading && borrows.length > 0 && (
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="flex items-center gap-4 rounded-2xl border border-emerald-200/90 bg-linear-to-b from-emerald-50/90 via-[#FAFDFB] to-emerald-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
+          <div className="flex items-center gap-4 rounded-2xl border border-emerald-200/90 bg-emerald-50/80 p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100/80 text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -179,7 +190,7 @@ export default function MyBorrowsPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 rounded-2xl border border-amber-200/90 bg-linear-to-b from-amber-50/90 via-[#FFFDF7] to-amber-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
+          <div className="flex items-center gap-4 rounded-2xl border border-amber-200/90 bg-amber-50/80 p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100/80 text-[#D97706] dark:bg-[#052E22] dark:text-[#FCD34D]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -195,7 +206,7 @@ export default function MyBorrowsPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 rounded-2xl border border-teal-200/90 bg-linear-to-b from-teal-50/90 via-[#F5FBFA] to-teal-100/30 p-4 shadow-xs dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E]">
+          <div className="flex items-center gap-4 rounded-2xl border border-teal-200/90 bg-teal-50/80 p-4 shadow-xs dark:border-[#134E4A] dark:bg-[#073B2E]">
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100/80 text-teal-700 dark:bg-[#052E22] dark:text-[#6EE7B7]">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -243,7 +254,7 @@ export default function MyBorrowsPage() {
           </Link>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
+        <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-[#FAFDFB] shadow-xl shadow-emerald-950/5 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/40">
           <div className="overflow-x-auto">
             <table className="w-full min-w-160 text-left text-sm">
               <thead>
@@ -309,15 +320,20 @@ export default function MyBorrowsPage() {
 
                       {/* Due Date + Status Pill */}
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm">⏰</span>
+                        <div className="flex items-center gap-2.5">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-[#047857] dark:bg-[#052E22] dark:text-[#6EE7B7]">
+                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </span>
                           <div>
                             <p className="text-xs font-semibold text-[#1F2937] dark:text-[#F0FDF4]">
                               {formatDate(borrow.returnDate)}
                             </p>
                             <span
-                              className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ring-1 ${status.badgeClass}`}
+                              className={`mt-1 inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-bold border ${status.badgeClass}`}
                             >
+                              <span className={`h-1.5 w-1.5 rounded-full ${status.dotClass}`} />
                               {status.label}
                             </span>
                           </div>
@@ -332,7 +348,9 @@ export default function MyBorrowsPage() {
                           className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-linear-to-r from-[#D97706] to-[#B45309] px-3.5 py-1.5 text-xs font-bold text-white shadow-xs transition hover:brightness-110 active:scale-[0.98]"
                         >
                           <span>Return Book</span>
-                          <span>↩️</span>
+                          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a5 5 0 015 5v2m0 0l-4-4m4 4l4-4" />
+                          </svg>
                         </Button>
                       </td>
                     </tr>
@@ -349,8 +367,10 @@ export default function MyBorrowsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs px-4">
           <div className="w-full max-w-md rounded-3xl border border-[#E7E5E4] bg-white p-6 shadow-2xl dark:border-[#134E4A] dark:bg-[#073B2E]">
             <div className="flex items-center gap-3.5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-100 bg-amber-50 text-2xl text-[#D97706] shadow-xs dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#FCD34D]">
-                ↩️
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-100 bg-amber-50 text-[#D97706] shadow-xs dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#FCD34D]">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a5 5 0 015 5v2m0 0l-4-4m4 4l4-4" />
+                </svg>
               </span>
               <div>
                 <h3 className="font-serif text-xl font-bold text-[#1F2937] sm:text-2xl dark:text-[#F0FDF4]">

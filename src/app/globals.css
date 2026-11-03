@@ -94,3 +94,13 @@ textarea:-webkit-autofill {
   background-color: #052e22;
   color: #f0fdf4;
 }
+
+/* Ensure dark mode cards and surfaces reset light-mode gradients cleanly */
+@utility bg-none {
+  background-image: none;
+}
+
+.dark .dark\:bg-none,
+.dark [class*="dark:bg-none"] {
+  background-image: none !important;
+}

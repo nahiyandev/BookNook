@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import BorrowButton from "@/components/BorrowButton";
 import WishlistActionButton from "@/components/WishlistActionButton";
 import BookReviewsSection from "@/components/BookReviewsSection";
+import BookCard from "@/components/BookCard";
 
 export const metadata = { title: "Book Details" };
 export const instant = false;
@@ -17,15 +18,31 @@ export default async function BookDetailsPage({
 }) {
   const { id } = await params;
   let book: Book | null = null;
+  let allBooks: Book[] = [];
   try {
-    const res = await fetch(`${API_URL}/books/${id}`, { cache: "no-store" });
+    const [res, allRes] = await Promise.all([
+      fetch(`${API_URL}/books/${id}`, { cache: "no-store" }),
+      fetch(`${API_URL}/books`, { cache: "no-store" }).catch(() => null),
+    ]);
     if (res.status === 404) notFound();
     if (!res.ok) throw new Error("Failed");
     book = await res.json();
+    if (allRes && allRes.ok) {
+      allBooks = await allRes.json();
+    }
   } catch {
     if (!book) notFound();
   }
   if (!book) notFound();
+
+  // Find related books in the same category first, backfill with others if fewer than 4
+  const sameCategoryBooks = allBooks.filter(
+    (b) => b._id !== book!._id && b.category?.toLowerCase() === book!.category?.toLowerCase()
+  );
+  const otherBooks = allBooks.filter(
+    (b) => b._id !== book!._id && b.category?.toLowerCase() !== book!.category?.toLowerCase()
+  );
+  const relatedBooks = [...sameCategoryBooks, ...otherBooks].slice(0, 4);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:py-12">
@@ -48,7 +65,7 @@ export default async function BookDetailsPage({
       </div>
 
       {/* Main presentation card */}
-      <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-xl shadow-emerald-950/5 sm:p-8 lg:p-10 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
+      <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-[#FAFDFB] p-6 shadow-xl shadow-emerald-950/5 sm:p-8 lg:p-10 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           {/* Left Column — Auto-fit Book Cover & Library Policy */}
           <div className="flex flex-col gap-5 lg:col-span-5">
@@ -250,6 +267,35 @@ export default async function BookDetailsPage({
 
       {/* Reader Reviews & Ratings Section */}
       <BookReviewsSection bookId={book._id} bookTitle={book.title} />
+
+      {/* You May Also Like Section */}
+      {relatedBooks.length > 0 && (
+        <section className="mt-12 sm:mt-16">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#047857] dark:text-[#6EE7B7]">
+                Related In Shelf
+              </span>
+              <h2 className="mt-1 font-serif text-2xl font-bold tracking-tight text-[#1F2937] sm:text-3xl dark:text-[#F0FDF4]">
+                You May Also Like
+              </h2>
+            </div>
+            <Link
+              href="/books"
+              className="group inline-flex items-center gap-1.5 text-xs font-bold text-[#047857] transition hover:underline dark:text-[#6EE7B7]"
+            >
+              <span>Explore all books</span>
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {relatedBooks.map((relBook) => (
+              <BookCard key={relBook._id} book={relBook} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

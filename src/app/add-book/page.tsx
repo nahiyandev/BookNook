@@ -90,7 +90,7 @@ export default function AddBookPage() {
       </div>
 
       {/* Main Form Container Card */}
-      <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-linear-to-b from-[#FAFDFB] via-[#F4FAF6] to-[#EAF5EF] p-6 shadow-xl shadow-emerald-950/5 sm:p-10 dark:border-[#134E4A] dark:bg-none dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
+      <div className="overflow-hidden rounded-3xl border border-emerald-200/90 bg-[#FAFDFB] p-6 shadow-xl shadow-emerald-950/5 sm:p-10 dark:border-[#134E4A] dark:bg-[#073B2E] dark:shadow-2xl dark:shadow-black/50">
         {/* Form Header */}
         <div className="border-b border-[#E7E5E4] pb-6 dark:border-[#134E4A]">
           <div className="flex items-center gap-3">
