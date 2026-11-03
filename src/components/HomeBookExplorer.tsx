@@ -150,7 +150,7 @@ export default function HomeBookExplorer({
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Search by book title, author, or keyword..."
-                className="w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] py-3 pr-10 pl-12 text-sm text-[#1F2937] placeholder-[#9CA3AF] transition focus:border-[#047857] focus:bg-white focus:ring-2 focus:ring-[#047857]/20 focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-[#6EE7B7]/40 dark:focus:border-[#6EE7B7]"
+                className="w-full rounded-2xl border border-[#E7E5E4] bg-[#FDFBF7] py-3 pr-10 pl-12 text-sm text-[#1F2937] placeholder-[#9CA3AF] transition focus:border-[#047857] focus:bg-white focus:ring-2 focus:ring-[#047857]/20 focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-[#6EE7B7]/40 dark:focus:border-[#6EE7B7]"
               />
               {searchQuery && (
                 <button

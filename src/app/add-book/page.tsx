@@ -45,7 +45,7 @@ export default function AddBookPage() {
   }
 
   const inputClass =
-    "w-full rounded-xl border border-[#E7E5E4] bg-white px-3.5 py-2.5 text-sm text-[#1F2937] transition placeholder:text-[#9CA3AF] focus:border-[#047857] focus:ring-2 focus:ring-[#047857]/20 focus:outline-none dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#ECFDF5] dark:placeholder:text-[#6EE7B7]/40 dark:focus:border-[#10B981] dark:focus:ring-[#10B981]/20";
+    "w-full rounded-xl border border-[#E7E5E4] bg-white px-3.5 py-2.5 text-sm text-[#1F2937] transition placeholder:text-[#9CA3AF] focus:border-[#047857] focus:ring-2 focus:ring-[#047857]/20 focus:outline-none dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#ECFDF5] dark:placeholder:text-[#6EE7B7]/40 dark:focus:border-[#10B981] dark:focus:ring-[#10B981]/20";
 
   const readOnlyInputClass =
     "w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm font-medium text-[#4B5563] cursor-not-allowed select-none dark:border-[#134E4A] dark:bg-[#052E22]/60 dark:text-[#A7F3D0]";

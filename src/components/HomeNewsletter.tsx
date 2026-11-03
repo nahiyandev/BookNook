@@ -117,7 +117,7 @@ export default function HomeNewsletter() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address"
-                      className="w-full rounded-2xl border border-stone-300/80 bg-white/80 py-2.5 pr-3.5 pl-10 text-xs text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-sm transition focus:border-[#047857] focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#047857]/20 sm:text-sm dark:border-emerald-700/50 dark:bg-[#052E22]/80 dark:text-[#F0FDF4] dark:placeholder-emerald-400/40 dark:focus:border-[#6EE7B7]"
+                      className="w-full rounded-2xl border border-stone-300/80 bg-white/80 py-2.5 pr-3.5 pl-10 text-xs text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-sm transition focus:border-[#047857] focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-[#047857]/20 sm:text-sm dark:border-emerald-700/50 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:placeholder-emerald-400/40 dark:focus:border-[#6EE7B7]"
                     />
                   </div>
                   <button

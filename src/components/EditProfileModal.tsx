@@ -136,7 +136,7 @@ export default function EditProfileModal({
                   value={avatarUrl}
                   onChange={(e) => setAvatarUrl(e.target.value)}
                   placeholder="Paste image link (e.g. from imgbb or unsplash)..."
-                  className="w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-xs text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
+                  className="w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-xs text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function EditProfileModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your reader name"
-                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
+                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
               />
             </div>
 
@@ -167,7 +167,7 @@ export default function EditProfileModal({
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="e.g. Dhaka, Bangladesh"
-                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
+                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
               />
             </div>
           </div>
@@ -182,7 +182,7 @@ export default function EditProfileModal({
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Tell fellow readers a bit about yourself or your favorite literary quote..."
-              className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] p-3 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
+              className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] p-3 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
             />
           </div>
 
@@ -198,7 +198,7 @@ export default function EditProfileModal({
                 max={100}
                 value={readingGoal}
                 onChange={(e) => setReadingGoal(Number(e.target.value))}
-                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
+                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
               />
             </div>
 
@@ -211,7 +211,7 @@ export default function EditProfileModal({
                 value={favoriteAuthor}
                 onChange={(e) => setFavoriteAuthor(e.target.value)}
                 placeholder="e.g. Richard Dawkins, Mary Beard"
-                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
+                className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
               />
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function EditProfileModal({
             <select
               value={readingHabit}
               onChange={(e) => setReadingHabit(e.target.value)}
-              className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
+              className="mt-1.5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-3.5 py-2.5 text-sm text-[#1F2937] transition focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-[#134E4A] dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4] dark:focus:border-[#6EE7B7]"
             >
               {READING_HABITS.map((habit) => (
                 <option key={habit} value={habit} className="dark:bg-[#073B2E]">

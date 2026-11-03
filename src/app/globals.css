@@ -63,3 +63,34 @@ h4,
 .dark .swiper-pagination-bullet-active {
   background-color: #6ee7b7 !important;
 }
+
+/* Chrome & Edge Autofill dark mode override to prevent stark white autofill boxes */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active,
+.dark select:-webkit-autofill,
+.dark textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #052e22 inset !important;
+  -webkit-text-fill-color: #f0fdf4 !important;
+  caret-color: #f0fdf4 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+select:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fdfbf7 inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  caret-color: #1f2937 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Ensure native options on select dropdowns inherit dark theme properly */
+.dark select option {
+  background-color: #052e22;
+  color: #f0fdf4;
+}

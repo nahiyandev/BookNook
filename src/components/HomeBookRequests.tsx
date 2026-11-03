@@ -218,7 +218,7 @@ export default function HomeBookRequests() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Sapiens, The Alchemist, Dune..."
-                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4]"
                 />
               </div>
 
@@ -233,7 +233,7 @@ export default function HomeBookRequests() {
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     placeholder="e.g. Frank Herbert"
-                    className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
+                    className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4]"
                   />
                 </div>
 
@@ -244,10 +244,14 @@ export default function HomeBookRequests() {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm font-medium text-[#1F2937] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
+                    className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/90 px-4 py-2.5 text-sm font-medium text-[#1F2937] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4]"
                   >
                     {CATEGORIES.map((c) => (
-                      <option key={c} value={c}>
+                      <option
+                        key={c}
+                        value={c}
+                        className="bg-white text-[#1F2937] dark:bg-[#052E22] dark:text-[#F0FDF4]"
+                      >
                         {c}
                       </option>
                     ))}
@@ -264,7 +268,7 @@ export default function HomeBookRequests() {
                   value={requesterName}
                   onChange={(e) => setRequesterName(e.target.value)}
                   placeholder="e.g. Anika (or leave anonymous)"
-                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4]"
                 />
               </div>
 
@@ -277,7 +281,7 @@ export default function HomeBookRequests() {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="e.g. Recommended by my professor / Need for research..."
-                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/70 px-4 py-2.5 text-sm text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden dark:border-emerald-700/40 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4]"
                 />
               </div>
 

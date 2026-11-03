@@ -329,7 +329,7 @@ export default function BookReviewsSection({
                   value={reviewerName}
                   onChange={(e) => setReviewerName(e.target.value)}
                   placeholder="e.g. Tanvir Ahmed (or leave blank)"
-                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/80 px-4 py-2.5 text-xs text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden sm:text-sm dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/80 px-4 py-2.5 text-xs text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden sm:text-sm dark:border-emerald-700/40 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4]"
                 />
               </div>
 
@@ -344,7 +344,7 @@ export default function BookReviewsSection({
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   placeholder="What did you love about this book? Who would you recommend it to?"
-                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/80 px-4 py-2.5 text-xs text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden sm:text-sm dark:border-emerald-700/40 dark:bg-[#052E22]/70 dark:text-[#F0FDF4]"
+                  className="mt-1.5 w-full rounded-2xl border border-stone-200/80 bg-white/80 px-4 py-2.5 text-xs text-[#1F2937] placeholder-[#9CA3AF] backdrop-blur-xs focus:border-[#047857] focus:bg-white focus:outline-hidden sm:text-sm dark:border-emerald-700/40 dark:bg-[#052E22] dark:focus:bg-[#052E22] dark:text-[#F0FDF4]"
                 />
               </div>
 
